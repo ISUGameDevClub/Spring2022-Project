@@ -5,23 +5,33 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Vector2 direction;
-    public float speed = 1;
-    float Xinput;
-    float Yinput;
+
+    [SerializeField] float speed;
+    float xInput;
+    float yInput;
     Rigidbody2D playerRB;
+
     // Start is called before the first frame update
     void Start()
     {
+        speed = 10;
         playerRB = GetComponent<Rigidbody2D>();
     }
 
-    void FixedUpdate()
+    // Update is called once per frame
+    private void FixedUpdate()
     {
-        Xinput = Input.GetAxis("Horizontal");
-        Yinput = Input.GetAxis("Vertical");
-        direction = new Vector2(Xinput, Yinput);
-        if (direction.magnitude >= 1)
+        xInput = Input.GetAxis("Horizontal");
+        yInput = Input.GetAxis("Vertical");
+
+        direction = new Vector2(xInput, yInput);
+
+        if (direction.magnitude > 1)
+        {
             direction.Normalize();
-        playerRB.MovePosition((Vector2)transform.position + (direction * speed * Time.fixedDeltaTime));
+        }
+
+        playerRB.MovePosition((Vector2)transform.position + (direction * speed * Time.deltaTime));
+
     }
 }
