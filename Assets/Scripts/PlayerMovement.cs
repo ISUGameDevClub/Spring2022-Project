@@ -4,26 +4,27 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
     Vector2 direction;
     [SerializeField] float speed;
     float Xinput;
     float Yinput;
-    Rigidbody2D RigidBody;
+    Rigidbody2D playerRB;
+    // Start is called before the first frame update
     void Start()
     {
-        RigidBody = GetComponent<Rigidbody2D>();
+        playerRB = GetComponent<Rigidbody2D>();
     }
-
-    // Update is called once per frame
-   private void FixedUpdate()
+    private void FixedUpdate()
     {
-        Xinput = Input.GetAxis(“Horizontal”);
-        Yinput = Input.GetAxis(”Vertical”);
-        direction = new Vector2(Xinput,Yinput);
-        RigidBody.MovePosition(direction);
-        RigidBody.MovePosition((Vector2)transform.position + (direction*speed*Time.fixedDeltaTime))
-            if (direction.magnitude>1)
+        Xinput = Input.GetAxis("Horizontal");
+        Yinput = Input.GetAxis("Vertical");
 
+        direction = new Vector2(Xinput, Yinput);
+
+        if (direction.magnitude > 1)
+        {
+            direction.Normalize();
+        }
+        playerRB.MovePosition((Vector2)transform.position + (direction * speed * Time.fixedDeltaTime));
     }
 }
