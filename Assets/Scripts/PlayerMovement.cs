@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBehavior : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     Vector2 direction;
     [SerializeField] float speed;
@@ -25,7 +25,6 @@ public class PlayerBehavior : MonoBehaviour
         {
             direction.Normalize();
         }
-
         playerRB.MovePosition((Vector2)transform.position + (direction * speed * Time.fixedDeltaTime));
     }
 }
