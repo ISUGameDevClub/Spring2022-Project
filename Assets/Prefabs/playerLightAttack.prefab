@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8247662113382918074}
   - component: {fileID: 8247662113382918075}
   - component: {fileID: 8247662113382918055}
-  - component: {fileID: 8141230675400064724}
+  - component: {fileID: -7057665793457847920}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: playerLightAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d333c5956aeee42a6229dbda6bdee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  cooldownTime: 1
+  speed: 0
+  cooldownTime: 0.2
 --- !u!50 &8247662113382918075
 Rigidbody2D:
   serializedVersion: 4
@@ -137,7 +137,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &8141230675400064724
+--- !u!114 &-7057665793457847920
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
