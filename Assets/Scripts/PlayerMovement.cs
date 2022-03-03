@@ -12,6 +12,11 @@ public class PlayerMovement : MonoBehaviour
     bool dashing = false;
     [SerializeField] float sec = 0.5f;
     bool canmove = true;
+    bool dashcooling;
+    [SerializeField] float dashcoolsec = 1.5f;
+    bool isslowed = false;
+    [SerializeField] float tiredtime = 0.2f;
+    [SerializeField] float tiredspeed = 2.5f;
     Rigidbody2D playerRB;
     // Start is called before the first frame update
     void Start()
@@ -20,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-         if (Input.GetKeyDown(KeyCode.LeftShift) && !dashing)
+         if (Input.GetKeyDown(KeyCode.LeftShift) && !dashing && !dashcooling)
         {
             StartCoroutine(DashTime(sec));
             
@@ -46,9 +51,14 @@ public class PlayerMovement : MonoBehaviour
             playerRB.MovePosition((Vector2)transform.position + (direction * dash * Time.fixedDeltaTime));
             
         }
+        
         else
         {
             playerRB.MovePosition((Vector2)transform.position + (direction * speed * Time.fixedDeltaTime));
+        }
+        if (isslowed)
+        {
+            playerRB.MovePosition((Vector2)transform.position + (direction * tiredspeed * Time.fixedDeltaTime));
         }
        
     }
@@ -59,5 +69,16 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(sec);
         canmove = true;
         dashing = false;
+        dashcooling = true;
+        StartCoroutine(DashCoolDown(dashcoolsec));
+    }
+    IEnumerator DashCoolDown (float dashcoolsec)
+    {
+        isslowed = true;
+            yield return new WaitForSeconds(tiredtime);
+        isslowed = false;
+            yield return new WaitForSeconds(dashcoolsec);
+            dashcooling = false;
+        
     }
 }
