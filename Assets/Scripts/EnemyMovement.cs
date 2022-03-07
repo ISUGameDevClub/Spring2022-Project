@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     {
         // player = GetComponent<Transform>();
         enemy = GetComponent<Rigidbody2D>();
+        player = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
