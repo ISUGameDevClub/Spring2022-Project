@@ -33,24 +33,28 @@ public class WeaponSwap : MonoBehaviour
         {
           transform.localPosition = new Vector3(350, -15, 0);
           swapped = true;
+          FindObjectOfType<PlayerInventory>().ChangeActiveSlot(2);
           timer = 1;
         }
         if(this.gameObject.name == "Box1" && Input.GetKeyDown(KeyCode.RightShift) && timer <= 0 && swapped == true)
         {
           transform.localPosition = new Vector3(350, 85, 0);
           swapped = false;
+          FindObjectOfType<PlayerInventory>().ChangeActiveSlot(1);
           timer = 1;
         }
         if(this.gameObject.name == "Box2" && Input.GetKeyDown(KeyCode.RightShift) && timer <= 0 && swapped == false)
         {
           transform.localPosition = new Vector3(350, 85, 0);
           swapped = true;
+          FindObjectOfType<PlayerInventory>().ChangeActiveSlot(2);
           timer = 1;
         }
         if(this.gameObject.name == "Box2" && Input.GetKeyDown(KeyCode.RightShift) && timer <= 0 && swapped == true)
         {
           transform.localPosition = new Vector3(350, -15, 0);
           swapped = false;
+          FindObjectOfType<PlayerInventory>().ChangeActiveSlot(1);
           timer = 1;
         }
 
