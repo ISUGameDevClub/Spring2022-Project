@@ -143,6 +143,8 @@ GameObject:
   - component: {fileID: 3684727295531276478}
   - component: {fileID: 3694657211392126114}
   - component: {fileID: 2414555622543350996}
+  - component: {fileID: 1890880825}
+  - component: {fileID: 1890880826}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -268,6 +270,9 @@ MonoBehaviour:
   speed: 5
   dash: 10
   sec: 0.5
+  dashcoolsec: 1.5
+  tiredtime: 0.2
+  tiredspeed: 2.5
 --- !u!114 &3684727295531276478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,3 +318,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightAttack: {fileID: 8247662113382918076, guid: ac18ac8c362efc742afb3bdc8ad448a9, type: 3}
   strongAttack: {fileID: 8247662113382918076, guid: b7ae40f47778c9041931ee582e6738eb, type: 3}
+--- !u!114 &1890880825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3684727295531276472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485e7d9c2cb8241a3a6079291fdab0fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wp1:
+    name: Weak Stick
+    baseDamage: 1
+    currDamage: 1
+    description: It doesn't do a lot of damage
+  wp2:
+    name: 
+    baseDamage: 0
+    currDamage: 0
+    description: 
+  activeSlot: 0
+--- !u!114 &1890880826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3684727295531276472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ebc07099bdd3c42967a0c3d260ca53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  dash: 10
+  sec: 0.5
+  dashcoolsec: 1.5
+  tiredtime: 0.2
+  tiredspeed: 2.5
