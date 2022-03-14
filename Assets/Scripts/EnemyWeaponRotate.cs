@@ -8,6 +8,7 @@ public class EnemyWeaponRotate : MonoBehaviour
     public GameObject weapon;
     public GameObject target; //target to which the weapon will rotate towards
     bool weaponOnLeft = false;
+    EnemyMovement em;
     Vector3 flipValues = new Vector3(0, 180, 0);
     Quaternion flip = new Quaternion();
     Vector3 rightAngle = new Vector3(0, 0, 90);
@@ -16,12 +17,21 @@ public class EnemyWeaponRotate : MonoBehaviour
     public float gunRotationMaxSpeed; //max speed in degrees per second that the weapon can rotate
     private void Start()
     {
+        em = enemy.GetComponent<EnemyMovement>();
         flip.eulerAngles = flipValues;
         offset.eulerAngles = rightAngle;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, target.transform.position - weapon.transform.position) * offset; //snaps weapon rotation to player's location on Start
     }
     // Update is called once per frame
     void Update()
+    {
+        if (em.canSeePlayer())
+        {
+            AimWeapon();
+            FlipWeapon();
+        }
+    }
+    private void AimWeapon()
     {
         if (weaponOnLeft)
         {
@@ -38,7 +48,7 @@ public class EnemyWeaponRotate : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(weapon.transform.rotation, targetRotation * offset, degreesPerSecond);
         }
     }
-    private void FixedUpdate()
+    private void FlipWeapon()
     {
         if (!weaponOnLeft && weapon.transform.position.x - enemy.transform.position.x < -0.3)
         {

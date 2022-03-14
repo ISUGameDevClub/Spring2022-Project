@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Vector2 direction;
     [SerializeField] float speed;
-    float Xinput;
-    float Yinput;
     [SerializeField] float dash = 10;
-    bool dashing = false;
-    [SerializeField] float sec = 0.5f;
-    bool canmove = true;
-    bool dashcooling;
+    [SerializeField] float timeDashing = 0.5f;
     [SerializeField] float dashcoolsec = 1.5f;
-    bool isslowed = false;
     [SerializeField] float tiredtime = 0.2f;
     [SerializeField] float tiredspeed = 2.5f;
     Rigidbody2D playerRB;
+    Vector2 direction;
+    float Xinput;
+    float Yinput;
+    bool dashing = false;
+    bool canmove = true;
+    bool dashcooling;
+    bool isslowed = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     {
          if (Input.GetKeyDown(KeyCode.LeftShift) && !dashing && !dashcooling)
         {
-            StartCoroutine(DashTime(sec));
+            StartCoroutine(DashTime(timeDashing));
             
         }
     }

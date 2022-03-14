@@ -4,42 +4,34 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-
-    public Transform player;
-    public Rigidbody2D enemy;
-    public float moveSpeed = .5f;
-    public float maxDist = 10.0f;
-    public float minDist = 1.5f;
+    public Rigidbody2D playerRB;
+    public Rigidbody2D enemyRB;
+    public float moveSpeed;
+    public float maxDist;
+    public float minDist;
+    public float bufferDist;
     public Vector2 lastpos;
-
-
-    // Start is called before the first frame update
     void Start()
     {
-        // player = GetComponent<Transform>();
-        enemy = GetComponent<Rigidbody2D>();
-        player = GameObject.Find("Player").transform;
+        enemyRB = GetComponent<Rigidbody2D>();
+        lastpos = enemyRB.position;
+        playerRB = GameObject.Find("Player").GetComponent<Rigidbody2D>();
     }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
-        // transform.LookAt(player);
-
-        if (Vector2.Distance(transform.position, player.position) > minDist && 
-            Vector2.Distance(transform.position, player.position) <= maxDist)
+        bool seesPlayer = canSeePlayer();
+        if ((Vector2.Distance(enemyRB.position, playerRB.position) > minDist) && seesPlayer)
         {
-            lastpos = player.position;
-            // transform.position += transform.forward * moveSpeed * Time.deltaTime;
-            enemy.MovePosition(player.position += player.position * moveSpeed * Time.fixedDeltaTime);
+           lastpos = playerRB.position;
+           enemyRB.MovePosition(enemyRB.position + (playerRB.position - enemyRB.position ).normalized * moveSpeed * Time.fixedDeltaTime);
         }
-
-        else if (Vector2.Distance(transform.position, player.position) > maxDist)
+        else if (!seesPlayer)
         {
-            enemy.MovePosition(lastpos += lastpos * moveSpeed * Time.fixedDeltaTime);
+            enemyRB.MovePosition(enemyRB.position + (lastpos-enemyRB.position).normalized * moveSpeed * Time.fixedDeltaTime);
         }
-
-        
-
+    }
+    public bool canSeePlayer()
+    {
+        return Physics2D.Raycast(enemyRB.position, playerRB.position - enemyRB.position,maxDist,LayerMask.GetMask("Player"));
     }
 }
