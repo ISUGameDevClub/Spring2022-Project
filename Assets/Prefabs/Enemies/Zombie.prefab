@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 355266923145022855}
   - component: {fileID: 8215926041300359425}
   - component: {fileID: 3315310993519168450}
-  - component: {fileID: 3315310993519168461}
+  - component: {fileID: 3874631971874148339}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -301,8 +301,9 @@ MonoBehaviour:
   moveSpeed: 1
   maxDist: 10
   minDist: 2
-  bufferDist: 0
+  bufferDist: 0.2
   lastpos: {x: 0, y: 0}
+  direction: {x: 0, y: 0}
 --- !u!114 &355266923145022855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,8 +354,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &3315310993519168461
-CircleCollider2D:
+--- !u!70 &3874631971874148339
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -367,5 +368,5 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0

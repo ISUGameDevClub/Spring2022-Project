@@ -51,7 +51,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 case EnemyType.Zombie:
                     {
-                        enemyMovingAnim.SetTrigger("ZombieMoving");
+                        enemyMovingAnim.SetTrigger("ZombieWalking");
                         return;
                     }
                 case EnemyType.Ghost:
@@ -83,7 +83,7 @@ public class EnemyMovement : MonoBehaviour
             }
             enemyMoving = true;
         }
-        else if (!seesPlayer && enemyRB.position == lastpos) 
+        else if (!seesPlayer && Vector2.Distance(lastpos,enemyRB.position) >bufferDist)
         {
             direction = (lastpos - enemyRB.position);
             enemyRB.MovePosition(enemyRB.position + (direction).normalized * moveSpeed * Time.fixedDeltaTime);
