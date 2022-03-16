@@ -16,6 +16,7 @@ public class EnemyMovement : MonoBehaviour
     public float minDist;
     public float bufferDist;
     public Vector2 lastpos;
+    public Vector2 direction;
     void Start()
     {
         enemyRB = GetComponent<Rigidbody2D>();
@@ -69,13 +70,30 @@ public class EnemyMovement : MonoBehaviour
         bool seesPlayer = canSeePlayer();
         if ((Vector2.Distance(enemyRB.position, playerRB.position) > minDist) && seesPlayer)
         {
+            direction = playerRB.position - enemyRB.position;
             lastpos = playerRB.position;
-            enemyRB.MovePosition(enemyRB.position + (playerRB.position - enemyRB.position).normalized * moveSpeed * Time.fixedDeltaTime);
+            enemyRB.MovePosition(enemyRB.position + (direction).normalized * moveSpeed * Time.fixedDeltaTime);
+            if (direction.x > 0)
+            {
+                enemySpriteRender.flipX = true;
+            }
+            else if (direction.x < 0)
+            {
+                enemySpriteRender.flipX = false;
+            }
             enemyMoving = true;
         }
         else if (!seesPlayer && enemyRB.position == lastpos) 
         {
-            enemyRB.MovePosition(enemyRB.position + (lastpos-enemyRB.position).normalized * moveSpeed * Time.fixedDeltaTime);
+            direction = (lastpos - enemyRB.position);
+            enemyRB.MovePosition(enemyRB.position + (direction).normalized * moveSpeed * Time.fixedDeltaTime);
+            if (direction.x > 0)
+            {
+                enemySpriteRender.flipX = true;
+            } else if(direction.x < 0)
+            {
+                enemySpriteRender.flipX = false;
+            }
             enemyMoving = true;
         }
         else
