@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashcoolsec = 1.5f;
     [SerializeField] float tiredtime = 0.2f;
     [SerializeField] float tiredspeed = 2.5f;
+    [SerializeField] Animator playerWalking;
+    [SerializeField] Sprite idleSprite;
+    [SerializeField] SpriteRenderer playerSprite;
     Rigidbody2D playerRB;
     Vector2 direction;
     float Xinput;
@@ -26,10 +30,27 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-         if (Input.GetKeyDown(KeyCode.LeftShift) && !dashing && !dashcooling)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !dashing && !dashcooling)
         {
             StartCoroutine(DashTime(timeDashing));
-            
+        }
+        if(direction != Vector2.zero) {
+            Debug.Log("Playing");
+            playerWalking.SetTrigger("Moving");
+        }
+        else
+        {
+            Debug.Log("Stopping");
+            playerWalking.ResetTrigger("Moving");
+            playerWalking.SetTrigger("NotMoving"); 
+        }
+        if (Xinput < 0 && !dashing)
+        {
+            playerSprite.flipX = true;
+        }
+        else if(Xinput > 0 && !dashing)
+        {
+            playerSprite.flipX = false;
         }
     }
     private void FixedUpdate()
@@ -48,9 +69,7 @@ public class PlayerMovement : MonoBehaviour
        
         if (dashing)
         {
-            
             playerRB.MovePosition((Vector2)transform.position + (direction * dash * Time.fixedDeltaTime));
-            
         }
         
         else

@@ -17,6 +17,7 @@ public class EnemyWeaponRotate : MonoBehaviour
     public float gunRotationMaxSpeed; //max speed in degrees per second that the weapon can rotate
     private void Start()
     {
+        target = GameObject.Find("Player");
         em = enemy.GetComponent<EnemyMovement>();
         flip.eulerAngles = flipValues;
         offset.eulerAngles = rightAngle;
