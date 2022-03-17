@@ -15,7 +15,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Player
   - 
   - 
   - 
@@ -38,6 +38,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 329505531
+    locked: 0
+  - name: Floor
+    uniqueID: 4043043897
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Walls
+    uniqueID: 1127630653
+    locked: 0
+  - name: Player
+    uniqueID: 2611100069
+    locked: 0
+  - name: Enemy
+    uniqueID: 921885567
     locked: 0
