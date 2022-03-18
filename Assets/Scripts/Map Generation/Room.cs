@@ -6,7 +6,7 @@ public class Room : MonoBehaviour
 {
     private Door[] doors;
 
-    public GameObject[] SpawnHallways(GameObject endHorizontalRoom, GameObject endVerticalRoom, float hallwayLength)
+    public GameObject[] SpawnHallways(GameObject endHorizontalRoom, GameObject endVerticalRoom, float hallwayLength, int cornerCheck)
     {
         doors = GetComponentsInChildren<Door>();
         int numNewRooms = 0;
@@ -21,7 +21,7 @@ public class Room : MonoBehaviour
         {
             if (!doors[i].hasHallway)
             {
-                GameObject temp = doors[i].SpawnHallway(endHorizontalRoom, endVerticalRoom, hallwayLength);
+                GameObject temp = doors[i].SpawnHallway(endHorizontalRoom, endVerticalRoom, hallwayLength, cornerCheck);
 
                 for(int k = 0; k < newRooms.Length; k++)
                 {

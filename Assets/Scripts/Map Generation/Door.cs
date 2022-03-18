@@ -10,44 +10,66 @@ public class Door : MonoBehaviour
 
     private Vector2 direction;
 
-    public GameObject SpawnHallway(GameObject endHorizontalRoom, GameObject endVerticalRoom, float hallwayLength)
+    public GameObject SpawnHallway(GameObject endHorizontalRoom, GameObject endVerticalRoom, float hallwayLength, int cornerCheck)
     {
         hasHallway = true;
         SetDirection();
+
+        bool makeHallway = true;
+
+        if(cornerCheck == 1)
+        {
+            makeHallway = false;
+            foreach (Vector2 corn in MapGenerator.generatedDirections)
+            {
+                if((corn.x == direction.x && Mathf.Abs(direction.x) > .5f) || corn.y == direction.y && Mathf.Abs(direction.y) > .5f)
+                {
+                    makeHallway = true;
+                }
+            }
+        }
+
         GameObject newRoom = null;
-        Debug.Log(gameObject);
-        if (Mathf.Abs(direction.x) > .5f)
+        if (makeHallway)
         {
-            GameObject hallWay = Instantiate(horizontalHallway, (Vector2)transform.position + direction * hallwayLength / 2, Quaternion.identity).gameObject;
-            foreach(SpriteRenderer sr in hallWay.GetComponentsInChildren<SpriteRenderer>())
+            if (hallwayLength < 0)
             {
-                sr.size = new Vector2(hallwayLength - 1, 1);
+                float goal = Mathf.Abs(hallwayLength);
+                Vector2 goalPosition = -direction * hallwayLength;
+                hallwayLength = Vector2.Distance(goalPosition, (Vector2)transform.position);
             }
 
-            newRoom = Instantiate(endHorizontalRoom, (Vector2)transform.position + direction * hallwayLength, Quaternion.identity).gameObject;
-        }
-        else if (Mathf.Abs(direction.y) > .5f)
-        {
-            Debug.Log("HIT");
-            GameObject hallWay = Instantiate(verticalHallway, (Vector2)transform.position + direction * hallwayLength / 2, Quaternion.identity).gameObject;
-            foreach (SpriteRenderer sr in hallWay.GetComponentsInChildren<SpriteRenderer>())
+            if (Mathf.Abs(direction.x) > .5f)
             {
-                sr.size = new Vector2(1, hallwayLength - 1);
+                GameObject hallWay = Instantiate(horizontalHallway, (Vector2)transform.position + direction * hallwayLength / 2, Quaternion.identity).gameObject;
+                foreach (SpriteRenderer sr in hallWay.GetComponentsInChildren<SpriteRenderer>())
+                {
+                    sr.size = new Vector2(hallwayLength - 1, 1);
+                }
+
+                newRoom = Instantiate(endHorizontalRoom, (Vector2)transform.position + direction * hallwayLength, Quaternion.identity).gameObject;
+            }
+            else if (Mathf.Abs(direction.y) > .5f)
+            {
+                GameObject hallWay = Instantiate(verticalHallway, (Vector2)transform.position + direction * hallwayLength / 2, Quaternion.identity).gameObject;
+                foreach (SpriteRenderer sr in hallWay.GetComponentsInChildren<SpriteRenderer>())
+                {
+                    sr.size = new Vector2(1, hallwayLength - 1);
+                }
+
+                newRoom = Instantiate(endVerticalRoom, (Vector2)transform.position + direction * hallwayLength, Quaternion.identity).gameObject;
             }
 
-            newRoom = Instantiate(endVerticalRoom, (Vector2)transform.position + direction * hallwayLength, Quaternion.identity).gameObject;
-        }
-
-        Debug.Log(newRoom);
-
-        Door[] newDoors = newRoom.GetComponentsInChildren<Door>();
-        foreach (Door d in newDoors)
-        {
-            d.SetDirection();
-            if (direction + d.direction == Vector2.zero)
+            Door[] newDoors = newRoom.GetComponentsInChildren<Door>();
+            foreach (Door d in newDoors)
             {
-                newRoom.transform.position -= d.transform.localPosition;
-                break;
+                d.SetDirection();
+                if (direction + d.direction == Vector2.zero)
+                {
+                    d.hasHallway = true;
+                    newRoom.transform.position -= d.transform.localPosition;
+                    break;
+                }
             }
         }
 
