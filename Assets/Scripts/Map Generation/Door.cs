@@ -22,11 +22,26 @@ public class Door : MonoBehaviour
             makeHallway = false;
             foreach (Vector2 corn in MapGenerator.generatedDirections)
             {
-                if((corn.x == direction.x && Mathf.Abs(direction.x) > .5f) || corn.y == direction.y && Mathf.Abs(direction.y) > .5f)
+                if((corn.x == direction.x && Mathf.Abs(direction.x) > .5f) || (corn.y == direction.y && Mathf.Abs(direction.y) > .5f))
                 {
                     makeHallway = true;
                 }
             }
+        }
+        else if (cornerCheck == 2)
+        {
+            makeHallway = false;
+            foreach (Vector2 corn in MapGenerator.generatedDirections)
+            {
+                if(((corn.x == 1 && transform.position.x > 10 || corn.x == -1 && transform.position.x < -10) && corn.y == direction.y) || ((corn.y == 1 && transform.position.y > 10 || corn.y == -1 && transform.position.y < -10) && corn.x == direction.x))
+                {
+                    makeHallway = true;
+                }
+            }
+        }
+        else if(cornerCheck == 3)
+        {
+            makeHallway = false;
         }
 
         GameObject newRoom = null;
@@ -71,6 +86,10 @@ public class Door : MonoBehaviour
                     break;
                 }
             }
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
         }
 
         return newRoom;
