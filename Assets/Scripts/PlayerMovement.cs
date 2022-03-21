@@ -35,12 +35,12 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(DashTime(timeDashing));
         }
         if(direction != Vector2.zero) {
-            Debug.Log("Playing");
+            //Debug.Log("Playing");
             playerWalking.SetTrigger("Moving");
         }
         else
         {
-            Debug.Log("Stopping");
+            //Debug.Log("Stopping");
             playerWalking.ResetTrigger("Moving");
             playerWalking.SetTrigger("NotMoving"); 
         }
