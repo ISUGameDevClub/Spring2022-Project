@@ -144,11 +144,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9163111082504112088, guid: dbcc496ee88e001438006fe32ef5f309, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.63
+      value: 6.47
       objectReference: {fileID: 0}
     - target: {fileID: 9163111082504112088, guid: dbcc496ee88e001438006fe32ef5f309, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.99
+      value: -7.08
       objectReference: {fileID: 0}
     - target: {fileID: 9163111082504112088, guid: dbcc496ee88e001438006fe32ef5f309, type: 3}
       propertyPath: m_LocalPosition.z
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 520904138}
   - component: {fileID: 520904137}
   - component: {fileID: 520904136}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1489,11 +1489,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9163111082504112088, guid: dbcc496ee88e001438006fe32ef5f309, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.46
+      value: 6.71
       objectReference: {fileID: 0}
     - target: {fileID: 9163111082504112088, guid: dbcc496ee88e001438006fe32ef5f309, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.57
+      value: -5.45
       objectReference: {fileID: 0}
     - target: {fileID: 9163111082504112088, guid: dbcc496ee88e001438006fe32ef5f309, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1540,8 +1540,28 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 193917156866944257, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3825
+      objectReference: {fileID: 0}
+    - target: {fileID: 193917156866944257, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.17208001
+      objectReference: {fileID: 0}
+    - target: {fileID: 193917156866944257, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.641
+      objectReference: {fileID: 0}
+    - target: {fileID: 193917156866944257, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3684727295531276472, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684727295531276472, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3684727295531276474, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
@@ -1550,11 +1570,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3684727295531276474, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.68
+      value: 9.87
       objectReference: {fileID: 0}
     - target: {fileID: 3684727295531276474, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.68
+      value: -6.79
       objectReference: {fileID: 0}
     - target: {fileID: 3684727295531276474, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1594,7 +1614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6210984017256938943, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
@@ -5130,6 +5150,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3315310994572586833, guid: dbcc496ee88e001438006fe32ef5f309, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6470982562688677288, guid: dbcc496ee88e001438006fe32ef5f309, type: 3}
       propertyPath: m_Name
       value: Zombie (3)

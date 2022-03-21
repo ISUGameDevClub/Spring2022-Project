@@ -15,7 +15,6 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float bufferDist;
 
     bool enemyMoving;
-    bool seesPlayer;
     Rigidbody2D playerRB;
     Rigidbody2D enemyRB;
     Vector2 lastpos;
@@ -29,7 +28,6 @@ public class EnemyMovement : MonoBehaviour
     }
     private void Update()
     {
-        seesPlayer = canSeePlayer();
         if (!enemyMoving)
         {
             switch (typeOfEnemy)
@@ -71,8 +69,11 @@ public class EnemyMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
+        enemyRB.velocity = Vector2.zero;
+        bool seesPlayer = canSeePlayer();
         if ((Vector2.Distance(enemyRB.position, playerRB.position) > minDist) && seesPlayer)
         {
+
             direction = playerRB.position - enemyRB.position;
             lastpos = playerRB.position;
             enemyRB.MovePosition(enemyRB.position + (direction).normalized * moveSpeed * Time.fixedDeltaTime);
@@ -86,7 +87,7 @@ public class EnemyMovement : MonoBehaviour
             }
             enemyMoving = true;
         }
-        else if (!seesPlayer && Vector2.Distance(lastpos,enemyRB.position) >bufferDist)
+        else if (!seesPlayer && Vector2.Distance(lastpos,enemyRB.position) > bufferDist)
         {
             direction = (lastpos - enemyRB.position);
             enemyRB.MovePosition(enemyRB.position + (direction).normalized * moveSpeed * Time.fixedDeltaTime);
@@ -106,6 +107,12 @@ public class EnemyMovement : MonoBehaviour
     }
     public bool canSeePlayer()
     {
-        return Physics2D.Raycast(enemyRB.position, playerRB.position - enemyRB.position,maxDist,LayerMask.GetMask("Player"));
+        int layerMask = LayerMask.GetMask("Player","Walls");
+        RaycastHit2D hit = Physics2D.Raycast(enemyRB.position, playerRB.position - enemyRB.position, maxDist, layerMask);
+        if(hit.collider != null && hit.collider.gameObject.tag == "Player")
+        {
+            return true;
+        }
+        return false;
     }
 }
