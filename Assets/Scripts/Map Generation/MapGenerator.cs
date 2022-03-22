@@ -23,6 +23,7 @@ public class MapGenerator : MonoBehaviour
     public GameObject[] secondConnectors;
 
     public static Vector2[] generatedDirections;
+    public static Vector2[] cornerDoorPositions;
 
     void Start()
     {
@@ -62,19 +63,21 @@ public class MapGenerator : MonoBehaviour
                 generatedDirections[i] = new Vector2(-1, -1);
             else if (generatedCorners[i] == 3)
                 generatedDirections[i] = new Vector2(-1, 1);
-
-            Debug.Log(generatedDirections[i]);
+            
         }
+        cornerDoorPositions = new Vector2[generatedDirections.Length];
 
         // spawn paths ending with inner rooms around the starting room
-        innerRooms = startingRoom.GetComponent<Room>().SpawnHallways(horizontalRooms[0], verticalRooms[0], 10, 0);
+        innerRooms = startingRoom.GetComponent<Room>().SpawnHallways(horizontalRooms, verticalRooms, 10, 0);
 
         // spawn paths from inner rooms reaching 47.5 in each direction that end with a 4 way
         GameObject[] tempConnectors = new GameObject[4];
         int connectorCount = 0;
         for (int i = 0; i < innerRooms.Length; i++)
         {
-            tempConnectors[i] = innerRooms[i].GetComponent<Room>().SpawnHallways(connector, connector, -54.5f, 1)[0];
+            GameObject[] conectors = new GameObject[1];
+            conectors[0] = connector;
+            tempConnectors[i] = innerRooms[i].GetComponent<Room>().SpawnHallways(conectors, conectors, -54.5f, 1)[0];
             if(tempConnectors[i] != null)
                 connectorCount++;
         }
@@ -100,9 +103,23 @@ public class MapGenerator : MonoBehaviour
         connectorCount = 0;
         for (int i = 0; i < firstConnectors.Length; i++)
         {
-            tempOuterRooms[i] = firstConnectors[i].GetComponent<Room>().SpawnHallways(horizontalRooms[0], verticalRooms[0], 17, 2)[0];
-            if (tempOuterRooms[i] != null)
-                connectorCount++;
+            GameObject[] newOuterRooms = firstConnectors[i].GetComponent<Room>().SpawnHallways(horizontalRooms, verticalRooms, 17, 2);
+            for(int k = 0; k < newOuterRooms.Length; k++)
+            {
+                if (newOuterRooms[k] != null)
+                {
+                    for (int g = 0; g < tempOuterRooms.Length; g++)
+                    {
+                        if (tempOuterRooms[g] == null)
+                        {
+                            tempOuterRooms[g] = newOuterRooms[k];
+                            break;
+                        }
+
+                    }
+                    connectorCount++;
+                }
+            }
         }
 
         outerRooms = new GameObject[connectorCount];
@@ -121,7 +138,39 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
+        // Spawn final corner connectors
+        tempConnectors = new GameObject[4];
+        connectorCount = 0;
+        for (int i = 0; i < outerRooms.Length; i++)
+        {
+            GameObject[] conectors = new GameObject[1];
+            conectors[0] = connector;
+            tempConnectors[i] = outerRooms[i].GetComponent<Room>().SpawnHallways(conectors, conectors, 0, 3)[0];
+            if (tempConnectors[i] != null)
+                connectorCount++;
+        }
 
+        secondConnectors = new GameObject[connectorCount];
+        for (int i = 0; i < tempConnectors.Length; i++)
+        {
+            if (tempConnectors[i] != null)
+            {
+                for (int k = 0; k < secondConnectors.Length; k++)
+                {
+                    if (secondConnectors[k] == null)
+                    {
+                        secondConnectors[k] = tempConnectors[i];
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Spawn hallway to connect final corner back to room
+        for (int i = 0; i < secondConnectors.Length; i++)
+        {
+            secondConnectors[i].GetComponent<Room>().SpawnHallways(null, null, 0, 4);
+        }
 
         // add in additional boss and treasure rooms
     }
