@@ -32,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 case EnemyType.Zombie:
                     {
-                        enemyMovingAnim.SetTrigger("ZombieIdle");
+                        enemyMovingAnim.SetBool("ZombieWalking",false);
                         return; 
                     }
                 case EnemyType.Ghost:
@@ -51,7 +51,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 case EnemyType.Zombie:
                     {
-                        enemyMovingAnim.SetTrigger("ZombieWalking");
+                        enemyMovingAnim.SetBool("ZombieWalking", true);
                         return;
                     }
                 case EnemyType.Ghost:
