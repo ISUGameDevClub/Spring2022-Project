@@ -4,26 +4,27 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
+    public static Vector2[] generatedDirections;
+    public static Vector2[] cornerDoorPositions;
+
     public GameObject startingRoom;
+    public GameObject connector;
 
     public GameObject[] horizontalRooms;
     public GameObject[] verticalRooms;
-    public GameObject connector;
 
     [Range(0, 4)]
     public int numberOfCornersGenerated;
 
-    [HideInInspector]
-    public GameObject[] innerRooms;
-    [HideInInspector]
-    public GameObject[] firstConnectors;
-    [HideInInspector]
-    public GameObject[] outerRooms;
-    [HideInInspector]
-    public GameObject[] secondConnectors;
+    public GameObject bossRoom;
 
-    public static Vector2[] generatedDirections;
-    public static Vector2[] cornerDoorPositions;
+    public int treasureRoomCount;
+    public GameObject treasureRoom;
+
+    private GameObject[] innerRooms;
+    private GameObject[] firstConnectors;
+    private GameObject[] outerRooms;
+    private GameObject[] secondConnectors;
 
     void Start()
     {
@@ -33,24 +34,8 @@ public class MapGenerator : MonoBehaviour
         // Bottom Left: 2
         // Top Left: 3
 
-        int[] generatedCorners = new int[numberOfCornersGenerated];
-        for (int i = 0; i < generatedCorners.Length; i++)
-        {
-            bool unique = false;
-            while (!unique)
-            {
-                unique = true;
-                generatedCorners[i] = Random.Range(0, 4);
-                for (int k = i - 1; k >= 0; k--)
-                {
-                    if (generatedCorners[i] == generatedCorners[k])
-                    {
-                        unique = false;
-                        break;
-                    }
-                }
-            }
-        }
+        // Decide which corners will be used in generation
+        int[] generatedCorners = UniqueRandomNumbers(numberOfCornersGenerated);
 
         generatedDirections = new Vector2[generatedCorners.Length];
         for (int i = 0; i < generatedDirections.Length; i++)
@@ -68,7 +53,7 @@ public class MapGenerator : MonoBehaviour
         cornerDoorPositions = new Vector2[generatedDirections.Length];
 
         // spawn paths ending with inner rooms around the starting room
-        innerRooms = startingRoom.GetComponent<Room>().SpawnHallways(horizontalRooms, verticalRooms, 10, 0);
+        innerRooms = Instantiate(startingRoom, Vector2.zero, Quaternion.identity).GetComponent<Room>().SpawnHallways(horizontalRooms, verticalRooms, 10, 0);
 
         // spawn paths from inner rooms reaching 47.5 in each direction that end with a 4 way
         GameObject[] tempConnectors = new GameObject[4];
@@ -77,7 +62,7 @@ public class MapGenerator : MonoBehaviour
         {
             GameObject[] conectors = new GameObject[1];
             conectors[0] = connector;
-            tempConnectors[i] = innerRooms[i].GetComponent<Room>().SpawnHallways(conectors, conectors, -54.5f, 1)[0];
+            tempConnectors[i] = innerRooms[i].GetComponent<Room>().SpawnHallways(conectors, conectors, -43.25f, 1)[0];
             if(tempConnectors[i] != null)
                 connectorCount++;
         }
@@ -172,6 +157,58 @@ public class MapGenerator : MonoBehaviour
             secondConnectors[i].GetComponent<Room>().SpawnHallways(null, null, 0, 4);
         }
 
-        // add in additional boss and treasure rooms
+        // find all closed doors and add in boss and treasure rooms
+        Door[] allDoors = FindObjectsOfType<Door>();
+        int closedDoorNum = 0;
+        for(int i = 0; i < allDoors.Length; i++)
+        {
+            if (!allDoors[i].hasHallway)
+                closedDoorNum++;
+        }
+
+        Door[] closedDoors = new Door[closedDoorNum];
+        for (int i = 0; i < allDoors.Length; i++)
+        {
+            if (!allDoors[i].hasHallway)
+            {
+                for(int k = 0; k < closedDoors.Length; k++)
+                {
+                    if(closedDoors[k] == null)
+                    {
+                        closedDoors[k] = allDoors[i];
+                        break;
+                    }
+                }
+            }
+        }
+
+        int[] extraRoomLocations = UniqueRandomNumbers(1 + treasureRoomCount);
+
+        closedDoors[extraRoomLocations[0]].SpawnHallway(bossRoom, bossRoom, 10, 0);
+
+    }
+
+    public int[] UniqueRandomNumbers(int numbersGenerated)
+    {
+        int[] result = new int[numbersGenerated];
+        for (int i = 0; i < result.Length; i++)
+        {
+            bool unique = false;
+            while (!unique)
+            {
+                unique = true;
+                result[i] = Random.Range(0, 4);
+                for (int k = i - 1; k >= 0; k--)
+                {
+                    if (result[i] == result[k])
+                    {
+                        unique = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return result;
     }
 }

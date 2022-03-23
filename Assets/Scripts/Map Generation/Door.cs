@@ -12,7 +12,6 @@ public class Door : MonoBehaviour
 
     public GameObject SpawnHallway(GameObject endHorizontalRoom, GameObject endVerticalRoom, float hallwayLength, int cornerCheck)
     {
-        hasHallway = true;
         SetDirection();
 
         bool makeHallway = true;
@@ -58,6 +57,7 @@ public class Door : MonoBehaviour
                         endHorizontalRoom = null;
                         endVerticalRoom = null;
                         hallwayLength = 0;
+                        OpenDoor();
                     }
                     else
                     {
@@ -144,16 +144,18 @@ public class Door : MonoBehaviour
                     d.SetDirection();
                     if (direction + d.direction == Vector2.zero)
                     {
-                        d.hasHallway = true;
+                        d.OpenDoor();
                         newRoom.transform.position -= d.transform.localPosition;
                         break;
                     }
                 }
             }
+
+            OpenDoor();
         }
         else if (!makeHallway)
         {
-            GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+            CloseDoor();
         }
 
         return newRoom;
@@ -229,5 +231,17 @@ public class Door : MonoBehaviour
             return true;
 
         return false;
+    }
+
+    public void OpenDoor()
+    {
+        hasHallway = true;
+        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+    }
+
+    public void CloseDoor()
+    {
+        hasHallway = false;
+        GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
     }
 }
