@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator playerWalking;
     [SerializeField] Sprite idleSprite;
     [SerializeField] SpriteRenderer playerSprite;
+    [SerializeField] PlayerWeaponRotate weaponRotate;
     Rigidbody2D playerRB;
     Vector2 direction;
     float Xinput;
@@ -43,11 +44,11 @@ public class PlayerMovement : MonoBehaviour
         {
             playerWalking.SetBool("Moving",false);
         }
-        if (Xinput < 0 && !dashing)
+        if (weaponRotate.weaponOnLeft && !dashing)
         {
             playerSprite.flipX = true;
         }
-        else if(Xinput > 0 && !dashing)
+        else if(!weaponRotate.weaponOnLeft && !dashing)
         {
             playerSprite.flipX = false;
         }

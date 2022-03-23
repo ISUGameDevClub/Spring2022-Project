@@ -28,7 +28,6 @@ public class ProjectileBehavior : MonoBehaviour
     {
         projectileRB.MovePosition((Vector2)transform.position + ((Vector2)transform.right * Time.fixedDeltaTime * speed));
     }
-
     IEnumerator SelfDestruct(float time)
     {
         yield return new WaitForSeconds(time);

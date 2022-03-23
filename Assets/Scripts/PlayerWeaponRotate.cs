@@ -6,7 +6,7 @@ public class PlayerWeaponRotate : MonoBehaviour
 {
     GameObject player;
     public GameObject weapon;
-    bool weaponOnLeft = false;
+    public bool weaponOnLeft = false;
     Vector3 flipValues = new Vector3(0, 180, 0);
     Quaternion flip = new Quaternion();
     Vector3 rightAngle = new Vector3(0, 0, 90);
@@ -38,5 +38,6 @@ public class PlayerWeaponRotate : MonoBehaviour
             weaponOnLeft = false;
         else
             return;
+        weapon.transform.Rotate(player.transform.position-transform.position);
     }
 }

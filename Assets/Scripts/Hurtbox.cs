@@ -7,6 +7,7 @@ public class Hurtbox : MonoBehaviour
 {
     public GameObject parent; //GameObject that spawned this Hurtbox (the entity that is attacking)
     public float damage = 1f; //damage to be dealt to entity that is hit by this
+    public bool isPiercing = false; //Mark this if the projectile is a piercing projectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,9 +16,17 @@ public class Hurtbox : MonoBehaviour
             if (health.isDead == false) //only deals damage if the entity is not already dead
             {
                 health.currentHealth -= damage;
+                if(!isPiercing)
+                {
+                    Destroy(gameObject);
+                }
                 //Debug.Log(collision.gameObject.name + " took " + damage.ToString() + " damage!");
                 //Put any extra methods associated with taking/dealing damage here!!!
             }
+        }
+        else if(collision.gameObject != parent && collision.tag == "Wall")
+        {
+            Destroy(gameObject);
         }
     }
 }
