@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     bool dashcooling;
     bool isslowed = false;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +40,8 @@ public class PlayerMovement : MonoBehaviour
             playerWalking.SetBool("Moving", true);
         }
         else
-        { 
-            playerWalking.SetBool("Moving",false); 
+        {
+            playerWalking.SetBool("Moving",false);
         }
         if (Xinput < 0 && !dashing)
         {
@@ -55,20 +57,21 @@ public class PlayerMovement : MonoBehaviour
         Xinput = Input.GetAxis("Horizontal");
         Yinput = Input.GetAxis("Vertical");
         if(canmove)
-        { 
+        {
         direction = new Vector2(Xinput, Yinput);
+
         }
         if (direction.magnitude > 1)
         {
             direction.Normalize();
         }
-               
-       
+
+
         if (dashing)
         {
             playerRB.MovePosition((Vector2)transform.position + (direction * dash * Time.fixedDeltaTime));
         }
-        
+
         else
         {
             playerRB.MovePosition((Vector2)transform.position + (direction * speed * Time.fixedDeltaTime));
@@ -77,8 +80,9 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRB.MovePosition((Vector2)transform.position + (direction * tiredspeed * Time.fixedDeltaTime));
         }
-       
+
     }
+
     IEnumerator DashTime (float sec)
     {
         dashing = true;
@@ -96,6 +100,6 @@ public class PlayerMovement : MonoBehaviour
         isslowed = false;
             yield return new WaitForSeconds(dashcoolsec);
             dashcooling = false;
-        
+
     }
 }
