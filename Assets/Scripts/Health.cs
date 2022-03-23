@@ -16,6 +16,7 @@ public class Health : MonoBehaviour
             Debug.Log(gameObject.name + " died!");
             isDead = true;
             //Put Death functionality here!!!
+            Destroy(gameObject);
         }
     }
 }

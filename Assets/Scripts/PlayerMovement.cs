@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     bool dashcooling;
     bool isslowed = false;
 
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         if(direction != Vector2.zero) {
             //Debug.Log("Playing");
             playerWalking.SetTrigger("Moving");
+           
         }
         else
         {
@@ -60,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         if(canmove)
         { 
         direction = new Vector2(Xinput, Yinput);
+
         }
         if (direction.magnitude > 1)
         {
@@ -82,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
         }
        
     }
+  
     IEnumerator DashTime (float sec)
     {
         dashing = true;

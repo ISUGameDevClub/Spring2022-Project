@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    enum EnemyType { Zombie, Ghost, Lumberjack, Clown, Lion };
+
     [SerializeField] EnemyType typeOfEnemy;
-    enum EnemyType { Zombie,Ghost,Lumberjack};
     [SerializeField] Animator enemyMovingAnim;
     [SerializeField] SpriteRenderer enemySpriteRender;
+    [SerializeField] float moveSpeed;
+    [SerializeField] float maxDist;
+    [SerializeField] float minDist;
+    [SerializeField] float bufferDist;
+
     bool enemyMoving;
-    public Rigidbody2D playerRB;
-    public Rigidbody2D enemyRB;
-    public float moveSpeed;
-    public float maxDist;
-    public float minDist;
-    public float bufferDist;
-    public Vector2 lastpos;
-    public Vector2 direction;
+    Rigidbody2D playerRB;
+    Rigidbody2D enemyRB;
+    Vector2 lastpos;
+    Vector2 direction;
     void Start()
     {
         enemyRB = GetComponent<Rigidbody2D>();
@@ -67,9 +69,11 @@ public class EnemyMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
+        enemyRB.velocity = Vector2.zero;
         bool seesPlayer = canSeePlayer();
         if ((Vector2.Distance(enemyRB.position, playerRB.position) > minDist) && seesPlayer)
         {
+
             direction = playerRB.position - enemyRB.position;
             lastpos = playerRB.position;
             enemyRB.MovePosition(enemyRB.position + (direction).normalized * moveSpeed * Time.fixedDeltaTime);
@@ -83,7 +87,7 @@ public class EnemyMovement : MonoBehaviour
             }
             enemyMoving = true;
         }
-        else if (!seesPlayer && Vector2.Distance(lastpos,enemyRB.position) >bufferDist)
+        else if (!seesPlayer && Vector2.Distance(lastpos,enemyRB.position) > bufferDist)
         {
             direction = (lastpos - enemyRB.position);
             enemyRB.MovePosition(enemyRB.position + (direction).normalized * moveSpeed * Time.fixedDeltaTime);
@@ -103,6 +107,12 @@ public class EnemyMovement : MonoBehaviour
     }
     public bool canSeePlayer()
     {
-        return Physics2D.Raycast(enemyRB.position, playerRB.position - enemyRB.position,maxDist,LayerMask.GetMask("Player"));
+        int layerMask = LayerMask.GetMask("Player","Walls");
+        RaycastHit2D hit = Physics2D.Raycast(enemyRB.position, playerRB.position - enemyRB.position, maxDist, layerMask);
+        if(hit.collider != null && hit.collider.gameObject.tag == "Player")
+        {
+            return true;
+        }
+        return false;
     }
 }

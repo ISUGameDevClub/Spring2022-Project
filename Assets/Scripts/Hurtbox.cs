@@ -15,7 +15,7 @@ public class Hurtbox : MonoBehaviour
             if (health.isDead == false) //only deals damage if the entity is not already dead
             {
                 health.currentHealth -= damage;
-                Debug.Log(collision.gameObject.name + " took " + damage.ToString() + " damage!");
+                //Debug.Log(collision.gameObject.name + " took " + damage.ToString() + " damage!");
                 //Put any extra methods associated with taking/dealing damage here!!!
             }
         }
