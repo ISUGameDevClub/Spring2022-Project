@@ -10,6 +10,9 @@ public class Door : MonoBehaviour
     public GameObject outwardsIndicator;
     public Collider2D doorCollider;
 
+    [HideInInspector]
+    public Room myRoom;
+
     private Animator anim;
 
     private Vector2 direction;
@@ -67,6 +70,7 @@ public class Door : MonoBehaviour
                         endHorizontalRoom = null;
                         endVerticalRoom = null;
                         hallwayLength = 0;
+                        hasHallway = true;
                         OpenDoor();
                     }
                     else
@@ -154,17 +158,19 @@ public class Door : MonoBehaviour
                     d.SetDirection();
                     if (direction + d.direction == Vector2.zero)
                     {
+                        d.hasHallway = true;
                         d.OpenDoor();
                         newRoom.transform.position -= d.transform.localPosition;
                         break;
                     }
                 }
             }
-
+            hasHallway = true;
             OpenDoor();
         }
         else if (!makeHallway)
         {
+            hasHallway = false;
             CloseDoor();
         }
 
@@ -245,7 +251,6 @@ public class Door : MonoBehaviour
 
     public void OpenDoor()
     {
-        hasHallway = true;
         if(anim == null)
             anim = GetComponent<Animator>();
         anim.SetBool("Open", true);
@@ -254,10 +259,60 @@ public class Door : MonoBehaviour
 
     public void CloseDoor()
     {
-        hasHallway = false;
         if (anim == null)
             anim = GetComponent<Animator>();
         anim.SetBool("Open", false);
         doorCollider.enabled = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(doorCollider.enabled == false && collision.gameObject.tag == "Player")
+        {
+            if(direction == new Vector2(1, 0))
+            {
+                if(collision.gameObject.transform.position.x > transform.position.x)
+                {
+                    myRoom.PlayerExit();
+                }
+                else
+                {
+                    myRoom.PlayerEnter();
+                }
+            }
+            else if (direction == new Vector2(-1, 0))
+            {
+                if (collision.gameObject.transform.position.x > transform.position.x)
+                {
+                    myRoom.PlayerEnter();
+                }
+                else
+                {
+                    myRoom.PlayerExit();
+                }
+            }
+            else if (direction == new Vector2(0, 1))
+            {
+                if (collision.gameObject.transform.position.y > transform.position.y)
+                {
+                    myRoom.PlayerExit();
+                }
+                else
+                {
+                    myRoom.PlayerEnter();
+                }
+            }
+            else if (direction == new Vector2(0, -1))
+            {
+                if (collision.gameObject.transform.position.y > transform.position.y)
+                {
+                    myRoom.PlayerEnter();
+                }
+                else
+                {
+                    myRoom.PlayerExit();
+                }
+            }
+        }
     }
 }

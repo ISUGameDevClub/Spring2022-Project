@@ -4,11 +4,32 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    [HideInInspector]
+    public bool roomActive;
+    [HideInInspector]
+    public bool roomCleared;
+
     private Door[] doors;
+    private List<GameObject> enemies = new List<GameObject>();
+
+    private void Start()
+    {
+        GetDoors();
+        foreach (Transform child in transform)
+        {
+            if (child.tag == "Enemy")
+                enemies.Add(child.gameObject);
+        }
+    }
+
+    private void Update()
+    {
+
+    }
 
     public GameObject[] SpawnHallways(GameObject[] endHorizontalRooms, GameObject[] endVerticalRooms, float hallwayLength, int cornerCheck)
     {
-        doors = GetComponentsInChildren<Door>();
+        GetDoors();
         int numNewRooms = 0;
         foreach (Door d in doors)
         {
@@ -41,5 +62,48 @@ public class Room : MonoBehaviour
         }
 
         return newRooms;
+    }
+
+    private void GetDoors()
+    {
+        if(doors == null)
+            doors = GetComponentsInChildren<Door>();
+        foreach (Door door in doors)
+        {
+            door.myRoom = this;
+        }
+    }
+
+    public void PlayerEnter()
+    {
+        if (!roomActive && !roomCleared)
+        {
+            roomActive = true;
+            foreach (Door door in doors)
+            {
+                door.CloseDoor();
+            }
+            // Programming team can add code below here
+
+        }
+    }
+
+    public void PlayerExit()
+    {
+        // Programming team can add code below here
+
+    }
+
+    public void RoomCleared()
+    {
+        roomActive = false;
+        roomCleared = true;
+        foreach (Door door in doors)
+        {
+            if(door.hasHallway)
+                door.OpenDoor();
+        }
+        // Programming team can add code below here
+
     }
 }
