@@ -123,41 +123,13 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &489696499
+--- !u!1001 &691830908
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
-      propertyPath: bossRoom
-      value: 
-      objectReference: {fileID: 4258076530611605979, guid: 1f531068edb47754cbdcd29ff00f1a0d, type: 3}
-    - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
-      propertyPath: verticalRooms.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
-      propertyPath: horizontalRooms.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
-      propertyPath: verticalRooms.Array.data[0]
-      value: 
-      objectReference: {fileID: 4258076530611605979, guid: 5d2f96d81b335af4d9fc181310c70f55, type: 3}
-    - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
-      propertyPath: verticalRooms.Array.data[1]
-      value: 
-      objectReference: {fileID: 4258076530611605979, guid: e43227db3556a404a9ef26f94efc9a48, type: 3}
-    - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
-      propertyPath: horizontalRooms.Array.data[0]
-      value: 
-      objectReference: {fileID: 4258076530611605979, guid: be7a3d013d1a3884a84cdfd0573376d7, type: 3}
-    - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
-      propertyPath: horizontalRooms.Array.data[1]
-      value: 
-      objectReference: {fileID: 4258076530611605979, guid: 474685bab550594439ac74189263175f, type: 3}
     - target: {fileID: 931685505032976680, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
       propertyPath: m_Name
       value: Map Generator

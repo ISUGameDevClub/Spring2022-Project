@@ -7,8 +7,18 @@ public class Door : MonoBehaviour
     public bool hasHallway;
     public GameObject verticalHallway;
     public GameObject horizontalHallway;
+    public GameObject outwardsIndicator;
+    public Collider2D doorCollider;
+
+    private Animator anim;
 
     private Vector2 direction;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+        outwardsIndicator.SetActive(false);
+    }
 
     public GameObject SpawnHallway(GameObject endHorizontalRoom, GameObject endVerticalRoom, float hallwayLength, int cornerCheck)
     {
@@ -236,12 +246,18 @@ public class Door : MonoBehaviour
     public void OpenDoor()
     {
         hasHallway = true;
-        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+        if(anim == null)
+            anim = GetComponent<Animator>();
+        anim.SetBool("Open", true);
+        doorCollider.enabled = false;
     }
 
     public void CloseDoor()
     {
         hasHallway = false;
-        GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
+        if (anim == null)
+            anim = GetComponent<Animator>();
+        anim.SetBool("Open", false);
+        doorCollider.enabled = true;
     }
 }
