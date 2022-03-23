@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    enum EnemyType { Zombie, Ghost, Lumberjack, Clown, Lion };
+
     [SerializeField] EnemyType typeOfEnemy;
-    enum EnemyType { Zombie,Ghost,Lumberjack};
     [SerializeField] Animator enemyMovingAnim;
     [SerializeField] SpriteRenderer enemySpriteRender;
+    [SerializeField] float moveSpeed;
+    [SerializeField] float maxDist;
+    [SerializeField] float minDist;
+    [SerializeField] float bufferDist;
+
     bool enemyMoving;
-    public Rigidbody2D playerRB;
-    public Rigidbody2D enemyRB;
-    public float moveSpeed;
-    public float maxDist;
-    public float minDist;
-    public float bufferDist;
-    public Vector2 lastpos;
-    public Vector2 direction;
+    bool seesPlayer;
+    Rigidbody2D playerRB;
+    Rigidbody2D enemyRB;
+    Vector2 lastpos;
+    Vector2 direction;
     void Start()
     {
         enemyRB = GetComponent<Rigidbody2D>();
@@ -26,6 +29,7 @@ public class EnemyMovement : MonoBehaviour
     }
     private void Update()
     {
+        seesPlayer = canSeePlayer();
         if (!enemyMoving)
         {
             switch (typeOfEnemy)
@@ -67,7 +71,6 @@ public class EnemyMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        bool seesPlayer = canSeePlayer();
         if ((Vector2.Distance(enemyRB.position, playerRB.position) > minDist) && seesPlayer)
         {
             direction = playerRB.position - enemyRB.position;
