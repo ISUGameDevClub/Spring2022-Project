@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355266921720654415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.31, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 355266922049536407}
@@ -258,9 +258,10 @@ GameObject:
   - component: {fileID: 8215926041300359425}
   - component: {fileID: 3315310993519168450}
   - component: {fileID: 3874631971874148339}
+  - component: {fileID: 1763257279693930872}
   m_Layer: 0
   m_Name: Zombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -296,14 +297,10 @@ MonoBehaviour:
   typeOfEnemy: 0
   enemyMovingAnim: {fileID: 3315310994572586832}
   enemySpriteRender: {fileID: 3315310994572586833}
-  playerRB: {fileID: 0}
-  enemyRB: {fileID: 0}
   moveSpeed: 1
   maxDist: 10
   minDist: 2
-  bufferDist: 0.2
-  lastpos: {x: 0, y: 0}
-  direction: {x: 0, y: 0}
+  bufferDist: 0.5
 --- !u!114 &355266923145022855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,9 +313,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8cf376a740b5d94a81a6c7f76dd3ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hurtboxPrefab: {fileID: 8247662113382918076, guid: d853120f9ddb9f542aa49c4dae8ee12e, type: 3}
+  hurtboxPrefab: {fileID: 8247662113382918076, guid: bfc937def9ff2fd42908ab5bebde1cf3, type: 3}
   attackSpawn: {fileID: 355266921720654415}
-  cooldownTime: 0.2
+  cooldownTime: 2
   canAttack: 1
 --- !u!114 &8215926041300359425
 MonoBehaviour:
@@ -332,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6a6bdaa5e8e744b9dc24a0b4fabcac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: {fileID: 8247662113382918076, guid: d853120f9ddb9f542aa49c4dae8ee12e, type: 3}
+  attack: {fileID: 8247662113382918076, guid: bfc937def9ff2fd42908ab5bebde1cf3, type: 3}
 --- !u!50 &3315310993519168450
 Rigidbody2D:
   serializedVersion: 4
@@ -370,3 +367,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
+--- !u!114 &1763257279693930872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470982562688677288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f0b06d4c89878488e38f2d73b85b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 10
+  maxHealth: 10
+  isDead: 0
+  myRoom: {fileID: 0}
