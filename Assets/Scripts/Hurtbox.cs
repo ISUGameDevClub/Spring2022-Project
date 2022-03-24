@@ -7,15 +7,15 @@ public class Hurtbox : MonoBehaviour
 {
     public GameObject parent; //GameObject that spawned this Hurtbox (the entity that is attacking)
     public float damage = 1f; //damage to be dealt to entity that is hit by this
-    public bool isPiercing = false; //Mark this if the projectile is a piercing projectile
+    private bool isPiercing = false; 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject != parent && collision.gameObject.TryGetComponent(out Health health)) //checks that it is not colliding with its creator and what it is colliding with has a Health script
         {
-            if (health.isDead == false) //only deals damage if the entity is not already dead
+            if (health.IsDead() == false) //only deals damage if the entity is not already dead
             {
-                health.currentHealth -= damage;
+                health.TakeDamage(damage);
                 if(!isPiercing)
                 {
                     Destroy(gameObject);
