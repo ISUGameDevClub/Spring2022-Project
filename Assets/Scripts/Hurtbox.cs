@@ -15,7 +15,7 @@ public class Hurtbox : MonoBehaviour
         {
             if (health.isDead == false) //only deals damage if the entity is not already dead
             {
-                health.currentHealth -= damage;
+                health.TakeDamage(damage);
                 if(!isPiercing)
                 {
                     Destroy(gameObject);

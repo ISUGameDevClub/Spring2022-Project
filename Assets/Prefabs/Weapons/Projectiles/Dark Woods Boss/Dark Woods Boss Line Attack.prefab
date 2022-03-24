@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8247662113382918075}
   - component: {fileID: 8247662113382918055}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: Dark Woods Boss Line Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d333c5956aeee42a6229dbda6bdee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 2
   cooldownTime: 1
-  activeTime: 1
+  activeTime: 5
 --- !u!114 &8141230675400064724
 MonoBehaviour:
   m_ObjectHideFlags: 0

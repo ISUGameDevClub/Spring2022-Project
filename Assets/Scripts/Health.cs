@@ -12,15 +12,22 @@ public class Health : MonoBehaviour
     [HideInInspector]
     public Room myRoom;
 
-    private void Update()
+
+    public void TakeDamage(float damage)
     {
-        if(currentHealth <= 0 && !isDead) //Ensures that this code only runs once when the GameObject dies
+        currentHealth -= damage;
+        if (currentHealth <= 0 && !isDead)
         {
-            myRoom.EnemyDied();
-            Debug.Log(gameObject.name + " died!");
-            isDead = true;
-            //Put Death functionality here!!!
-            Destroy(gameObject);
+            Death();
         }
+    }
+
+    public void Death()
+    {
+        myRoom.EnemyDied();
+        Debug.Log(gameObject.name + " died!");
+        isDead = true;
+        //Put Death functionality here!!!
+        Destroy(gameObject);
     }
 }
