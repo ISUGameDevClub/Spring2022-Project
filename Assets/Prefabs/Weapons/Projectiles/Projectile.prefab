@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8247662113382918072}
   - component: {fileID: 8247662113382918073}
   - component: {fileID: 8247662113382918074}
+  - component: {fileID: 8141230675400064724}
   - component: {fileID: 8247662113382918075}
   - component: {fileID: 8247662113382918055}
-  - component: {fileID: 8141230675400064724}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -100,6 +100,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   cooldownTime: 1
+--- !u!114 &8141230675400064724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8247662113382918076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a361dfcc74ea2941891f8afabbc22ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 6646550515369547376, guid: b55a2d5ec1b16734085e9027c7147d23, type: 3}
+  damage: 1
 --- !u!50 &8247662113382918075
 Rigidbody2D:
   serializedVersion: 4
@@ -137,17 +151,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &8141230675400064724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8247662113382918076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a361dfcc74ea2941891f8afabbc22ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 0}
-  damage: 1
