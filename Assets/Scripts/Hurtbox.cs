@@ -5,9 +5,9 @@ using UnityEngine;
 //IMPORTANT: Make sure that any object with this script attatched has a Collider2D component with "Is Trigger" CHECKED!
 public class Hurtbox : MonoBehaviour
 {
-    public GameObject parent; //GameObject that spawned this Hurtbox (the entity that is attacking)
-    public float damage = 1f; //damage to be dealt to entity that is hit by this
-    private bool isPiercing = false; 
+    GameObject parent; //GameObject that spawned this Hurtbox (the entity that is attacking)
+    [SerializeField, Tooltip("Damage to be dealt to entity that is hit by this")] float damage = 1f;
+    [SerializeField, Tooltip("Mark this if the projectile goes through walls")] bool isPiercing = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,5 +28,13 @@ public class Hurtbox : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    public void SetParent(GameObject parent)
+    {
+        this.parent = parent;
+    }
+    public GameObject GetParent()
+    {
+        return parent;
     }
 }

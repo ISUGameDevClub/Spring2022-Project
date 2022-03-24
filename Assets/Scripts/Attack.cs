@@ -24,7 +24,7 @@ public class Attack : MonoBehaviour
     public void SpawnAttack()
     {
         GameObject newHurtbox = Instantiate(hurtboxPrefab, attackSpawn.transform.position, attackSpawn.transform.rotation);
-        newHurtbox.GetComponent<Hurtbox>().parent = gameObject;
+        newHurtbox.GetComponent<Hurtbox>().SetParent(gameObject);
         canAttack = false;
         StartCoroutine(Cooldown(newHurtbox.GetComponent<ProjectileBehavior>().cooldownTime));
     }
