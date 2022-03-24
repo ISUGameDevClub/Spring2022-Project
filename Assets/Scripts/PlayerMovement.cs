@@ -6,9 +6,9 @@ using UnityEngine.Animations;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed;
-    [SerializeField] float dash = 10;
-    [SerializeField] float timeDashing = 0.5f;
-    [SerializeField] float dashcoolsec = 1.5f;
+    public float dash = 10;
+    public float timeDashing = 0.5f;
+    public float dashcoolsec = 1.5f;
     [SerializeField] float tiredtime = 0.2f;
     [SerializeField] float tiredspeed = 2.5f;
     [SerializeField] Animator playerWalking;
@@ -101,4 +101,6 @@ public class PlayerMovement : MonoBehaviour
             dashcooling = false;
         
     }
+
+    
 }
