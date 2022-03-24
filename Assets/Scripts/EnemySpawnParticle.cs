@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawnParticle : MonoBehaviour
 {
     [SerializeField] private float dur;
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +15,7 @@ public class EnemySpawnParticle : MonoBehaviour
 
         main.duration = dur;
 
+        
         // Instantiate(sys, transform.position, transform.rotation);
     }
 
