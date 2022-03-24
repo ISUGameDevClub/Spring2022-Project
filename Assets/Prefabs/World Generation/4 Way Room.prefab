@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3920739126948442050}
   - component: {fileID: 5699660499382071028}
   - component: {fileID: 5868466077986557341}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cliff Middle Tile shaded (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 4554606979431476897}
   - component: {fileID: 40480854013397945}
   - component: {fileID: 6753330437079132528}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cliff Middle Tile shaded
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,6 +357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4746856c8e400644585a5457d145b96b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomActive: 0
+  roomCleared: 0
+  enemyCount: 0
 --- !u!1 &5920815405990311555
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +535,7 @@ GameObject:
   - component: {fileID: 6069523692817730402}
   - component: {fileID: 2451033575756757246}
   - component: {fileID: 72366334234705749}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cliff Middle Tile shaded (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,7 +726,7 @@ GameObject:
   - component: {fileID: 9026196470328042434}
   - component: {fileID: 2287724957956876267}
   - component: {fileID: 1196710075745429275}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cliff Middle Tile shaded (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

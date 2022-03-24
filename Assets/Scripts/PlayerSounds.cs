@@ -18,6 +18,6 @@ public class PlayerSounds : MonoBehaviour
     }
     public void PlayWalkingSound()
     {
-        playerStepSound.Play();
+        //playerStepSound.Play();
     }
 }

@@ -8,17 +8,22 @@ public class Room : MonoBehaviour
     public bool roomActive;
     [HideInInspector]
     public bool roomCleared;
+    [HideInInspector]
+    public int enemyCount;
 
     private Door[] doors;
-    private List<GameObject> enemies = new List<GameObject>();
 
     private void Start()
     {
         GetDoors();
+        enemyCount = 0;
         foreach (Transform child in transform)
         {
             if (child.tag == "Enemy")
-                enemies.Add(child.gameObject);
+            {
+                child.GetComponent<Health>().myRoom = this;
+                enemyCount++;
+            }
         }
     }
 
@@ -74,17 +79,31 @@ public class Room : MonoBehaviour
         }
     }
 
+    public void EnemyDied()
+    {
+        enemyCount--;
+        if (enemyCount <= 0)
+            RoomCleared();
+    }
+
     public void PlayerEnter()
     {
         if (!roomActive && !roomCleared)
         {
-            roomActive = true;
-            foreach (Door door in doors)
+            Debug.Log(enemyCount);
+            if (enemyCount > 0)
             {
-                door.CloseDoor();
-            }
-            // Programming team can add code below here
+                roomActive = true;
+                foreach (Door door in doors)
+                {
+                    door.CloseDoor();
+                }
+                // Programming team can add code below here
 
+
+            }
+            else
+                RoomCleared();
         }
     }
 

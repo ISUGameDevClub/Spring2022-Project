@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4112864950218804329}
   - component: {fileID: 703949514916910355}
   - component: {fileID: 6786849140327682161}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,6 +217,7 @@ MonoBehaviour:
   horizontalHallway: {fileID: 4228896348244279557, guid: 7dac13bdcbff8694bbf0a647d080586f, type: 3}
   outwardsIndicator: {fileID: 2099123926064905219}
   doorCollider: {fileID: 4112864950218804329}
+  myRoom: {fileID: 0}
 --- !u!61 &4112864950218804329
 BoxCollider2D:
   m_ObjectHideFlags: 0
