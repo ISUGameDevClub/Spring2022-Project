@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 1890880825}
   m_Layer: 10
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -566,7 +566,6 @@ MonoBehaviour:
   playerWalking: {fileID: 2050983159}
   idleSprite: {fileID: 21300000, guid: 61a4df04739526a439c5056bce51cc03, type: 3}
   playerSprite: {fileID: 5070046497772268243}
-  playerStepSound: {fileID: 0}
 --- !u!114 &3684727295531276478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,6 +581,7 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 10
   isDead: 0
+  myRoom: {fileID: 0}
 --- !u!114 &3694657211392126114
 MonoBehaviour:
   m_ObjectHideFlags: 0
