@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
     public float currentHealth = 10f; //current health of entity
     public float maxHealth = 10f; //maximum possible health of entity
     public bool isDead = false; //use this whenever you need to check if an entity has died
-
+    public bool isPlayer;
     // How enemies tell the room they are in that it is cleared
     [HideInInspector]
     public Room myRoom;
@@ -16,9 +16,12 @@ public class Health : MonoBehaviour
     {
         if(currentHealth <= 0 && !isDead) //Ensures that this code only runs once when the GameObject dies
         {
-            myRoom.EnemyDied();
-            Debug.Log(gameObject.name + " died!");
-            isDead = true;
+            if (!isPlayer)
+            {
+                myRoom.EnemyDied();
+                Debug.Log(gameObject.name + " died!");
+                isDead = true;
+            }
             //Put Death functionality here!!!
             Destroy(gameObject);
         }

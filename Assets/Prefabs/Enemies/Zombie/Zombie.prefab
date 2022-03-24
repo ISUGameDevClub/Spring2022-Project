@@ -396,7 +396,7 @@ MonoBehaviour:
   enemySpriteRender: {fileID: 3315310994572586833}
   moveSpeed: 1
   maxDist: 10
-  minDist: 2
+  minDist: 0
   bufferDist: 0.5
 --- !u!114 &355266923145022855
 MonoBehaviour:
@@ -480,4 +480,5 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 10
   isDead: 0
+  isPlayer: 0
   myRoom: {fileID: 0}
