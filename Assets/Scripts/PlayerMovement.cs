@@ -1,18 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Vector2 direction;
     [SerializeField] float speed;
+    [SerializeField] float dash = 10;
+    [SerializeField] float timeDashing = 0.5f;
+    [SerializeField] float dashcoolsec = 1.5f;
+    [SerializeField] float tiredtime = 0.2f;
+    [SerializeField] float tiredspeed = 2.5f;
+    [SerializeField] Animator playerWalking;
+    [SerializeField] Sprite idleSprite;
+    [SerializeField] SpriteRenderer playerSprite;
+    [SerializeField] PlayerWeaponRotate weaponRotate;
+    Rigidbody2D playerRB;
+    Vector2 direction;
     float Xinput;
     float Yinput;
-    [SerializeField] float dash = 10;
     bool dashing = false;
-    [SerializeField] float sec = 0.5f;
     bool canmove = true;
-    Rigidbody2D playerRB;
+    bool dashcooling;
+    bool isslowed = false;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +33,24 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-         if (Input.GetKeyDown(KeyCode.LeftShift) && !dashing)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !dashing && !dashcooling)
         {
-            StartCoroutine(DashTime(sec));
-            
+            StartCoroutine(DashTime(timeDashing));
+        }
+        if(direction != Vector2.zero) {
+            playerWalking.SetBool("Moving", true);
+        }
+        else
+        {
+            playerWalking.SetBool("Moving",false);
+        }
+        if (weaponRotate.weaponOnLeft && !dashing)
+        {
+            playerSprite.flipX = true;
+        }
+        else if(!weaponRotate.weaponOnLeft && !dashing)
+        {
+            playerSprite.flipX = false;
         }
     }
     private void FixedUpdate()
@@ -31,27 +58,32 @@ public class PlayerMovement : MonoBehaviour
         Xinput = Input.GetAxis("Horizontal");
         Yinput = Input.GetAxis("Vertical");
         if(canmove)
-        { 
+        {
         direction = new Vector2(Xinput, Yinput);
+
         }
         if (direction.magnitude > 1)
         {
             direction.Normalize();
         }
-               
-       
+
+
         if (dashing)
         {
-            
             playerRB.MovePosition((Vector2)transform.position + (direction * dash * Time.fixedDeltaTime));
-            
         }
+
         else
         {
             playerRB.MovePosition((Vector2)transform.position + (direction * speed * Time.fixedDeltaTime));
         }
-       
+        if (isslowed)
+        {
+            playerRB.MovePosition((Vector2)transform.position + (direction * tiredspeed * Time.fixedDeltaTime));
+        }
+
     }
+
     IEnumerator DashTime (float sec)
     {
         dashing = true;
@@ -59,5 +91,16 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(sec);
         canmove = true;
         dashing = false;
+        dashcooling = true;
+        StartCoroutine(DashCoolDown(dashcoolsec));
+    }
+    IEnumerator DashCoolDown (float dashcoolsec)
+    {
+        isslowed = true;
+            yield return new WaitForSeconds(tiredtime);
+        isslowed = false;
+            yield return new WaitForSeconds(dashcoolsec);
+            dashcooling = false;
+
     }
 }
