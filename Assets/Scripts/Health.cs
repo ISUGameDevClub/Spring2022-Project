@@ -7,9 +7,10 @@ public class Health : MonoBehaviour
 
     [SerializeField] float maxHealth = 10f; //maximum possible health of entity
     [Tooltip("Mark this if this prefab is a Player")]
-    [SerializeField] bool isPlayer; 
+    [SerializeField] bool isPlayer;
     private float currentHealth = 10f; //current health of entity
-    private bool isDead = false; 
+    private bool isDead = false;
+    [SerializeField] AudioSource dth;
 
     // How enemies tell the room they are in that it is cleared
     [HideInInspector]
@@ -44,9 +45,16 @@ public class Health : MonoBehaviour
     {
         if (!isPlayer)
         {
-            myRoom.EnemyDied();
-            Debug.Log(gameObject.name + " died!");
-            isDead = true;
+            if (!isPlayer)
+            {
+                //myRoom.EnemyDied();
+                Debug.Log(gameObject.name + " died!");
+                isDead = true;
+                dth.Play();
+            }
+            dth.Play();
+            //Put Death functionality here!!!
+            Destroy(gameObject);
         }
         Destroy(gameObject);
     }
