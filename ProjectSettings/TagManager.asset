@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -56,4 +57,7 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 921885567
+    locked: 0
+  - name: Forground Particles
+    uniqueID: 945509035
     locked: 0

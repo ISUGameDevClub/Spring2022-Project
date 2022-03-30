@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     [SerializeField] bool isPlayer;
     private float currentHealth = 10f; //current health of entity
     private bool isDead = false;
-    [SerializeField] AudioSource dth;
+    [SerializeField] AudioSource deathSound;
 
     // How enemies tell the room they are in that it is cleared
     [HideInInspector]
@@ -50,7 +50,8 @@ public class Health : MonoBehaviour
                 Debug.Log(gameObject.name + " died!");
                 isDead = true;
         }
-        dth.Play();
+        if(deathSound != null)
+            deathSound.Play();
         Destroy(gameObject);
     }
 }

@@ -32,9 +32,9 @@ public class PlayerWeaponRotate : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!weaponOnLeft && weapon.transform.position.x - player.transform.position.x < -0.3)
+        if (!weaponOnLeft && weapon.transform.position.x - player.transform.position.x < -0.1f)
             weaponOnLeft = true;
-        else if (weaponOnLeft && weapon.transform.position.x - player.transform.position.x > 0.3)
+        else if (weaponOnLeft && weapon.transform.position.x - player.transform.position.x > 0.1f)
             weaponOnLeft = false;
         else
             return;

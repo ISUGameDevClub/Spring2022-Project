@@ -12,19 +12,13 @@ public class Room : MonoBehaviour
     public int enemyCount;
 
     private Door[] doors;
+    private GameObject[] enemies;
 
     private void Start()
     {
         GetDoors();
-        enemyCount = 0;
-        foreach (Transform child in transform)
-        {
-            if (child.tag == "Enemy")
-            {
-                child.GetComponent<Health>().myRoom = this;
-                enemyCount++;
-            }
-        }
+        GetEnemies();
+        DisableEnemies();
     }
 
     private void Update()
@@ -79,6 +73,68 @@ public class Room : MonoBehaviour
         }
     }
 
+    private void GetEnemies()
+    {
+        enemyCount = 0;
+        foreach (Transform child in transform)
+        {
+            if (child.tag == "Enemy")
+            {
+                child.GetComponent<Health>().myRoom = this;
+                enemyCount++;
+            }
+        }
+        enemies = new GameObject[enemyCount];
+        foreach (Transform child in transform)
+        {
+            if (child.tag == "Enemy")
+            {
+                for(int i = 0; i < enemyCount; i++)
+                {
+                    if (enemies[i] == null)
+                    {
+                        enemies[i] = child.gameObject;
+                        break;
+                    }
+                }
+            }
+        }
+
+        for (int t = 0; t < enemies.Length; t++)
+        {
+            GameObject tmp = enemies[t];
+            int r = Random.Range(t, enemies.Length);
+            enemies[t] = enemies[r];
+            enemies[r] = tmp;
+        }
+    }
+
+    private void DisableEnemies()
+    {
+        foreach(GameObject en in enemies)
+        {
+            en.SetActive(false);
+        }
+    }
+
+    private void EnableEnemies()
+    {
+        StartCoroutine(EnableEnemiesWithDelay());
+    }
+
+    private IEnumerator EnableEnemiesWithDelay()
+    {
+        yield return new WaitForSeconds(.2f);
+
+        foreach (GameObject en in enemies)
+        {
+            if (en.GetComponent<EnemySpawnParticle>() != null)
+                Instantiate(en.GetComponent<EnemySpawnParticle>().spawnEffect, en.transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(.2f);
+            en.SetActive(true);
+        }
+    }
+
     public void EnemyDied()
     {
         enemyCount--;
@@ -90,7 +146,6 @@ public class Room : MonoBehaviour
     {
         if (!roomActive && !roomCleared)
         {
-            Debug.Log(enemyCount);
             if (enemyCount > 0)
             {
                 roomActive = true;
@@ -98,8 +153,8 @@ public class Room : MonoBehaviour
                 {
                     door.CloseDoor();
                 }
+                EnableEnemies();
                 // Programming team can add code below here
-
 
             }
             else
