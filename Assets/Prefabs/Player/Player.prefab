@@ -434,7 +434,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.78125, y: 1.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -692,6 +692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   isPlayer: 1
+  dth: {fileID: 0}
   myRoom: {fileID: 0}
 --- !u!114 &3694657211392126114
 MonoBehaviour:
@@ -709,7 +710,6 @@ MonoBehaviour:
   attackSpawn: {fileID: 3387111083192878434}
   cooldownTime: 0.2
   canAttack: 1
-  nmeAtkSound: {fileID: 0}
 --- !u!114 &2414555622543350996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,6 +724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightAttack: {fileID: 8247662113382918076, guid: 5586da57f82ba114296237818b7a7a2e, type: 3}
   strongAttack: {fileID: 8247662113382918076, guid: 8149cf6bb35705b4b8fc6e34d80a9755, type: 3}
+  plrAtkSnd: {fileID: 7541961982698800930}
 --- !u!114 &1890880825
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -398,6 +398,7 @@ MonoBehaviour:
   maxDist: 10
   minDist: 0
   bufferDist: 0.5
+  dontFlip: 0
 --- !u!114 &355266923145022855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,7 +415,6 @@ MonoBehaviour:
   attackSpawn: {fileID: 355266921720654415}
   cooldownTime: 2
   canAttack: 1
-  nmeAtkSound: {fileID: 6789424666581171788}
 --- !u!114 &8215926041300359425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,8 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f0b06d4c89878488e38f2d73b85b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 10
   maxHealth: 10
-  isDead: 0
   isPlayer: 0
+  dth: {fileID: 0}
   myRoom: {fileID: 0}

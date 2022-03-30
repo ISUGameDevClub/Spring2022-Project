@@ -45,17 +45,12 @@ public class Health : MonoBehaviour
     {
         if (!isPlayer)
         {
-            if (!isPlayer)
-            {
-                //myRoom.EnemyDied();
+
+                myRoom.EnemyDied();
                 Debug.Log(gameObject.name + " died!");
                 isDead = true;
-                dth.Play();
-            }
-            dth.Play();
-            //Put Death functionality here!!!
-            Destroy(gameObject);
         }
+        dth.Play();
         Destroy(gameObject);
     }
 }
