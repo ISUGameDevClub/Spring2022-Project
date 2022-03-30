@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    enum EnemyType { Zombie, Ghost, Lumberjack, Clown, Lion };
+    enum EnemyType { Zombie, Ghost, Lumberjack, Clown, Lion , DarkWoodsBoss };
 
     [SerializeField] EnemyType typeOfEnemy;
     [SerializeField] Animator enemyMovingAnim;
@@ -14,6 +14,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float minDist;
     [SerializeField] float bufferDist;
 
+    public bool dontFlip = false;
     bool enemyMoving;
     Rigidbody2D playerRB;
     Rigidbody2D enemyRB;
@@ -34,7 +35,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 case EnemyType.Zombie:
                     {
-                        enemyMovingAnim.SetTrigger("ZombieIdle");
+                        enemyMovingAnim.SetBool("ZombieWalking",false);
                         return; 
                     }
                 case EnemyType.Ghost:
@@ -53,7 +54,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 case EnemyType.Zombie:
                     {
-                        enemyMovingAnim.SetTrigger("ZombieWalking");
+                        enemyMovingAnim.SetBool("ZombieWalking", true);
                         return;
                     }
                 case EnemyType.Ghost:
@@ -77,7 +78,7 @@ public class EnemyMovement : MonoBehaviour
             direction = playerRB.position - enemyRB.position;
             lastpos = playerRB.position;
             enemyRB.MovePosition(enemyRB.position + (direction).normalized * moveSpeed * Time.fixedDeltaTime);
-            if (direction.x > 0)
+            if (direction.x > 0 && !dontFlip)
             {
                 enemySpriteRender.flipX = true;
             }
@@ -91,7 +92,7 @@ public class EnemyMovement : MonoBehaviour
         {
             direction = (lastpos - enemyRB.position);
             enemyRB.MovePosition(enemyRB.position + (direction).normalized * moveSpeed * Time.fixedDeltaTime);
-            if (direction.x > 0)
+            if (direction.x > 0 && !dontFlip)
             {
                 enemySpriteRender.flipX = true;
             } else if(direction.x < 0)

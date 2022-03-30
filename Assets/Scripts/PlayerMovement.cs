@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator playerWalking;
     [SerializeField] Sprite idleSprite;
     [SerializeField] SpriteRenderer playerSprite;
+    [SerializeField] PlayerWeaponRotate weaponRotate;
     Rigidbody2D playerRB;
     Vector2 direction;
     float Xinput;
@@ -23,8 +24,8 @@ public class PlayerMovement : MonoBehaviour
     bool dashcooling;
     bool isslowed = false;
 
-    
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,21 +38,17 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(DashTime(timeDashing));
         }
         if(direction != Vector2.zero) {
-            //Debug.Log("Playing");
-            playerWalking.SetTrigger("Moving");
-           
+            playerWalking.SetBool("Moving", true);
         }
         else
         {
-            //Debug.Log("Stopping");
-            playerWalking.ResetTrigger("Moving");
-            playerWalking.SetTrigger("NotMoving"); 
+            playerWalking.SetBool("Moving",false);
         }
-        if (Xinput < 0 && !dashing)
+        if (weaponRotate.weaponOnLeft && !dashing)
         {
             playerSprite.flipX = true;
         }
-        else if(Xinput > 0 && !dashing)
+        else if(!weaponRotate.weaponOnLeft && !dashing)
         {
             playerSprite.flipX = false;
         }
@@ -61,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         Xinput = Input.GetAxis("Horizontal");
         Yinput = Input.GetAxis("Vertical");
         if(canmove)
-        { 
+        {
         direction = new Vector2(Xinput, Yinput);
 
         }
@@ -69,13 +66,13 @@ public class PlayerMovement : MonoBehaviour
         {
             direction.Normalize();
         }
-               
-       
+
+
         if (dashing)
         {
             playerRB.MovePosition((Vector2)transform.position + (direction * dash * Time.fixedDeltaTime));
         }
-        
+
         else
         {
             playerRB.MovePosition((Vector2)transform.position + (direction * speed * Time.fixedDeltaTime));
@@ -84,9 +81,9 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRB.MovePosition((Vector2)transform.position + (direction * tiredspeed * Time.fixedDeltaTime));
         }
-       
+
     }
-  
+
     IEnumerator DashTime (float sec)
     {
         dashing = true;
@@ -104,6 +101,6 @@ public class PlayerMovement : MonoBehaviour
         isslowed = false;
             yield return new WaitForSeconds(dashcoolsec);
             dashcooling = false;
-        
+
     }
 }

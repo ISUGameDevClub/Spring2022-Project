@@ -6,7 +6,7 @@ public class Attack : MonoBehaviour
 {
     public GameObject hurtboxPrefab; //prefab of the Object that will be spawned when the attack happens
     public GameObject attackSpawn; //source object from which the attack should spawn
-    public float cooldownTime = 0.2f;
+    public float cooldownTime = 0.2f; //modifying this value in the inspector won't usually change anything, change the cooldown on the projectile prefab
     public bool canAttack = true;
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class Attack : MonoBehaviour
     public void SpawnAttack()
     {
         GameObject newHurtbox = Instantiate(hurtboxPrefab, attackSpawn.transform.position, attackSpawn.transform.rotation);
-        newHurtbox.GetComponent<Hurtbox>().parent = gameObject;
+        newHurtbox.GetComponent<Hurtbox>().SetParent(gameObject);
         canAttack = false;
         StartCoroutine(Cooldown(newHurtbox.GetComponent<ProjectileBehavior>().cooldownTime));
     }
