@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  cooldownTime: 0.2
+  cooldownTime: 1
   activeTime: 1
 --- !u!50 &8247662113382918075
 Rigidbody2D:
@@ -164,8 +164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a361dfcc74ea2941891f8afabbc22ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
   damage: 1
+  isPiercing: 0
+  persisting: 0
 --- !u!95 &3984838173503703572
 Animator:
   serializedVersion: 3

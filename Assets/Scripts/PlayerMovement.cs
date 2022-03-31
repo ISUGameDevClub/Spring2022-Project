@@ -88,6 +88,9 @@ public class PlayerMovement : MonoBehaviour
     {
         dashing = true;
         canmove = false;
+        Xinput = Input.GetAxisRaw("Horizontal");
+        Yinput = Input.GetAxisRaw("Vertical");
+        direction = new Vector2(Xinput, Yinput);
         yield return new WaitForSeconds(sec);
         canmove = true;
         dashing = false;

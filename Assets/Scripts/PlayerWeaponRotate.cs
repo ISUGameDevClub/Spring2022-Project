@@ -11,12 +11,12 @@ public class PlayerWeaponRotate : MonoBehaviour
     Quaternion flip = new Quaternion();
     Vector3 rightAngle = new Vector3(0, 0, 90);
     Quaternion offset = new Quaternion();
+
     private void Start()
     {
         player = FindObjectOfType<PlayerMovement>().gameObject;
         flip.eulerAngles = flipValues;
         offset.eulerAngles = rightAngle;
-
     }
     // Update is called once per frame
     void Update()

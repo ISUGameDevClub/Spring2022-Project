@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 8247662113382918074}
   - component: {fileID: 8141230675400064724}
   - component: {fileID: 8247662113382918075}
-  - component: {fileID: 8247662113382918055}
+  - component: {fileID: 6318257436664779994}
+  - component: {fileID: 2243855405090100064}
   m_Layer: 0
-  m_Name: ZombieAttack
+  m_Name: Ghost Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +43,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8247662113382918076}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: -7830909607251182090, guid: 4ab3bdd8c6e09c94da8f4746b3806afb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d333c5956aeee42a6229dbda6bdee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  cooldownTime: 1
-  activeTime: 0.2
+  speed: 7
+  cooldownTime: 1.5
+  activeTime: 3
 --- !u!114 &8141230675400064724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,9 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a361dfcc74ea2941891f8afabbc22ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 6646550515369547376, guid: b55a2d5ec1b16734085e9027c7147d23, type: 3}
   damage: 1
   isPiercing: 0
+  persisting: 0
 --- !u!50 &8247662113382918075
 Rigidbody2D:
   serializedVersion: 4
@@ -137,8 +138,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &8247662113382918055
-CircleCollider2D:
+--- !u!70 &6318257436664779994
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -151,5 +152,24 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1
+  m_Size: {x: 0.46875, y: 0.1875}
+  m_Direction: 1
+--- !u!95 &2243855405090100064
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8247662113382918076}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4c2a2f441c02b6e4e8efa1bbf50fba29, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

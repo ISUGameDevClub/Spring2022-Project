@@ -8,6 +8,7 @@ public class Hurtbox : MonoBehaviour
     GameObject parent; //GameObject that spawned this Hurtbox (the entity that is attacking)
     [SerializeField, Tooltip("Damage to be dealt to entity that is hit by this")] float damage = 1f;
     [SerializeField, Tooltip("Mark this if the projectile goes through walls")] bool isPiercing = false;
+    [SerializeField, Tooltip("Mark this if the hurtbox never gets destroyed (Melee Enemies)")] bool persisting = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,7 +17,7 @@ public class Hurtbox : MonoBehaviour
             if (health.IsDead() == false) //only deals damage if the entity is not already dead
             {
                 health.TakeDamage(damage);
-                if(!isPiercing)
+                if(!isPiercing && !persisting)
                 {
                     Destroy(gameObject);
                 }
@@ -24,14 +25,16 @@ public class Hurtbox : MonoBehaviour
                 //Put any extra methods associated with taking/dealing damage here!!!
             }
         }
-        else if(collision.gameObject != parent && collision.tag == "Wall")
+        else if(collision.gameObject != parent && collision.gameObject.layer == LayerMask.NameToLayer("Walls"))
         {
-            Destroy(gameObject);
+            if(!persisting)
+                Destroy(gameObject);
         }
     }
     public void SetParent(GameObject parent)
     {
-        this.parent = parent;
+        if(parent != null)
+            this.parent = parent;
     }
     public GameObject GetParent()
     {
