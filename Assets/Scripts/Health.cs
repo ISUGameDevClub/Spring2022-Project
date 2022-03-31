@@ -12,6 +12,9 @@ public class Health : MonoBehaviour
     private bool isDead = false;
     [SerializeField] AudioSource deathSound;
     [SerializeField] Animator playerHurtEffect;
+    [Tooltip("IF PLAYER, drag in Health Bar from Scene! Will create errors if left empty for player. Leave empty for everything else")]
+    [SerializeField] GameObject healthbar;
+    private HealthBar bar;
 
     // How enemies tell the room they are in that it is cleared
     [HideInInspector]
@@ -20,6 +23,8 @@ public class Health : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        if (isPlayer)
+            bar = healthbar.GetComponent<HealthBar>();
     }
 
     public float GetCurrentHealth()
@@ -33,11 +38,14 @@ public class Health : MonoBehaviour
 
         if(currentHealth <= 0 && !isDead)
         {
+            if(isPlayer)
+                bar.ChangeHealth((int)currentHealth);
             isDead = true;
             Death();
         }
         else if(isPlayer)
         {
+            bar.ChangeHealth((int)currentHealth);
             if (playerHurtEffect != null)
                 playerHurtEffect.SetTrigger("Hurt");
             else
