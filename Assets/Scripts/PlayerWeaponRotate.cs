@@ -6,17 +6,17 @@ public class PlayerWeaponRotate : MonoBehaviour
 {
     GameObject player;
     public GameObject weapon;
-    bool weaponOnLeft = false;
+    public bool weaponOnLeft = false;
     Vector3 flipValues = new Vector3(0, 180, 0);
     Quaternion flip = new Quaternion();
     Vector3 rightAngle = new Vector3(0, 0, 90);
     Quaternion offset = new Quaternion();
+
     private void Start()
     {
         player = FindObjectOfType<PlayerMovement>().gameObject;
         flip.eulerAngles = flipValues;
         offset.eulerAngles = rightAngle;
-
     }
     // Update is called once per frame
     void Update()
@@ -32,11 +32,12 @@ public class PlayerWeaponRotate : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!weaponOnLeft && weapon.transform.position.x - player.transform.position.x < -0.3)
+        if (!weaponOnLeft && weapon.transform.position.x - player.transform.position.x < -0.1f)
             weaponOnLeft = true;
-        else if (weaponOnLeft && weapon.transform.position.x - player.transform.position.x > 0.3)
+        else if (weaponOnLeft && weapon.transform.position.x - player.transform.position.x > 0.1f)
             weaponOnLeft = false;
         else
             return;
+        weapon.transform.Rotate(player.transform.position-transform.position);
     }
 }

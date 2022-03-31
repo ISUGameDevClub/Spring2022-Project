@@ -7,6 +7,8 @@ public class PlayerAttack : MonoBehaviour
     public GameObject lightAttack;
     public GameObject strongAttack;
     Attack at;
+    [SerializeField] AudioSource plrAtkSnd;
+    [SerializeField] Animator playerWeaponAnim;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +22,17 @@ public class PlayerAttack : MonoBehaviour
         {
             at.hurtboxPrefab = lightAttack;
             at.SpawnAttack();
+            playerWeaponAnim.SetTrigger("Light Attack");
+
+            plrAtkSnd.Play();
         }
         else if (Input.GetButton("Fire2") && at.canAttack)
         {
             at.hurtboxPrefab = strongAttack;
             at.SpawnAttack();
+            playerWeaponAnim.SetTrigger("Heavy Attack");
+
+            plrAtkSnd.Play();
         }
         else
             return;
