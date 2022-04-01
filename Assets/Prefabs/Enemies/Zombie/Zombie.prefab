@@ -287,6 +287,7 @@ MonoBehaviour:
   isPlayer: 0
   deathSound: {fileID: 0}
   playerHurtEffect: {fileID: 0}
+  healthbar: {fileID: 0}
   myRoom: {fileID: 0}
 --- !u!114 &-7550485488193740363
 MonoBehaviour:
@@ -301,3 +302,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnEffect: {fileID: 522202971537025316, guid: c72d3c5e47bd1f64b8c46e0557c3c3b6, type: 3}
+  preSpawnEffect: {fileID: 522202971537025316, guid: c78033d3b3d3c614e83fcbafb58b6b03, type: 3}
