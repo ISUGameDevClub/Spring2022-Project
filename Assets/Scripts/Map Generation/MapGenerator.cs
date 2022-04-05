@@ -190,6 +190,8 @@ public class MapGenerator : MonoBehaviour
         {
             closedDoors[extraRoomLocations[i]].SpawnHallway(treasureRoom, treasureRoom, 10, 0);
         }
+
+        GetComponent<PowerupSpawnManager>().SpawnPowerups();
     }
 
     public int[] UniqueRandomNumbers(int numbersGenerated)

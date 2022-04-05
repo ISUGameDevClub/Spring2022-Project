@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 98774742672092416}
+  - component: {fileID: 1709732530586008187}
   - component: {fileID: 98774742672092418}
   - component: {fileID: 98774742672092421}
-  - component: {fileID: 98774742672092420}
   - component: {fileID: 5270913985655789723}
   m_Layer: 0
-  m_Name: SpeedUp
+  m_Name: DashSpeed Powerup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,6 +35,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1709732530586008187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98774742672092423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0737a0d06ca4ffa4da52980dbffebd74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedIncrease: 0
+  dashSpeedIncrease: 3
+  dashTimeIncrease: 0
+  dashCooldownDecrease: 0
 --- !u!61 &98774742672092418
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -82,23 +98,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &98774742672092420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 98774742672092423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcc3f97f3de816c46b024041276cd3a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerID: 1
-  speedIncrease: 1
-  dashSpeedIncrease: 0
-  dashTimeIncrease: 0
-  dashCooldownDecrease: 0
 --- !u!95 &5270913985655789723
 Animator:
   serializedVersion: 3
@@ -143,7 +142,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4757764096499810871}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.014, y: 0.045, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 98774742672092416}
@@ -189,8 +188,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.14640439, g: 0.8385831, b: 0.8867924, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 41dae0632c8b9e74e8f5c289346f6cc4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

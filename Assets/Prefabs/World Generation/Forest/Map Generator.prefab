@@ -372,6 +372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 931685505032976681}
   - component: {fileID: 931685505032976678}
+  - component: {fileID: 2220631321139294373}
   m_Layer: 0
   m_Name: Map Generator
   m_TagString: Untagged
@@ -416,3 +417,19 @@ MonoBehaviour:
   bossRoom: {fileID: 4258076530611605979, guid: 1f531068edb47754cbdcd29ff00f1a0d, type: 3}
   treasureRoomCount: 2
   treasureRoom: {fileID: 4258076530611605979, guid: cd46062abf4a74744a00de79065248ec, type: 3}
+--- !u!114 &2220631321139294373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931685505032976680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa9289c29b99b74693613ddd73417d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerups:
+  - {fileID: 98774742672092423, guid: 2f62ddf3df35025498c1dd3188d62c35, type: 3}
+  - {fileID: 98774742672092423, guid: 7ed75b3fd2ab8a34d919164302c7a089, type: 3}
+  - {fileID: 98774742672092423, guid: ac7dbed90a224a549b0261bf01877cdb, type: 3}
