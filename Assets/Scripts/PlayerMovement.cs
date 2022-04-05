@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashcoolsec = 1.5f;
     [SerializeField] float tiredtime = 0.2f;
     [SerializeField] float tiredspeed = 2.5f;
-    [SerializeField] Animator playerWalking;
+    [SerializeField] Animator playerAnim;
     [SerializeField] Sprite idleSprite;
     [SerializeField] SpriteRenderer playerSprite;
     [SerializeField] PlayerWeaponRotate weaponRotate;
@@ -37,13 +37,15 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(DashTime(timeDashing));
         }
+
         if(direction != Vector2.zero) {
-            playerWalking.SetBool("Moving", true);
+            playerAnim.SetBool("Moving", true);
         }
         else
         {
-            playerWalking.SetBool("Moving",false);
+            playerAnim.SetBool("Moving",false);
         }
+
         if (weaponRotate.weaponOnLeft && !dashing)
         {
             playerSprite.flipX = true;
@@ -57,11 +59,12 @@ public class PlayerMovement : MonoBehaviour
     {
         Xinput = Input.GetAxis("Horizontal");
         Yinput = Input.GetAxis("Vertical");
+
         if(canmove)
         {
-        direction = new Vector2(Xinput, Yinput);
-
+            direction = new Vector2(Xinput, Yinput);
         }
+
         if (direction.magnitude > 1)
         {
             direction.Normalize();
@@ -86,16 +89,34 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DashTime (float sec)
     {
-        dashing = true;
-        canmove = false;
-        Xinput = Input.GetAxisRaw("Horizontal");
-        Yinput = Input.GetAxisRaw("Vertical");
-        direction = new Vector2(Xinput, Yinput);
-        yield return new WaitForSeconds(sec);
-        canmove = true;
-        dashing = false;
-        dashcooling = true;
-        StartCoroutine(DashCoolDown(dashcoolsec));
+        float XInput = Input.GetAxisRaw("Horizontal");
+        float YInput = Input.GetAxisRaw("Vertical");
+
+        if (XInput != 0 || YInput != 0)
+        {
+
+            playerAnim.SetBool("Dashing", true);
+            dashing = true;
+            canmove = false;
+
+            direction = new Vector2(XInput, YInput);
+
+            if (XInput > 0)
+                playerSprite.flipX = false;
+            else if (XInput < 0)
+                playerSprite.flipX = true;
+
+            weaponRotate.weaponSprite.color = new Color(1, 1, 1, 0);
+
+            yield return new WaitForSeconds(sec);
+
+            weaponRotate.weaponSprite.color = new Color(1, 1, 1, 1);
+            canmove = true;
+            playerAnim.SetBool("Dashing", false);
+            dashing = false;
+            dashcooling = true;
+            StartCoroutine(DashCoolDown(dashcoolsec));
+        }
     }
     IEnumerator DashCoolDown (float dashcoolsec)
     {

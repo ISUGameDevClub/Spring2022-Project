@@ -7,6 +7,7 @@ public class PlayerWeaponRotate : MonoBehaviour
     GameObject player;
     public GameObject weapon;
     public bool weaponOnLeft = false;
+    public SpriteRenderer weaponSprite;
     Vector3 flipValues = new Vector3(0, 180, 0);
     Quaternion flip = new Quaternion();
     Vector3 rightAngle = new Vector3(0, 0, 90);

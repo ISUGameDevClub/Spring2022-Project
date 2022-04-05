@@ -257,6 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 3387111083192878434}
   weaponOnLeft: 0
+  weaponSprite: {fileID: 3647209940579165563}
 --- !u!1 &3387111083192878434
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,7 +726,7 @@ MonoBehaviour:
   dashcoolsec: 1.5
   tiredtime: 0.2
   tiredspeed: 2.5
-  playerWalking: {fileID: 2050983159}
+  playerAnim: {fileID: 2050983159}
   idleSprite: {fileID: 21300000, guid: 61a4df04739526a439c5056bce51cc03, type: 3}
   playerSprite: {fileID: 5070046497772268243}
   weaponRotate: {fileID: 1415557887974735464}
@@ -763,6 +764,7 @@ MonoBehaviour:
   attackSpawn: {fileID: 3387111083192878434}
   cooldownTime: 0.2
   canAttack: 1
+  AtkSnd: {fileID: 0}
 --- !u!114 &2414555622543350996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,7 +779,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightAttack: {fileID: 8247662113382918076, guid: 5586da57f82ba114296237818b7a7a2e, type: 3}
   strongAttack: {fileID: 8247662113382918076, guid: 8149cf6bb35705b4b8fc6e34d80a9755, type: 3}
-  plrAtkSnd: {fileID: 7541961982698800930}
   playerWeaponAnim: {fileID: 3888020260587143974}
 --- !u!114 &1890880825
 MonoBehaviour:

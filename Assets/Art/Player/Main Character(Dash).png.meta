@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 2f7f7ae6575dcf14d9557012819a7708
+guid: a4bb5bd56cf9afc47904a4468fa18dc8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5937495891883487464
-    second: Dreamcatcher Trap_0
+      213: 1793316022383495902
+    second: Main Character(Dash)_0
   - first:
-      213: -1070855808484150960
-    second: Dreamcatcher Trap_1
+      213: -8145948737448260179
+    second: Main Character(Dash)_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -97,12 +97,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dreamcatcher Trap_0
+      name: Main Character(Dash)_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 32
+        y: 48
+        width: 48
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -111,19 +111,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e07e033e09366250800000000000000
-      internalID: 5937495891883487464
+      spriteID: eda4f24cb6323e810800000000000000
+      internalID: 1793316022383495902
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dreamcatcher Trap_1
+      name: Main Character(Dash)_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 0
-        width: 32
+        width: 48
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -132,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05173a9d05e8321f0800000000000000
-      internalID: -1070855808484150960
+      spriteID: dadcad948c6c3fe80800000000000000
+      internalID: -8145948737448260179
       vertices: []
       indices: 
       edges: []
