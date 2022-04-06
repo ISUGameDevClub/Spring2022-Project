@@ -18,6 +18,7 @@ public class Health : MonoBehaviour
     [Tooltip("IF PLAYER, drag in Health Bar from Scene! Will create errors if left empty for player. Leave empty for everything else")]
     [SerializeField] GameObject healthbar;
     [SerializeField] Animator hurtAnim;
+    [SerializeField] GameObject persistentSoundPrefab;
     private HealthBar bar;
 
     // How enemies tell the room they are in that it is cleared
@@ -75,6 +76,12 @@ public class Health : MonoBehaviour
     {
         if(myRoom != null)
             myRoom.EnemyDied();
+
+        GameObject tempDeathSound = Instantiate(persistentSoundPrefab,transform.position,Quaternion.identity,transform);
+        tempDeathSound.GetComponent<AudioSource>().clip = death;
+        tempDeathSound.GetComponent<AudioSource>().Play();
+        tempDeathSound.transform.SetParent(null);
+
         if (characterAudioSource != null)
         {
             ChangeSound(death);
@@ -87,7 +94,6 @@ public class Health : MonoBehaviour
 
     private void PlayerDeath()
     {
-        characterAudioSource.Play();
         hurtAnim.SetTrigger("Hurt");
         playerHurtEffect.SetTrigger("Die");
         StartCoroutine(ResetScene());
