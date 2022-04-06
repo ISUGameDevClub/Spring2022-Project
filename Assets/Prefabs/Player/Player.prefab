@@ -647,6 +647,7 @@ GameObject:
   - component: {fileID: 1890880825}
   - component: {fileID: 3684727295531276477}
   - component: {fileID: 3684727295531276479}
+  - component: {fileID: 1204632664241550234}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -707,9 +708,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   isPlayer: 1
-  deathSound: {fileID: 0}
+  characterAudioSource: {fileID: 0}
+  death: {fileID: 0}
+  hurt: {fileID: 0}
   playerHurtEffect: {fileID: 0}
   healthbar: {fileID: 6310259881968821280, guid: 6a17b553362759146917caf5edfa4801, type: 3}
+  hurtAnim: {fileID: 1204632664241550234}
   myRoom: {fileID: 0}
 --- !u!114 &3694657211392126114
 MonoBehaviour:
@@ -742,6 +746,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightAttack: {fileID: 8247662113382918076, guid: 5586da57f82ba114296237818b7a7a2e, type: 3}
   strongAttack: {fileID: 8247662113382918076, guid: 8149cf6bb35705b4b8fc6e34d80a9755, type: 3}
+  lightSound: {fileID: 0}
+  heavySound: {fileID: 0}
   canAttack: 0
   playerWeaponAnim: {fileID: 3888020260587143974}
 --- !u!114 &1890880825
@@ -804,3 +810,22 @@ CapsuleCollider2D:
   m_Offset: {x: 0.06, y: 0}
   m_Size: {x: 0.7, y: 1.25}
   m_Direction: 0
+--- !u!95 &1204632664241550234
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3684727295531276472}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aae2258a3448f0643934550b8a2e34c9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

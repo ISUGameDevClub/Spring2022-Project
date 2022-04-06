@@ -308,6 +308,7 @@ GameObject:
   - component: {fileID: 1704123837169367165}
   - component: {fileID: 2574091701775957959}
   - component: {fileID: 690058815886199733}
+  - component: {fileID: 440965175008119633}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Enemy
@@ -354,6 +355,7 @@ MonoBehaviour:
   charger: 0
   characterAudioSource: {fileID: 690058815886199733}
   aggroClip: {fileID: 8300000, guid: 8e38359eab4919c48b8ada34c7f1cb44, type: 3}
+  aggro: 0
   dontFlip: 1
 --- !u!114 &130069312901993989
 MonoBehaviour:
@@ -436,13 +438,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f0b06d4c89878488e38f2d73b85b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 3
   isPlayer: 0
   characterAudioSource: {fileID: 690058815886199733}
   death: {fileID: 0}
   hurt: {fileID: 8300000, guid: 48e2f2958df107e4cbdcd38433f543f0, type: 3}
   playerHurtEffect: {fileID: 0}
   healthbar: {fileID: 0}
+  hurtAnim: {fileID: 440965175008119633}
   myRoom: {fileID: 0}
 --- !u!114 &2574091701775957959
 MonoBehaviour:
@@ -554,6 +557,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &440965175008119633
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470982562688677288}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aae2258a3448f0643934550b8a2e34c9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7593672196961649483
 GameObject:
   m_ObjectHideFlags: 0

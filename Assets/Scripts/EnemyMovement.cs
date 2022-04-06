@@ -24,53 +24,31 @@ public class EnemyMovement : MonoBehaviour
     Rigidbody2D enemyRB;
     Vector2 lastpos;
     Vector2 direction;
+    bool canAggro;
+
     void Start()
     {
+        canAggro = false;
         aggro = false;
         enemyRB = GetComponent<Rigidbody2D>();
         lastpos = enemyRB.position;
         playerRB = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         enemyMoving = false;
+
+        StartCoroutine(AllowAggro());
     }
 
     private void Update()
     {
-        if (!enemyMoving)
+        if (enemyMovingAnim != null)
         {
-            switch (typeOfEnemy)
+            if (!enemyMoving)
             {
-                case EnemyType.Zombie:
-                    {
-                        enemyMovingAnim.SetBool("ZombieWalking",false);
-                        return; 
-                    }
-                case EnemyType.Ghost:
-                    {
-                        return;
-                    }
-                case EnemyType.Lumberjack:
-                    {
-                        return;
-                    }
+                enemyMovingAnim.SetBool("Walking", false);
             }
-        }
-        else if(enemyMoving)
-        {
-            switch (typeOfEnemy)
+            else if (enemyMoving)
             {
-                case EnemyType.Zombie:
-                    {
-                        enemyMovingAnim.SetBool("ZombieWalking", true);
-                        return;
-                    }
-                case EnemyType.Ghost:
-                    {
-                        return;
-                    }
-                case EnemyType.Lumberjack:
-                    {
-                        return;
-                    }
+                enemyMovingAnim.SetBool("Walking", true);
             }
         }
     }
@@ -78,49 +56,62 @@ public class EnemyMovement : MonoBehaviour
     void FixedUpdate()
     {
         enemyRB.velocity = Vector2.zero;
-        bool seesPlayer = canSeePlayer();
-        float distanceFromPlayer = Vector2.Distance(enemyRB.position, playerRB.position);
+        if (canAggro)
+        {
+            bool seesPlayer = canSeePlayer();
+            float distanceFromPlayer = Vector2.Distance(enemyRB.position, playerRB.position);
 
-        if (distanceFromPlayer > minDist && seesPlayer && !charging)
-        {
-            direction = playerRB.position - enemyRB.position;
-            lastpos = playerRB.position;
-            if (direction.x > 0 && !dontFlip)
+            if (distanceFromPlayer > minDist && seesPlayer && !charging)
             {
-                enemySpriteRender.flipX = true;
+                direction = playerRB.position - enemyRB.position;
+                lastpos = playerRB.position;
+                if (direction.x > 0 && !dontFlip)
+                {
+                    enemySpriteRender.flipX = true;
+                }
+                else if (direction.x < 0)
+                {
+                    enemySpriteRender.flipX = false;
+                }
+                enemyMoving = true;
+                if (charger)
+                {
+                    charging = true;
+                    if (enemyMovingAnim != null)
+                    {
+                        enemyMovingAnim.SetBool("Charging", true);
+                    }
+                }
             }
-            else if (direction.x < 0)
+            else if (Vector2.Distance(enemyRB.position, lastpos) > bufferDist && !seesPlayer && !charger)
             {
-                enemySpriteRender.flipX = false;
+                direction = (lastpos - enemyRB.position);
+                if (direction.x > 0 && !dontFlip)
+                {
+                    enemySpriteRender.flipX = true;
+                }
+                else if (direction.x < 0)
+                {
+                    enemySpriteRender.flipX = false;
+                }
+                enemyMoving = true;
             }
-            enemyMoving = true;
-            if (charger)
+            else if (!charging)
             {
-                charging = true;
-                enemyMovingAnim.SetBool("Charging", true);
+                enemyMoving = false;
             }
-        }
-        else if (Vector2.Distance(enemyRB.position, lastpos) > bufferDist && !seesPlayer && !charger)
-        {
-            direction = (lastpos - enemyRB.position);
-            if (direction.x > 0 && !dontFlip)
-            {
-                enemySpriteRender.flipX = true;
-            } else if(direction.x < 0)
-            {
-                enemySpriteRender.flipX = false;
-            }
-            enemyMoving = true;
-        }
-        else if (!charging)
-        {
-            enemyMoving = false;
-        }
 
-        if(enemyMoving)
-        {
-            enemyRB.MovePosition(enemyRB.position + (direction).normalized * moveSpeed * Time.fixedDeltaTime);
+            if (enemyMoving)
+            {
+                enemyRB.MovePosition(enemyRB.position + (direction).normalized * moveSpeed * Time.fixedDeltaTime);
+            }
         }
+    }
+
+    private IEnumerator AllowAggro()
+    {
+        yield return new WaitForSeconds(.5f);
+        canAggro = true;
     }
 
     public bool canSeePlayer()
@@ -155,7 +146,10 @@ public class EnemyMovement : MonoBehaviour
     private IEnumerator StopCharging()
     {
         enemyMoving = false;
-        enemyMovingAnim.SetBool("Charging", false);
+        if (enemyMovingAnim != null)
+        {
+            enemyMovingAnim.SetBool("Charging", false);
+        }
         yield return new WaitForSeconds(1);
         charging = false;
     }

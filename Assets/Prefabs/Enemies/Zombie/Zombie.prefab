@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3315310994572586830}
   - component: {fileID: 3315310994572586833}
-  - component: {fileID: 3315310994572586832}
   - component: {fileID: 3315310994572586831}
+  - component: {fileID: 7896067795778163279}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -84,25 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3315310994572586832
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3315310994572586829}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5322527f8901f334c9d7037870eb7578, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!210 &3315310994572586831
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -114,6 +95,25 @@ SortingGroup:
   m_SortingLayerID: 921885567
   m_SortingLayer: 3
   m_SortingOrder: 0
+--- !u!95 &7896067795778163279
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3315310994572586829}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 813b34c1b1596a447bf45ea5df1b4ce4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5427707091511985316
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,10 +188,11 @@ GameObject:
   m_Component:
   - component: {fileID: 9163111082504112088}
   - component: {fileID: 3315310993519168460}
-  - component: {fileID: 3315310993519168450}
-  - component: {fileID: 3874631971874148339}
   - component: {fileID: 1763257279693930872}
   - component: {fileID: -7550485488193740363}
+  - component: {fileID: 5436630927155823557}
+  - component: {fileID: 3315310993519168450}
+  - component: {fileID: 3874631971874148339}
   - component: {fileID: 7834391566170404882}
   m_Layer: 0
   m_Name: Zombie
@@ -229,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfEnemy: 0
-  enemyMovingAnim: {fileID: 3315310994572586832}
+  enemyMovingAnim: {fileID: 7896067795778163279}
   enemySpriteRender: {fileID: 3315310994572586833}
   moveSpeed: 3
   maxDist: 10
@@ -238,7 +239,62 @@ MonoBehaviour:
   charger: 0
   characterAudioSource: {fileID: 7834391566170404882}
   aggroClip: {fileID: 8300000, guid: b59dd2e20d325af47985679289eacfe7, type: 3}
+  aggro: 0
   dontFlip: 0
+--- !u!114 &1763257279693930872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470982562688677288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f0b06d4c89878488e38f2d73b85b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  isPlayer: 0
+  characterAudioSource: {fileID: 7834391566170404882}
+  death: {fileID: 8300000, guid: 35b3e6aa003e2cb429a38d8561bc734f, type: 3}
+  hurt: {fileID: 8300000, guid: 48e2f2958df107e4cbdcd38433f543f0, type: 3}
+  playerHurtEffect: {fileID: 0}
+  healthbar: {fileID: 0}
+  hurtAnim: {fileID: 5436630927155823557}
+  myRoom: {fileID: 0}
+--- !u!114 &-7550485488193740363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470982562688677288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 587103d2b006f4d11b442df3c041b286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnEffect: {fileID: 522202971537025316, guid: c72d3c5e47bd1f64b8c46e0557c3c3b6, type: 3}
+  preSpawnEffect: {fileID: 522202971537025316, guid: c78033d3b3d3c614e83fcbafb58b6b03, type: 3}
+--- !u!95 &5436630927155823557
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470982562688677288}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aae2258a3448f0643934550b8a2e34c9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!50 &3315310993519168450
 Rigidbody2D:
   serializedVersion: 4
@@ -276,40 +332,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.7, y: 1.35}
   m_Direction: 0
---- !u!114 &1763257279693930872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6470982562688677288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34f0b06d4c89878488e38f2d73b85b40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 5
-  isPlayer: 0
-  characterAudioSource: {fileID: 7834391566170404882}
-  death: {fileID: 8300000, guid: 35b3e6aa003e2cb429a38d8561bc734f, type: 3}
-  hurt: {fileID: 8300000, guid: 48e2f2958df107e4cbdcd38433f543f0, type: 3}
-  playerHurtEffect: {fileID: 0}
-  healthbar: {fileID: 0}
-  myRoom: {fileID: 0}
---- !u!114 &-7550485488193740363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6470982562688677288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 587103d2b006f4d11b442df3c041b286, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnEffect: {fileID: 522202971537025316, guid: c72d3c5e47bd1f64b8c46e0557c3c3b6, type: 3}
-  preSpawnEffect: {fileID: 522202971537025316, guid: c78033d3b3d3c614e83fcbafb58b6b03, type: 3}
 --- !u!82 &7834391566170404882
 AudioSource:
   m_ObjectHideFlags: 0

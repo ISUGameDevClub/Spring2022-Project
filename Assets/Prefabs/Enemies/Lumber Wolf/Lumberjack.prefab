@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3556615284659405447}
   - component: {fileID: 8741871603417551035}
   - component: {fileID: 6476539785359041454}
+  - component: {fileID: 4853285050812670463}
   m_Layer: 0
   m_Name: Lumberjack
   m_TagString: Enemy
@@ -31,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 6470982562688677288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.75, y: 1.75, z: 1}
+  m_LocalScale: {x: 0.875, y: 0.875, z: 1}
   m_Children:
   - {fileID: 11956613088239895}
   - {fileID: 5726209873495535340}
@@ -60,6 +61,7 @@ MonoBehaviour:
   charger: 1
   characterAudioSource: {fileID: 6476539785359041454}
   aggroClip: {fileID: 8300000, guid: 88ff88d8b25b88b439888d2b44361b91, type: 3}
+  aggro: 0
   dontFlip: 0
 --- !u!50 &5148626039795621743
 Rigidbody2D:
@@ -96,7 +98,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 0.86}
+  m_Size: {x: 1, y: 1.72}
   m_Direction: 0
 --- !u!114 &3556615284659405447
 MonoBehaviour:
@@ -110,13 +112,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f0b06d4c89878488e38f2d73b85b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 6
   isPlayer: 0
   characterAudioSource: {fileID: 6476539785359041454}
   death: {fileID: 8300000, guid: 41fa5979f383c9549b2b6630fccef380, type: 3}
   hurt: {fileID: 8300000, guid: 48e2f2958df107e4cbdcd38433f543f0, type: 3}
   playerHurtEffect: {fileID: 0}
   healthbar: {fileID: 0}
+  hurtAnim: {fileID: 4853285050812670463}
   myRoom: {fileID: 0}
 --- !u!114 &8741871603417551035
 MonoBehaviour:
@@ -228,6 +231,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &4853285050812670463
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470982562688677288}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aae2258a3448f0643934550b8a2e34c9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7235329855515380585
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +278,7 @@ Transform:
   m_GameObject: {fileID: 7235329855515380585}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.053, y: 0.141, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9163111082504112088}
   m_RootOrder: 0
@@ -404,5 +426,5 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.55, y: 0.91}
+  m_Size: {x: 1.1, y: 1.82}
   m_Direction: 0

@@ -17,6 +17,7 @@ public class Health : MonoBehaviour
     [SerializeField] Animator playerHurtEffect;
     [Tooltip("IF PLAYER, drag in Health Bar from Scene! Will create errors if left empty for player. Leave empty for everything else")]
     [SerializeField] GameObject healthbar;
+    [SerializeField] Animator hurtAnim;
     private HealthBar bar;
 
     // How enemies tell the room they are in that it is cleared
@@ -38,25 +39,29 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        ChangeSound(hurt);
-        characterAudioSource.Play();
-        if(currentHealth <= 0 && !isDead)
-        {
-            if(isPlayer)
-                bar.ChangeHealth((int)currentHealth);
-            isDead = true;
-            if (!isPlayer)
-                EnemyDeath();
-            else
-                PlayerDeath();
-        }
-        else if(isPlayer)
+
+        if (isPlayer)
         {
             bar.ChangeHealth((int)currentHealth);
             if (playerHurtEffect != null)
                 playerHurtEffect.SetTrigger("Hurt");
             else
                 Debug.Log("Player is missing their hurt effect!");
+        }
+
+        if (currentHealth <= 0 && !isDead)
+        {
+            isDead = true;
+            if (!isPlayer)
+                EnemyDeath();
+            else
+                PlayerDeath();
+        }
+        else
+        {
+            ChangeSound(hurt);
+            characterAudioSource.Play();
+            hurtAnim.SetTrigger("Hurt");
         }
     }
 
@@ -82,6 +87,8 @@ public class Health : MonoBehaviour
 
     private void PlayerDeath()
     {
+        characterAudioSource.Play();
+        hurtAnim.SetTrigger("Hurt");
         playerHurtEffect.SetTrigger("Die");
         StartCoroutine(ResetScene());
     }
