@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074967022}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3684727295531276474}
@@ -301,7 +301,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 331c0e9f66dec9a4ab9f2787024be374, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e15f6596f2f9ce0489f98cad793b1d80, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
@@ -727,7 +727,7 @@ MonoBehaviour:
   attackSpawn: {fileID: 3387111083192878434}
   cooldownTime: 0.2
   canAttack: 1
-  AtkSnd: {fileID: 0}
+  AtkSnd: {fileID: 7541961982698800930}
 --- !u!114 &2414555622543350996
 MonoBehaviour:
   m_ObjectHideFlags: 0

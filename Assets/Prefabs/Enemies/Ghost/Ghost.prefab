@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a361dfcc74ea2941891f8afabbc22ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHitbox: 0
   damage: 1
   isPiercing: 1
   persisting: 1
@@ -350,6 +351,9 @@ MonoBehaviour:
   maxDist: 10
   minDist: 5
   bufferDist: 0.5
+  charger: 0
+  characterAudioSource: {fileID: 690058815886199733}
+  aggroClip: {fileID: 8300000, guid: 8e38359eab4919c48b8ada34c7f1cb44, type: 3}
   dontFlip: 1
 --- !u!114 &130069312901993989
 MonoBehaviour:
@@ -381,6 +385,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack: {fileID: 8247662113382918076, guid: bfc937def9ff2fd42908ab5bebde1cf3, type: 3}
+  normalAttack: {fileID: 8300000, guid: 30bf3671fcd963d468a5e58d5cf3c3fe, type: 3}
+  heavyAttack: {fileID: 0}
 --- !u!50 &4376329610693086815
 Rigidbody2D:
   serializedVersion: 4
@@ -432,7 +438,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   isPlayer: 0
-  deathSound: {fileID: 0}
+  characterAudioSource: {fileID: 690058815886199733}
+  death: {fileID: 0}
+  hurt: {fileID: 8300000, guid: 48e2f2958df107e4cbdcd38433f543f0, type: 3}
   playerHurtEffect: {fileID: 0}
   healthbar: {fileID: 0}
   myRoom: {fileID: 0}
@@ -460,9 +468,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 897d0b3e45f07da42a697a22007bd45a, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0

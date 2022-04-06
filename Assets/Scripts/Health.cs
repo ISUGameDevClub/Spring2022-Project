@@ -11,7 +11,9 @@ public class Health : MonoBehaviour
     [SerializeField] bool isPlayer;
     private float currentHealth = 10f; //current health of entity
     private bool isDead = false;
-    [SerializeField] AudioSource deathSound;
+    [SerializeField] AudioSource characterAudioSource;
+    [SerializeField] AudioClip death;
+    [SerializeField] AudioClip hurt;
     [SerializeField] Animator playerHurtEffect;
     [Tooltip("IF PLAYER, drag in Health Bar from Scene! Will create errors if left empty for player. Leave empty for everything else")]
     [SerializeField] GameObject healthbar;
@@ -36,7 +38,8 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-
+        ChangeSound(hurt);
+        characterAudioSource.Play();
         if(currentHealth <= 0 && !isDead)
         {
             if(isPlayer)
@@ -67,8 +70,11 @@ public class Health : MonoBehaviour
     {
         if(myRoom != null)
             myRoom.EnemyDied();
-        if(deathSound != null)
-            deathSound.Play();
+        if (characterAudioSource != null)
+        {
+            ChangeSound(death);
+            characterAudioSource.Play();
+        }
         isDead = true;
 
         Destroy(gameObject);
@@ -84,5 +90,9 @@ public class Health : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene("Title");
+    }
+    public void ChangeSound(AudioClip clip)
+    {
+        characterAudioSource.clip = clip;
     }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3631470461633421602}
   - component: {fileID: 3556615284659405447}
   - component: {fileID: 8741871603417551035}
+  - component: {fileID: 6476539785359041454}
   m_Layer: 0
   m_Name: Lumberjack
   m_TagString: Enemy
@@ -57,6 +58,8 @@ MonoBehaviour:
   minDist: 0
   bufferDist: 0.5
   charger: 1
+  characterAudioSource: {fileID: 6476539785359041454}
+  aggroClip: {fileID: 8300000, guid: 88ff88d8b25b88b439888d2b44361b91, type: 3}
   dontFlip: 0
 --- !u!50 &5148626039795621743
 Rigidbody2D:
@@ -109,7 +112,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   isPlayer: 0
-  deathSound: {fileID: 0}
+  characterAudioSource: {fileID: 6476539785359041454}
+  death: {fileID: 8300000, guid: 41fa5979f383c9549b2b6630fccef380, type: 3}
+  hurt: {fileID: 8300000, guid: 48e2f2958df107e4cbdcd38433f543f0, type: 3}
   playerHurtEffect: {fileID: 0}
   healthbar: {fileID: 0}
   myRoom: {fileID: 0}
@@ -127,6 +132,102 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnEffect: {fileID: 522202971537025316, guid: c72d3c5e47bd1f64b8c46e0557c3c3b6, type: 3}
   preSpawnEffect: {fileID: 522202971537025316, guid: c78033d3b3d3c614e83fcbafb58b6b03, type: 3}
+--- !u!82 &6476539785359041454
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470982562688677288}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7235329855515380585
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a361dfcc74ea2941891f8afabbc22ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHitbox: 0
   damage: 1
   isPiercing: 1
   persisting: 1
