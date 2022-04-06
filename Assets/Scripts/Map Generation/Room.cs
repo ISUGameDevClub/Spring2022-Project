@@ -141,6 +141,8 @@ public class Room : MonoBehaviour
                 Destroy(preSpawnEffects[i]);
             }
             en.SetActive(true);
+            if (en.GetComponent<EnemyMovement>() != null)
+                en.GetComponent<EnemyMovement>().AllowAggroStart();
         }
     }
 

@@ -34,8 +34,6 @@ public class EnemyMovement : MonoBehaviour
         lastpos = enemyRB.position;
         playerRB = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         enemyMoving = false;
-
-        StartCoroutine(AllowAggro());
     }
 
     private void Update()
@@ -108,9 +106,15 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator AllowAggro()
+    public void AllowAggroStart()
     {
-        yield return new WaitForSeconds(.5f);
+        StartCoroutine(AllowAggro());
+    }
+
+    public IEnumerator AllowAggro()
+    {
+        Debug.Log("HIT");
+        yield return new WaitForSeconds(.25f);
         canAggro = true;
     }
 
