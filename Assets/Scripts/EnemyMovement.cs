@@ -113,8 +113,7 @@ public class EnemyMovement : MonoBehaviour
 
     public IEnumerator AllowAggro()
     {
-        Debug.Log("HIT");
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(.35f);
         canAggro = true;
     }
 
