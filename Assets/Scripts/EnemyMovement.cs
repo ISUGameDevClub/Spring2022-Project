@@ -13,9 +13,11 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float maxDist;
     [SerializeField] float minDist;
     [SerializeField] float bufferDist;
+    [SerializeField] bool charger;
 
     public bool dontFlip = false;
     bool enemyMoving;
+    bool charging;
     Rigidbody2D playerRB;
     Rigidbody2D enemyRB;
     Vector2 lastpos;
@@ -27,6 +29,7 @@ public class EnemyMovement : MonoBehaviour
         playerRB = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         enemyMoving = false;
     }
+
     private void Update()
     {
         if (!enemyMoving)
@@ -68,16 +71,17 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     }
+
     void FixedUpdate()
     {
         enemyRB.velocity = Vector2.zero;
         bool seesPlayer = canSeePlayer();
-        if ((Vector2.Distance(enemyRB.position, playerRB.position) > minDist) && seesPlayer)
-        {
+        float distanceFromPlayer = Vector2.Distance(enemyRB.position, playerRB.position);
 
+        if (distanceFromPlayer > minDist && seesPlayer && !charging)
+        {
             direction = playerRB.position - enemyRB.position;
             lastpos = playerRB.position;
-            enemyRB.MovePosition(enemyRB.position + (direction).normalized * moveSpeed * Time.fixedDeltaTime);
             if (direction.x > 0 && !dontFlip)
             {
                 enemySpriteRender.flipX = true;
@@ -87,11 +91,16 @@ public class EnemyMovement : MonoBehaviour
                 enemySpriteRender.flipX = false;
             }
             enemyMoving = true;
+
+            if (charger)
+            {
+                charging = true;
+                enemyMovingAnim.SetBool("Charging", true);
+            }
         }
-        else if (!seesPlayer && Vector2.Distance(lastpos,enemyRB.position) > bufferDist)
+        else if (Vector2.Distance(enemyRB.position, lastpos) > bufferDist && !seesPlayer && !charger)
         {
             direction = (lastpos - enemyRB.position);
-            enemyRB.MovePosition(enemyRB.position + (direction).normalized * moveSpeed * Time.fixedDeltaTime);
             if (direction.x > 0 && !dontFlip)
             {
                 enemySpriteRender.flipX = true;
@@ -101,11 +110,17 @@ public class EnemyMovement : MonoBehaviour
             }
             enemyMoving = true;
         }
-        else
+        else if (!charging)
         {
             enemyMoving = false;
         }
+
+        if(enemyMoving)
+        {
+            enemyRB.MovePosition(enemyRB.position + (direction).normalized * moveSpeed * Time.fixedDeltaTime);
+        }
     }
+
     public bool canSeePlayer()
     {
         int layerMask = LayerMask.GetMask("Player","Walls");
@@ -115,5 +130,25 @@ public class EnemyMovement : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        int layerMask = LayerMask.GetMask("Walls");
+        if (collision.gameObject.layer == 9)
+        {
+            if (charging)
+            {
+                StartCoroutine(StopCharging());
+            }
+        }
+    }
+
+    private IEnumerator StopCharging()
+    {
+        enemyMoving = false;
+        enemyMovingAnim.SetBool("Charging", false);
+        yield return new WaitForSeconds(1);
+        charging = false;
     }
 }

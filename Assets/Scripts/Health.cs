@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -41,7 +42,10 @@ public class Health : MonoBehaviour
             if(isPlayer)
                 bar.ChangeHealth((int)currentHealth);
             isDead = true;
-            Death();
+            if (!isPlayer)
+                EnemyDeath();
+            else
+                PlayerDeath();
         }
         else if(isPlayer)
         {
@@ -59,19 +63,26 @@ public class Health : MonoBehaviour
         return isDead;
     }
 
-    private void Death()
+    private void EnemyDeath()
     {
-        if (!isPlayer)
-        {
-
-                myRoom.EnemyDied();
-                Debug.Log(gameObject.name + " died!");
-                isDead = true;
-        }
-
+        if(myRoom != null)
+            myRoom.EnemyDied();
         if(deathSound != null)
             deathSound.Play();
+        isDead = true;
 
         Destroy(gameObject);
+    }
+
+    private void PlayerDeath()
+    {
+        playerHurtEffect.SetTrigger("Die");
+        StartCoroutine(ResetScene());
+    }
+
+    private IEnumerator ResetScene()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("Title");
     }
 }

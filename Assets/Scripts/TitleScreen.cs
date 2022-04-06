@@ -7,11 +7,12 @@ public class TitleScreen : MonoBehaviour
 {
     [SerializeField] GameObject optionsScreen;
     [SerializeField] Scene playScene;
-    [SerializeField] AudioSource menuSound;
+    AudioSource buttonSound;
+    
     // Start is called before the first frame update
     void Start()
     {
-        menuSound = gameObject.GetComponent<AudioSource>();
+        buttonSound = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -22,20 +23,20 @@ public class TitleScreen : MonoBehaviour
 
     public void enableOptions()
     {
-        menuSound.Play();
+        buttonSound.Play();
         optionsScreen.SetActive(true);
     }
 
     public void disableOptions()
     {
-        menuSound.Play();
+        buttonSound.Play();
         optionsScreen.SetActive(false);
     }
 
     public void playGame()
     {
-        menuSound.Play();
-        SceneManager.LoadScene(2);
+        buttonSound.Play();
+        SceneManager.LoadScene("Final Forest");
     }
 
     public void quitGame()

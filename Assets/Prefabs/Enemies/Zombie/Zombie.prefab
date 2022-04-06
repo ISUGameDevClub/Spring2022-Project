@@ -229,10 +229,11 @@ MonoBehaviour:
   typeOfEnemy: 0
   enemyMovingAnim: {fileID: 3315310994572586832}
   enemySpriteRender: {fileID: 3315310994572586833}
-  moveSpeed: 1
+  moveSpeed: 3
   maxDist: 10
   minDist: 0
   bufferDist: 0.5
+  charger: 0
   dontFlip: 0
 --- !u!50 &3315310993519168450
 Rigidbody2D:
