@@ -426,6 +426,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
+      propertyPath: horizontalRooms.Array.data[0]
+      value: 
+      objectReference: {fileID: 6892088433674083142, guid: 1feffdb7c5eefb9428d2f64d782ec653, type: 3}
     - target: {fileID: 931685505032976680, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
       propertyPath: m_Name
       value: Map Generator
