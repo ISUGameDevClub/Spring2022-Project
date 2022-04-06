@@ -6,6 +6,8 @@ public class PlayerAttack : MonoBehaviour
 {
     public GameObject lightAttack;
     public GameObject strongAttack;
+    public AudioClip lightSound;
+    public AudioClip heavySound;
     public bool canAttack;
     Attack at;
 
@@ -24,14 +26,14 @@ public class PlayerAttack : MonoBehaviour
         {
             if (Input.GetButton("Fire1") && at.canAttack)
             {
+                at.ChangeClip(lightSound);
                 at.hurtboxPrefab = lightAttack;
                 at.SpawnAttack();
                 playerWeaponAnim.SetTrigger("Light Attack");
-
-
             }
             else if (Input.GetButton("Fire2") && at.canAttack)
             {
+                at.ChangeClip(heavySound);
                 at.hurtboxPrefab = strongAttack;
                 at.SpawnAttack();
                 playerWeaponAnim.SetTrigger("Heavy Attack");

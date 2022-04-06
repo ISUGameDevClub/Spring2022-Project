@@ -14,7 +14,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float minDist;
     [SerializeField] float bufferDist;
     [SerializeField] bool charger;
-
+    [SerializeField] AudioSource characterAudioSource;
+    [SerializeField] AudioClip aggroClip;
+    public bool aggro = false;
     public bool dontFlip = false;
     bool enemyMoving;
     bool charging;
@@ -24,6 +26,7 @@ public class EnemyMovement : MonoBehaviour
     Vector2 direction;
     void Start()
     {
+        aggro = false;
         enemyRB = GetComponent<Rigidbody2D>();
         lastpos = enemyRB.position;
         playerRB = GameObject.Find("Player").GetComponent<Rigidbody2D>();
@@ -91,7 +94,6 @@ public class EnemyMovement : MonoBehaviour
                 enemySpriteRender.flipX = false;
             }
             enemyMoving = true;
-
             if (charger)
             {
                 charging = true;
@@ -127,6 +129,12 @@ public class EnemyMovement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(enemyRB.position, playerRB.position - enemyRB.position, maxDist, layerMask);
         if(hit.collider != null && hit.collider.gameObject.tag == "Player")
         {
+            if (!aggro)
+            {
+                characterAudioSource.clip = aggroClip;
+                characterAudioSource.Play();
+                aggro = true;
+            }
             return true;
         }
         return false;
