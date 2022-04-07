@@ -3,7 +3,15 @@ guid: 34f0b06d4c89878488e38f2d73b85b40
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - characterAudioSource: {instanceID: 0}
+  - death: {instanceID: 0}
+  - hurt: {instanceID: 0}
+  - playerHurtEffect: {instanceID: 0}
+  - healthbar: {instanceID: 0}
+  - hurtAnim: {instanceID: 0}
+  - persistentSoundPrefab: {fileID: 822096029281851492, guid: b4f875e79e4baa64a9e568ea10be1137, type: 3}
+  - myRoom: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

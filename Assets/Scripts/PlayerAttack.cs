@@ -6,6 +6,9 @@ public class PlayerAttack : MonoBehaviour
 {
     public GameObject lightAttack;
     public GameObject strongAttack;
+    public AudioClip lightSound;
+    public AudioClip heavySound;
+    public bool canAttack;
     Attack at;
 
     [SerializeField] Animator playerWeaponAnim;
@@ -13,27 +16,29 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         at = gameObject.GetComponent<Attack>();
+        canAttack = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1") && at.canAttack)
+        if (canAttack)
         {
-            at.hurtboxPrefab = lightAttack;
-            at.SpawnAttack();
-            playerWeaponAnim.SetTrigger("Light Attack");
+            if (Input.GetButton("Fire1") && at.canAttack)
+            {
+                at.ChangeClip(lightSound);
+                at.hurtboxPrefab = lightAttack;
+                at.SpawnAttack();
+                playerWeaponAnim.SetTrigger("Light Attack");
+            }
+            else if (Input.GetButton("Fire2") && at.canAttack)
+            {
+                at.ChangeClip(heavySound);
+                at.hurtboxPrefab = strongAttack;
+                at.SpawnAttack();
+                playerWeaponAnim.SetTrigger("Heavy Attack");
 
-            
+            }
         }
-        else if (Input.GetButton("Fire2") && at.canAttack)
-        {
-            at.hurtboxPrefab = strongAttack;
-            at.SpawnAttack();
-            playerWeaponAnim.SetTrigger("Heavy Attack");
-
-        }
-        else
-            return;
     }
 }

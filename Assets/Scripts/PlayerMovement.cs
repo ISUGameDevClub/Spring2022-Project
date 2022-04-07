@@ -5,16 +5,17 @@ using UnityEngine.Animations;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float speed;
-    [SerializeField] float dash = 10;
-    [SerializeField] float timeDashing = 0.5f;
-    [SerializeField] float dashcoolsec = 1.5f;
+    public float speed;
+    public float dash = 10;
+    public float timeDashing = 0.5f;
+    public float dashcoolsec = 1.5f;
     [SerializeField] float tiredtime = 0.2f;
     [SerializeField] float tiredspeed = 2.5f;
-    [SerializeField] Animator playerWalking;
+    [SerializeField] Animator playerAnim;
     [SerializeField] Sprite idleSprite;
     [SerializeField] SpriteRenderer playerSprite;
     [SerializeField] PlayerWeaponRotate weaponRotate;
+    PlayerAttack playerAtk;
     Rigidbody2D playerRB;
     Vector2 direction;
     float Xinput;
@@ -24,26 +25,34 @@ public class PlayerMovement : MonoBehaviour
     bool dashcooling;
     bool isslowed = false;
 
-
+    float finalSpeed;
+    float finalDash;
+    float finalTimeDashing;
+    float finalDashcoolsec;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
+        playerAtk = GetComponent<PlayerAttack>();
+        UpdatePassives();
     }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !dashing && !dashcooling)
+        if (Input.GetKey(KeyCode.LeftShift) && !dashing && !dashcooling)
         {
-            StartCoroutine(DashTime(timeDashing));
+            StartCoroutine(DashTime(finalTimeDashing));
         }
+
         if(direction != Vector2.zero) {
-            playerWalking.SetBool("Moving", true);
+            playerAnim.SetBool("Moving", true);
         }
         else
         {
-            playerWalking.SetBool("Moving",false);
+            playerAnim.SetBool("Moving",false);
         }
+
         if (weaponRotate.weaponOnLeft && !dashing)
         {
             playerSprite.flipX = true;
@@ -53,15 +62,17 @@ public class PlayerMovement : MonoBehaviour
             playerSprite.flipX = false;
         }
     }
+
     private void FixedUpdate()
     {
         Xinput = Input.GetAxis("Horizontal");
         Yinput = Input.GetAxis("Vertical");
+
         if(canmove)
         {
-        direction = new Vector2(Xinput, Yinput);
-
+            direction = new Vector2(Xinput, Yinput);
         }
+
         if (direction.magnitude > 1)
         {
             direction.Normalize();
@@ -70,12 +81,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (dashing)
         {
-            playerRB.MovePosition((Vector2)transform.position + (direction * dash * Time.fixedDeltaTime));
+            playerRB.MovePosition((Vector2)transform.position + (direction * finalDash * Time.fixedDeltaTime));
         }
 
         else
         {
-            playerRB.MovePosition((Vector2)transform.position + (direction * speed * Time.fixedDeltaTime));
+            playerRB.MovePosition((Vector2)transform.position + (direction * finalSpeed * Time.fixedDeltaTime));
         }
         if (isslowed)
         {
@@ -86,24 +97,53 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DashTime (float sec)
     {
-        dashing = true;
-        canmove = false;
-        Xinput = Input.GetAxisRaw("Horizontal");
-        Yinput = Input.GetAxisRaw("Vertical");
-        direction = new Vector2(Xinput, Yinput);
-        yield return new WaitForSeconds(sec);
-        canmove = true;
-        dashing = false;
-        dashcooling = true;
-        StartCoroutine(DashCoolDown(dashcoolsec));
+        float XInput = Input.GetAxisRaw("Horizontal");
+        float YInput = Input.GetAxisRaw("Vertical");
+
+        if (XInput != 0 || YInput != 0)
+        {
+
+            playerAnim.SetBool("Dashing", true);
+            playerAtk.canAttack = false;
+            dashing = true;
+            canmove = false;
+
+            direction = new Vector2(XInput, YInput);
+
+            if (XInput > 0)
+                playerSprite.flipX = false;
+            else if (XInput < 0)
+                playerSprite.flipX = true;
+
+            weaponRotate.weaponSprite.color = new Color(1, 1, 1, 0);
+
+            yield return new WaitForSeconds(sec);
+
+            weaponRotate.weaponSprite.color = new Color(1, 1, 1, 1);
+            canmove = true;
+            playerAnim.SetBool("Dashing", false);
+            playerAtk.canAttack = true;
+            dashing = false;
+            dashcooling = true;
+            StartCoroutine(DashCoolDown(finalDashcoolsec));
+        }
     }
+
     IEnumerator DashCoolDown (float dashcoolsec)
     {
         isslowed = true;
-            yield return new WaitForSeconds(tiredtime);
+        yield return new WaitForSeconds(tiredtime);
         isslowed = false;
-            yield return new WaitForSeconds(dashcoolsec);
-            dashcooling = false;
+        yield return new WaitForSeconds(dashcoolsec);
+        dashcooling = false;
 
+    }
+
+    public void UpdatePassives()
+    {
+        finalSpeed = speed + PassiveBuffs.speedIncrease;
+        finalDash = dash + PassiveBuffs.dashSpeedIncrease;
+        finalTimeDashing = timeDashing + PassiveBuffs.dashTimeIncrease;
+        finalDashcoolsec = dashcoolsec - PassiveBuffs.dashCooldownDecrease;
     }
 }
