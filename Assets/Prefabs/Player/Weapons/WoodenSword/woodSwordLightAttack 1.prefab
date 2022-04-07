@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d333c5956aeee42a6229dbda6bdee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  cooldownTime: 0.2
+  speed: 0
+  cooldownTime: 0.5
+  activeTime: 0.1
 --- !u!50 &8247662113382918075
 Rigidbody2D:
   serializedVersion: 4
@@ -149,5 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a361dfcc74ea2941891f8afabbc22ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
+  playerHitbox: 1
   damage: 1
+  isPiercing: 0
+  persisting: 0
