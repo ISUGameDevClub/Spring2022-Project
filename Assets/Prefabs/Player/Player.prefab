@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074967022}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3684727295531276474}
@@ -257,6 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 3387111083192878434}
   weaponOnLeft: 0
+  weaponSprite: {fileID: 3647209940579165563}
 --- !u!1 &3387111083192878434
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +301,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 331c0e9f66dec9a4ab9f2787024be374, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e15f6596f2f9ce0489f98cad793b1d80, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
@@ -639,13 +640,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3684727295531276474}
-  - component: {fileID: 3684727295531276477}
-  - component: {fileID: 3684727295531276479}
   - component: {fileID: 3684727295531276417}
   - component: {fileID: 3684727295531276478}
   - component: {fileID: 3694657211392126114}
   - component: {fileID: 2414555622543350996}
   - component: {fileID: 1890880825}
+  - component: {fileID: 3684727295531276477}
+  - component: {fileID: 3684727295531276479}
+  - component: {fileID: 1204632664241550234}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -670,6 +672,107 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3684727295531276417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3684727295531276472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ebc07099bdd3c42967a0c3d260ca53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 6
+  dash: 12
+  timeDashing: 0.4
+  dashcoolsec: 0.5
+  tiredtime: 0.1
+  tiredspeed: 3
+  playerAnim: {fileID: 2050983159}
+  idleSprite: {fileID: 21300000, guid: 61a4df04739526a439c5056bce51cc03, type: 3}
+  playerSprite: {fileID: 5070046497772268243}
+  weaponRotate: {fileID: 1415557887974735464}
+--- !u!114 &3684727295531276478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3684727295531276472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f0b06d4c89878488e38f2d73b85b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  isPlayer: 1
+  characterAudioSource: {fileID: 0}
+  death: {fileID: 0}
+  hurt: {fileID: 0}
+  playerHurtEffect: {fileID: 0}
+  healthbar: {fileID: 6310259881968821280, guid: 6a17b553362759146917caf5edfa4801, type: 3}
+  hurtAnim: {fileID: 1204632664241550234}
+  myRoom: {fileID: 0}
+--- !u!114 &3694657211392126114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3684727295531276472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8cf376a740b5d94a81a6c7f76dd3ac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtboxPrefab: {fileID: 8247662113382918076, guid: d853120f9ddb9f542aa49c4dae8ee12e, type: 3}
+  attackSpawn: {fileID: 3387111083192878434}
+  cooldownTime: 0.2
+  canAttack: 1
+  AtkSnd: {fileID: 7541961982698800930}
+--- !u!114 &2414555622543350996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3684727295531276472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ff73d91fee474459552e476fa4a1ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightAttack: {fileID: 8247662113382918076, guid: 5586da57f82ba114296237818b7a7a2e, type: 3}
+  strongAttack: {fileID: 8247662113382918076, guid: 8149cf6bb35705b4b8fc6e34d80a9755, type: 3}
+  lightSound: {fileID: 0}
+  heavySound: {fileID: 0}
+  canAttack: 0
+  playerWeaponAnim: {fileID: 3888020260587143974}
+--- !u!114 &1890880825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3684727295531276472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485e7d9c2cb8241a3a6079291fdab0fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wp1:
+    name: Weak Stick
+    baseDamage: 1
+    currDamage: 1
+    description: It doesn't do a lot of damage
+  wp2:
+    name: 
+    baseDamage: 0
+    currDamage: 0
+    description: 
+  activeSlot: 0
 --- !u!50 &3684727295531276477
 Rigidbody2D:
   serializedVersion: 4
@@ -707,97 +810,22 @@ CapsuleCollider2D:
   m_Offset: {x: 0.06, y: 0}
   m_Size: {x: 0.7, y: 1.25}
   m_Direction: 0
---- !u!114 &3684727295531276417
-MonoBehaviour:
+--- !u!95 &1204632664241550234
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3684727295531276472}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3ebc07099bdd3c42967a0c3d260ca53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  dash: 10
-  timeDashing: 0.5
-  dashcoolsec: 1.5
-  tiredtime: 0.2
-  tiredspeed: 2.5
-  playerWalking: {fileID: 2050983159}
-  idleSprite: {fileID: 21300000, guid: 61a4df04739526a439c5056bce51cc03, type: 3}
-  playerSprite: {fileID: 5070046497772268243}
-  weaponRotate: {fileID: 1415557887974735464}
---- !u!114 &3684727295531276478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3684727295531276472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34f0b06d4c89878488e38f2d73b85b40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 10
-  isPlayer: 1
-  deathSound: {fileID: 0}
-  playerHurtEffect: {fileID: 0}
-  myRoom: {fileID: 0}
---- !u!114 &3694657211392126114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3684727295531276472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8cf376a740b5d94a81a6c7f76dd3ac6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hurtboxPrefab: {fileID: 8247662113382918076, guid: d853120f9ddb9f542aa49c4dae8ee12e, type: 3}
-  attackSpawn: {fileID: 3387111083192878434}
-  cooldownTime: 0.2
-  canAttack: 1
---- !u!114 &2414555622543350996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3684727295531276472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2ff73d91fee474459552e476fa4a1ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightAttack: {fileID: 8247662113382918076, guid: 5586da57f82ba114296237818b7a7a2e, type: 3}
-  strongAttack: {fileID: 8247662113382918076, guid: 8149cf6bb35705b4b8fc6e34d80a9755, type: 3}
-  plrAtkSnd: {fileID: 7541961982698800930}
-  playerWeaponAnim: {fileID: 3888020260587143974}
---- !u!114 &1890880825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3684727295531276472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 485e7d9c2cb8241a3a6079291fdab0fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wp1:
-    name: Weak Stick
-    baseDamage: 1
-    currDamage: 1
-    description: It doesn't do a lot of damage
-  wp2:
-    name: 
-    baseDamage: 0
-    currDamage: 0
-    description: 
-  activeSlot: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aae2258a3448f0643934550b8a2e34c9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

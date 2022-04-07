@@ -14,6 +14,8 @@ public class Room : MonoBehaviour
     private Door[] doors;
     private GameObject[] enemies;
 
+    private GameObject[] preSpawnEffects;
+
     private void Start()
     {
         GetDoors();
@@ -111,9 +113,12 @@ public class Room : MonoBehaviour
 
     private void DisableEnemies()
     {
-        foreach(GameObject en in enemies)
+        preSpawnEffects = new GameObject[enemies.Length];
+        for(int i = 0; i < enemies.Length; i++)
         {
-            en.SetActive(false);
+            if (enemies[i].GetComponent<EnemySpawnParticle>() != null)
+                preSpawnEffects[i] = Instantiate(enemies[i].GetComponent<EnemySpawnParticle>().preSpawnEffect, enemies[i].transform.position, Quaternion.identity);
+            enemies[i].SetActive(false);
         }
     }
 
@@ -131,8 +136,13 @@ public class Room : MonoBehaviour
             if (en.GetComponent<EnemySpawnParticle>() != null)
                 Instantiate(en.GetComponent<EnemySpawnParticle>().spawnEffect, en.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(.2f);
-            play
+            for (int i = 0; i < preSpawnEffects.Length; i++)
+            {
+                Destroy(preSpawnEffects[i]);
+            }
             en.SetActive(true);
+            if (en.GetComponent<EnemyMovement>() != null)
+                en.GetComponent<EnemyMovement>().AllowAggroStart();
         }
     }
 

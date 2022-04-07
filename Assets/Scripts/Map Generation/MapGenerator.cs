@@ -184,12 +184,16 @@ public class MapGenerator : MonoBehaviour
 
         int[] extraRoomLocations = UniqueRandomNumbers(1 + treasureRoomCount);
 
-        closedDoors[extraRoomLocations[0]].SpawnHallway(bossRoom, bossRoom, 10, 0);
+        // spawn boss room
+        closedDoors[extraRoomLocations[0]].SpawnHallway(bossRoom, bossRoom, 15, 0);
 
-        for(int i = 1; i <= treasureRoomCount; i++)
+        // spawn treasure rooms
+        for (int i = 1; i <= treasureRoomCount; i++)
         {
             closedDoors[extraRoomLocations[i]].SpawnHallway(treasureRoom, treasureRoom, 10, 0);
         }
+
+        GetComponent<PowerupSpawnManager>().SpawnPowerups();
     }
 
     public int[] UniqueRandomNumbers(int numbersGenerated)
