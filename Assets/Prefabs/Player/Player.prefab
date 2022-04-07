@@ -708,12 +708,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   isPlayer: 1
+  invincibleTime: 1
   characterAudioSource: {fileID: 0}
   death: {fileID: 0}
   hurt: {fileID: 0}
   playerHurtEffect: {fileID: 0}
   healthbar: {fileID: 6310259881968821280, guid: 6a17b553362759146917caf5edfa4801, type: 3}
   hurtAnim: {fileID: 1204632664241550234}
+  persistentSoundPrefab: {fileID: 0}
   myRoom: {fileID: 0}
 --- !u!114 &3694657211392126114
 MonoBehaviour:

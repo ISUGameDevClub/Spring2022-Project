@@ -11,14 +11,14 @@ public class Hurtbox : MonoBehaviour
     [SerializeField, Tooltip("Mark this if the projectile goes through walls")] bool isPiercing = false;
     [SerializeField, Tooltip("Mark this if the hurtbox never gets destroyed (Melee Enemies)")] bool persisting = false;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject != parent && ((collision.gameObject.tag != "Player" && playerHitbox) || (collision.gameObject.tag == "Player" && !playerHitbox)) && collision.gameObject.TryGetComponent(out Health health)) //checks that it is not colliding with its creator and what it is colliding with has a Health script
+        if (collision.gameObject != parent && ((collision.gameObject.tag != "Player" && playerHitbox) || (collision.gameObject.tag == "Player" && !playerHitbox)) && collision.gameObject.TryGetComponent(out Health health)) //checks that it is not colliding with its creator and what it is colliding with has a Health script
         {
             if (health.IsDead() == false) //only deals damage if the entity is not already dead
             {
                 health.TakeDamage(damage);
-                if(!isPiercing && !persisting)
+                if (!isPiercing && !persisting)
                 {
                     Destroy(gameObject);
                 }
@@ -26,9 +26,9 @@ public class Hurtbox : MonoBehaviour
                 //Put any extra methods associated with taking/dealing damage here!!!
             }
         }
-        else if(collision.gameObject != parent && collision.gameObject.layer == LayerMask.NameToLayer("Walls"))
+        else if (collision.gameObject != parent && collision.gameObject.layer == LayerMask.NameToLayer("Walls"))
         {
-            if(!persisting)
+            if (!persisting)
                 Destroy(gameObject);
         }
     }
