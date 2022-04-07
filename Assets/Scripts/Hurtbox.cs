@@ -10,6 +10,7 @@ public class Hurtbox : MonoBehaviour
     [SerializeField, Tooltip("Damage to be dealt to entity that is hit by this")] float damage = 1f;
     [SerializeField, Tooltip("Mark this if the projectile goes through walls")] bool isPiercing = false;
     [SerializeField, Tooltip("Mark this if the hurtbox never gets destroyed (Melee Enemies)")] bool persisting = false;
+    public float KnockbackPower;    
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -18,6 +19,12 @@ public class Hurtbox : MonoBehaviour
             if (health.IsDead() == false) //only deals damage if the entity is not already dead
             {
                 health.TakeDamage(damage);
+                //Knockback NOTES
+                //First disable enemy movement
+                //Set enemy velocity to 0
+                //Move enemy backwards
+                //Set enemy velocity back to 0
+                //Enable movement
                 if (!isPiercing && !persisting)
                 {
                     Destroy(gameObject);
