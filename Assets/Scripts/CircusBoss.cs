@@ -10,7 +10,7 @@ public class CircusBoss : MonoBehaviour
     public int whipAttacksPerWarp = 3;
     private int attacksSpawned = 0; //counts both whip and warp calls
 
-    private bool onRight = false; //false if on left, true if on right
+    public bool onRight = false; //false if on left, true if on right
 
     public float roomDistanceFromCenter = 30f; //how far should the boss move to the left or right from the center of the room?
 
@@ -25,6 +25,7 @@ public class CircusBoss : MonoBehaviour
         currentAttack = GetComponent<Attack>();
         currentAttack.hurtboxPrefab = whipAttackPrefab;
         tf = GetComponent<Transform>();
+        StartCoroutine(EnterRoom(0f));
     }
 
     void FixedUpdate()
@@ -47,13 +48,14 @@ public class CircusBoss : MonoBehaviour
     {
         currentAttack.cooldownTime = Random.Range(minTimeBetweenAttack, maxTimeBetweenAttack);
         currentAttack.SpawnAttack();
+        Debug.Log("I just simultaneously whipped and nae-nae'd! " + attacksSpawned);
     }
 
     void Warp()
     {
         if(onRight)
         {
-            Vector2 newDistance = new Vector3(tf.position.x - roomDistanceFromCenter * -2, tf.position.y);
+            Vector2 newDistance = new Vector3(tf.position.x - roomDistanceFromCenter * 2, tf.position.y);
             tf.position = newDistance;
             onRight = false;
         }
@@ -73,7 +75,7 @@ public class CircusBoss : MonoBehaviour
 
     void StartFight()
     {
-        if(FindObjectOfType<PlayerMovement>().gameObject.transform.position.x > transform.position.x)
+        if(FindObjectOfType<PlayerMovement>().gameObject.transform.position.x < transform.position.x)
         {
             Vector2 newDistance = new Vector3(tf.position.x + roomDistanceFromCenter, tf.position.y);
             tf.position = newDistance;
