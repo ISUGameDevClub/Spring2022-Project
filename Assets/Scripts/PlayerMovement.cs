@@ -25,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
     bool dashcooling;
     bool isslowed = false;
 
+    bool stun = false;
+    float stuntime = 2.0f;
+    
+
     float finalSpeed;
     float finalDash;
     float finalTimeDashing;
@@ -93,6 +97,14 @@ public class PlayerMovement : MonoBehaviour
             playerRB.MovePosition((Vector2)transform.position + (direction * tiredspeed * Time.fixedDeltaTime));
         }
 
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            stun = true;
+            canmove = false;
+            Time.deltaTime
+            //stuntime % 60;
+            stun = false;
+        }
     }
 
     IEnumerator DashTime (float sec)
@@ -146,4 +158,6 @@ public class PlayerMovement : MonoBehaviour
         finalTimeDashing = timeDashing + PassiveBuffs.dashTimeIncrease;
         finalDashcoolsec = dashcoolsec - PassiveBuffs.dashCooldownDecrease;
     }
+    
+    
 }
