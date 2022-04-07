@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] bool charger;
     [SerializeField] AudioSource characterAudioSource;
     [SerializeField] AudioClip aggroClip;
-    public bool aggro = false;
+    [HideInInspector] public bool aggro = false;
     public bool dontFlip = false;
     bool enemyMoving;
     bool charging;
