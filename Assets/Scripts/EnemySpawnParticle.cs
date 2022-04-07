@@ -5,4 +5,5 @@ using UnityEngine;
 public class EnemySpawnParticle : MonoBehaviour
 {
     public GameObject spawnEffect;
+    public GameObject preSpawnEffect;
 }
