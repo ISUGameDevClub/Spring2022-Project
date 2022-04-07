@@ -131,6 +131,7 @@ public class Room : MonoBehaviour
             if (en.GetComponent<EnemySpawnParticle>() != null)
                 Instantiate(en.GetComponent<EnemySpawnParticle>().spawnEffect, en.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(.2f);
+            play
             en.SetActive(true);
         }
     }
