@@ -175,4 +175,9 @@ public class EnemyMovement : MonoBehaviour
         yield return new WaitForSeconds(1);
         charging = false;
     }
+
+    public void KnockBack()
+    {
+        Debug.Log("Knocked Back!");
+    }
 }
