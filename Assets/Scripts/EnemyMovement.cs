@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    enum EnemyType { Zombie, Ghost, Lumberjack, Clown, Lion , DarkWoodsBoss };
+    enum EnemyType { Zombie, Ghost, Lumberjack, Clown, Lion , DarkWoodsBoss, CircusBoss };
 
     [SerializeField] EnemyType typeOfEnemy;
     [SerializeField] Animator enemyMovingAnim;
@@ -124,6 +124,10 @@ public class EnemyMovement : MonoBehaviour
     public void AllowAggroStart()
     {
         StartCoroutine(AllowAggro());
+        if(GetComponent<CircusBoss>() != null)
+        {
+            StartCoroutine(GetComponent<CircusBoss>().EnterRoom(0.5f)); //PUT STARTING ANIMATION LENGTH FOR CIRCUS BOSS IN HERE
+        }
     }
 
     public IEnumerator AllowAggro()
