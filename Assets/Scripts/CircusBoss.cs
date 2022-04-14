@@ -13,9 +13,9 @@ public class CircusBoss : MonoBehaviour
     public int whipAttacksPerWarp = 3; //how many times the boss will whip before warping
     private int attacksSpawned = 0; //counts both whip and warp calls
 
-    public bool onRight = false; //false if on left, true if on right
-    public bool stopped = false; //whether the boss is moving
-    public bool attacking = false; //whether the boss is in the process of doing something
+    private bool onRight = false; //false if on left, true if on right
+    private bool stopped = false; //whether the boss is moving
+    private bool attacking = false; //whether the boss is in the process of doing something
     public float movementSpeed = 2f;
 
     public float roomDistanceFromCenter = 10f; //how far should the boss move to the left or right from the center of the room?
