@@ -9,6 +9,10 @@ public class Health : MonoBehaviour
     [SerializeField] float maxHealth = 10f; //maximum possible health of entity
     [Tooltip("Mark this if this prefab is a Player")]
     [SerializeField] bool isPlayer;
+
+    public float invincibleTime = 0f;
+    bool invincible = false;
+
     private float currentHealth = 10f; //current health of entity
     private bool isDead = false;
     [SerializeField] AudioSource characterAudioSource;
@@ -39,15 +43,29 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-
-        if (isPlayer)
+        if(invincible)
         {
-            bar.ChangeHealth((int)currentHealth);
-            if (playerHurtEffect != null)
-                playerHurtEffect.SetTrigger("Hurt");
-            else
-                Debug.Log("Player is missing their hurt effect!");
+            return;
+        }
+        else
+        {
+            currentHealth -= damage;
+            StartCoroutine(InvincibleFrames());
+            if (isPlayer)
+            {
+                bar.ChangeHealth((int)currentHealth);
+                if (playerHurtEffect != null)
+                    playerHurtEffect.SetTrigger("Hurt");
+                else
+                    Debug.Log("Player is missing their hurt effect!");
+            }
+        }
+
+        IEnumerator InvincibleFrames()
+        {
+            invincible = true;
+            yield return new WaitForSeconds(invincibleTime);
+            invincible = false;
         }
 
         if (currentHealth <= 0 && !isDead)
@@ -64,6 +82,9 @@ public class Health : MonoBehaviour
             characterAudioSource.Play();
             hurtAnim.SetTrigger("Hurt");
         }
+
+        gameObject.GetComponent<EnemyMovement>().KnockBack();
+
     }
 
     //use this whenever you need to check if an entity has died
