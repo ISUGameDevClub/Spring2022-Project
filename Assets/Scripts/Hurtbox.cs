@@ -10,15 +10,22 @@ public class Hurtbox : MonoBehaviour
     [SerializeField, Tooltip("Damage to be dealt to entity that is hit by this")] float damage = 1f;
     [SerializeField, Tooltip("Mark this if the projectile goes through walls")] bool isPiercing = false;
     [SerializeField, Tooltip("Mark this if the hurtbox never gets destroyed (Melee Enemies)")] bool persisting = false;
+    public float KnockbackPower;    
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject != parent && ((collision.gameObject.tag != "Player" && playerHitbox) || (collision.gameObject.tag == "Player" && !playerHitbox)) && collision.gameObject.TryGetComponent(out Health health)) //checks that it is not colliding with its creator and what it is colliding with has a Health script
+        if (collision.gameObject != parent && ((collision.gameObject.tag != "Player" && playerHitbox) || (collision.gameObject.tag == "Player" && !playerHitbox)) && collision.gameObject.TryGetComponent(out Health health)) //checks that it is not colliding with its creator and what it is colliding with has a Health script
         {
             if (health.IsDead() == false) //only deals damage if the entity is not already dead
             {
                 health.TakeDamage(damage);
-                if(!isPiercing && !persisting)
+                //Knockback NOTES
+                //First disable enemy movement
+                //Set enemy velocity to 0
+                //Move enemy backwards
+                //Set enemy velocity back to 0
+                //Enable movement
+                if (!isPiercing && !persisting)
                 {
                     Destroy(gameObject);
                 }
@@ -26,9 +33,9 @@ public class Hurtbox : MonoBehaviour
                 //Put any extra methods associated with taking/dealing damage here!!!
             }
         }
-        else if(collision.gameObject != parent && collision.gameObject.layer == LayerMask.NameToLayer("Walls"))
+        else if (collision.gameObject != parent && collision.gameObject.layer == LayerMask.NameToLayer("Walls"))
         {
-            if(!persisting)
+            if (!persisting)
                 Destroy(gameObject);
         }
     }
