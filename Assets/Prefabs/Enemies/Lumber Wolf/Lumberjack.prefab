@@ -63,6 +63,9 @@ MonoBehaviour:
   aggroClip: {fileID: 8300000, guid: 88ff88d8b25b88b439888d2b44361b91, type: 3}
   aggro: 0
   dontFlip: 0
+  canAggro: 0
+  runAway: 0
+  bufferRange: 0.25
 --- !u!50 &5148626039795621743
 Rigidbody2D:
   serializedVersion: 4
@@ -114,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 6
   isPlayer: 0
+  invincibleTime: 0
   characterAudioSource: {fileID: 6476539785359041454}
   death: {fileID: 8300000, guid: 41fa5979f383c9549b2b6630fccef380, type: 3}
   hurt: {fileID: 8300000, guid: 48e2f2958df107e4cbdcd38433f543f0, type: 3}
@@ -413,6 +417,7 @@ MonoBehaviour:
   damage: 1
   isPiercing: 1
   persisting: 1
+  KnockbackPower: 0
 --- !u!70 &8998129964190787774
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

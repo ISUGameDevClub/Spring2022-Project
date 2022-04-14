@@ -24,8 +24,9 @@ public class EnemyMovement : MonoBehaviour
     Rigidbody2D enemyRB;
     Vector2 lastpos;
     Vector2 direction;
-    bool canAggro;
-
+    [SerializeField] bool canAggro;
+    [SerializeField] bool runAway;
+    [SerializeField] float bufferRange = 0.25f;
     void Start()
     {
         canAggro = false;
@@ -59,7 +60,13 @@ public class EnemyMovement : MonoBehaviour
             bool seesPlayer = canSeePlayer();
             float distanceFromPlayer = Vector2.Distance(enemyRB.position, playerRB.position);
 
-            if (distanceFromPlayer > minDist && seesPlayer && !charging)
+            if ((Vector2.Distance(enemyRB.position, playerRB.gameObject.transform.position) <= bufferDist + bufferRange && Vector2.Distance(enemyRB.position, playerRB.gameObject.transform.position) >= bufferDist - bufferRange) && !charger)
+            {
+              Debug.Log("not moving");
+                enemyMoving = false;
+            }
+
+            else if (distanceFromPlayer > minDist && seesPlayer && !charging)
             {
                 direction = playerRB.position - enemyRB.position;
                 lastpos = playerRB.position;
@@ -81,7 +88,8 @@ public class EnemyMovement : MonoBehaviour
                     }
                 }
             }
-            else if ((Vector2.Distance(enemyRB.position, playerRB.position) < minDist) && seesPlayer && typeOfEnemy == EnemyType.Clown)
+
+            else if ((Vector2.Distance(enemyRB.position, playerRB.position) < minDist) && seesPlayer && runAway)
         {
           direction = enemyRB.position - playerRB.position;
           lastpos = playerRB.position;
@@ -96,19 +104,7 @@ public class EnemyMovement : MonoBehaviour
           }
           enemyMoving = true;
         }
-            else if (Vector2.Distance(enemyRB.position, lastpos) > bufferDist && !seesPlayer && !charger)
-            {
-                direction = (lastpos - enemyRB.position);
-                if (direction.x > 0 && !dontFlip)
-                {
-                    enemySpriteRender.flipX = true;
-                }
-                else if (direction.x < 0)
-                {
-                    enemySpriteRender.flipX = false;
-                }
-                enemyMoving = true;
-            }
+
             else if (!charging)
             {
                 enemyMoving = false;
