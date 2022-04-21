@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -8,10 +9,21 @@ public class Health : MonoBehaviour
     [SerializeField] float maxHealth = 10f; //maximum possible health of entity
     [Tooltip("Mark this if this prefab is a Player")]
     [SerializeField] bool isPlayer;
+
+    public float invincibleTime = 0f;
+    bool invincible = false;
+
     private float currentHealth = 10f; //current health of entity
     private bool isDead = false;
-    [SerializeField] AudioSource deathSound;
+    [SerializeField] AudioSource characterAudioSource;
+    [SerializeField] AudioClip death;
+    [SerializeField] AudioClip hurt;
     [SerializeField] Animator playerHurtEffect;
+    [Tooltip("IF PLAYER, drag in Health Bar from Scene! Will create errors if left empty for player. Leave empty for everything else")]
+    [SerializeField] GameObject healthbar;
+    [SerializeField] Animator hurtAnim;
+    [SerializeField] GameObject persistentSoundPrefab;
+    private HealthBar bar;
 
     // How enemies tell the room they are in that it is cleared
     [HideInInspector]
@@ -20,6 +32,8 @@ public class Health : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        if (isPlayer)
+            bar = healthbar.GetComponent<HealthBar>();
     }
 
     public float GetCurrentHealth()
@@ -29,19 +43,44 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        if(invincible)
+        {
+            return;
+        }
+        else
+        {
+            currentHealth -= damage;
+            StartCoroutine(InvincibleFrames());
+            if (isPlayer)
+            {
+                bar.ChangeHealth((int)currentHealth);
+                if (playerHurtEffect != null)
+                    playerHurtEffect.SetTrigger("Hurt");
+                else
+                    Debug.Log("Player is missing their hurt effect!");
+            }
+        }
 
-        if(currentHealth <= 0 && !isDead)
+        IEnumerator InvincibleFrames()
+        {
+            invincible = true;
+            yield return new WaitForSeconds(invincibleTime);
+            invincible = false;
+        }
+
+        if (currentHealth <= 0 && !isDead)
         {
             isDead = true;
-            Death();
-        }
-        else if(isPlayer)
-        {
-            if (playerHurtEffect != null)
-                playerHurtEffect.SetTrigger("Hurt");
+            if (!isPlayer)
+                EnemyDeath();
             else
-                Debug.Log("Player is missing their hurt effect!");
+                PlayerDeath();
+        }
+        else
+        {
+            ChangeSound(hurt);
+            characterAudioSource.Play();
+            hurtAnim.SetTrigger("Hurt");
         }
     }
 
@@ -51,19 +90,40 @@ public class Health : MonoBehaviour
         return isDead;
     }
 
-    private void Death()
+    private void EnemyDeath()
     {
-        if (!isPlayer)
+        if(myRoom != null)
+            myRoom.EnemyDied();
+
+        GameObject tempDeathSound = Instantiate(persistentSoundPrefab,transform.position,Quaternion.identity,transform);
+        tempDeathSound.GetComponent<AudioSource>().clip = death;
+        tempDeathSound.GetComponent<AudioSource>().Play();
+        tempDeathSound.transform.SetParent(null);
+
+        if (characterAudioSource != null)
         {
-
-                myRoom.EnemyDied();
-                Debug.Log(gameObject.name + " died!");
-                isDead = true;
+            ChangeSound(death);
+            characterAudioSource.Play();
         }
-
-        if(deathSound != null)
-            deathSound.Play();
+        isDead = true;
 
         Destroy(gameObject);
+    }
+
+    private void PlayerDeath()
+    {
+        hurtAnim.SetTrigger("Hurt");
+        playerHurtEffect.SetTrigger("Die");
+        StartCoroutine(ResetScene());
+    }
+
+    private IEnumerator ResetScene()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("Title");
+    }
+    public void ChangeSound(AudioClip clip)
+    {
+        characterAudioSource.clip = clip;
     }
 }

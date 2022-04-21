@@ -6,6 +6,19 @@ public class MoveToMousePosition : MonoBehaviour
 {
     private void Awake()
     {
-        transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, transform.position.z); //sets position to current mouse position at the moment the object is instantiated
+        Vector3 mousePos = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
+
+        int layerMask = LayerMask.GetMask("Walls");
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePos - transform.position, (mousePos - transform.position).magnitude, layerMask);
+        if (hit.collider != null)
+        {
+            transform.position = hit.point;
+        }
+        else
+        {
+            transform.position = mousePos;
+        }
+
+        transform.rotation = Quaternion.identity;
     }
 }

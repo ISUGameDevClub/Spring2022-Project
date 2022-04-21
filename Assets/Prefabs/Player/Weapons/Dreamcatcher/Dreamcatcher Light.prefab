@@ -69,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1683867227
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2026468764738604802, guid: 3f62add28af3e554786ffab570c85a6f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d333c5956aeee42a6229dbda6bdee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 7
   cooldownTime: 0.5
   activeTime: 1
 --- !u!50 &8247662113382918075
@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a361dfcc74ea2941891f8afabbc22ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHitbox: 1
   damage: 1
   isPiercing: 0
   persisting: 0

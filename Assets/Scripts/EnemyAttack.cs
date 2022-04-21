@@ -7,6 +7,8 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     public GameObject attack;
+    public AudioClip normalAttack;
+    public AudioClip heavyAttack;
     Attack at;
     EnemyMovement em;
 
@@ -20,6 +22,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if (at.canAttack && em.canSeePlayer())
         {
+            at.ChangeClip(normalAttack);
             at.hurtboxPrefab = attack;
             at.SpawnAttack();
         }
