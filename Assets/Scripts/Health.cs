@@ -82,9 +82,6 @@ public class Health : MonoBehaviour
             characterAudioSource.Play();
             hurtAnim.SetTrigger("Hurt");
         }
-
-        gameObject.GetComponent<EnemyMovement>().KnockBack();
-
     }
 
     //use this whenever you need to check if an entity has died
