@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8247662113382918074}
   - component: {fileID: 8247662113382918075}
   - component: {fileID: 8247662113382918055}
-  - component: {fileID: 2082015919852972183}
+  - component: {fileID: -7057665793457847920}
   m_Layer: 0
-  m_Name: woodenSwordStrongAttack 1
+  m_Name: ChickenMeleeLightAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  cooldownTime: 0.7
+  cooldownTime: 0.25
   activeTime: 0.3
 --- !u!50 &8247662113382918075
 Rigidbody2D:
@@ -138,7 +138,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2082015919852972183
+--- !u!114 &-7057665793457847920
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,4 +154,4 @@ MonoBehaviour:
   damage: 1
   isPiercing: 0
   persisting: 0
-  knockbackPower: 12.5
+  knockbackPower: 0

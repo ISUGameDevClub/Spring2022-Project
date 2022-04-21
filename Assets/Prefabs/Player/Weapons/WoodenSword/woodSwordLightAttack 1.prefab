@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   cooldownTime: 0.5
-  activeTime: 0.1
+  activeTime: 0.3
 --- !u!50 &8247662113382918075
 Rigidbody2D:
   serializedVersion: 4
@@ -154,3 +154,4 @@ MonoBehaviour:
   damage: 1
   isPiercing: 0
   persisting: 0
+  knockbackPower: 0

@@ -16,7 +16,6 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] bool charger;
     [SerializeField] AudioSource characterAudioSource;
     [SerializeField] AudioClip aggroClip;
-    [SerializeField] float knockTime;
     [HideInInspector] public bool aggro = false;
     public bool dontFlip = false;
     bool enemyMoving;
@@ -188,7 +187,7 @@ public class EnemyMovement : MonoBehaviour
         canAggro = false;
         enemyRB.velocity = Vector2.zero;
         enemyRB.AddForce(direction * knockbackPower, ForceMode2D.Impulse);
-        StartCoroutine(knockBackTime(knockTime));
+        StartCoroutine(knockBackTime(.2f));
         Debug.Log("Knocked Back!");
     }
 

@@ -48,6 +48,7 @@ MonoBehaviour:
   damage: 1
   isPiercing: 1
   persisting: 1
+  knockbackPower: 0
 --- !u!70 &9084915364507609714
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -355,6 +356,7 @@ MonoBehaviour:
   charger: 0
   characterAudioSource: {fileID: 690058815886199733}
   aggroClip: {fileID: 8300000, guid: 8e38359eab4919c48b8ada34c7f1cb44, type: 3}
+  knockTime: 1
   aggro: 0
   dontFlip: 1
 --- !u!114 &130069312901993989
@@ -440,6 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   isPlayer: 0
+  invincibleTime: 0
   characterAudioSource: {fileID: 690058815886199733}
   death: {fileID: 0}
   hurt: {fileID: 8300000, guid: 48e2f2958df107e4cbdcd38433f543f0, type: 3}
