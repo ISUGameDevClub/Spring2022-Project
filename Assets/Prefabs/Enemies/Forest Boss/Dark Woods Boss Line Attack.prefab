@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8247662113382918075}
   - component: {fileID: 8247662113382918055}
   - component: {fileID: -4016750732295002359}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Dark Woods Boss Line Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +118,7 @@ MonoBehaviour:
   damage: 1
   isPiercing: 0
   persisting: 0
+  knockbackPower: 0
 --- !u!50 &8247662113382918075
 Rigidbody2D:
   serializedVersion: 4

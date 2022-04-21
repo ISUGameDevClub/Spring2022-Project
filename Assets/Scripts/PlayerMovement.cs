@@ -97,6 +97,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DashTime (float sec)
     {
+        gameObject.layer = 11; //Set Layer to PlayerInvincible
         float XInput = Input.GetAxisRaw("Horizontal");
         float YInput = Input.GetAxisRaw("Vertical");
 
@@ -127,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
             dashcooling = true;
             StartCoroutine(DashCoolDown(finalDashcoolsec));
         }
+        gameObject.layer = 10; //Set Layer to Player
     }
 
     IEnumerator DashCoolDown (float dashcoolsec)

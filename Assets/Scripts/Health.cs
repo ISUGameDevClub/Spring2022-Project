@@ -19,11 +19,12 @@ public class Health : MonoBehaviour
     [SerializeField] AudioClip death;
     [SerializeField] AudioClip hurt;
     [SerializeField] Animator playerHurtEffect;
-    [Tooltip("IF PLAYER, drag in Health Bar from Scene! Will create errors if left empty for player. Leave empty for everything else")]
+    [Tooltip("IF PLAYER, drag in Health Bar from Scene! Will create errors if left empty for player. Drag in HP Slider from Canvas for everything else.")]
     [SerializeField] GameObject healthbar;
     [SerializeField] Animator hurtAnim;
     [SerializeField] GameObject persistentSoundPrefab;
     private HealthBar bar;
+    private HealthSlider slider;
 
     // How enemies tell the room they are in that it is cleared
     [HideInInspector]
@@ -34,6 +35,8 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
         if (isPlayer)
             bar = healthbar.GetComponent<HealthBar>();
+        else
+            slider = healthbar.GetComponent<HealthSlider>();
     }
 
     public float GetCurrentHealth()
@@ -59,29 +62,50 @@ public class Health : MonoBehaviour
                 else
                     Debug.Log("Player is missing their hurt effect!");
             }
-        }
-
-        IEnumerator InvincibleFrames()
-        {
-            invincible = true;
-            yield return new WaitForSeconds(invincibleTime);
-            invincible = false;
-        }
-
-        if (currentHealth <= 0 && !isDead)
-        {
-            isDead = true;
-            if (!isPlayer)
-                EnemyDeath();
             else
-                PlayerDeath();
+            {
+                slider.ChangeHealth((float)currentHealth / maxHealth);
+            }
+
+            if (currentHealth <= 0 && !isDead)
+            {
+                isDead = true;
+                if (!isPlayer)
+                    EnemyDeath();
+                else
+                    PlayerDeath();
+            }
+            else
+            {
+                ChangeSound(hurt);
+                characterAudioSource.Play();
+                hurtAnim.SetTrigger("Hurt");
+            }
+        }
+    }
+
+    public void Heal(float heal) //does not check if player is dead, if player is getting healed after death that's why.
+    {
+        currentHealth += heal;
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        if (isPlayer)
+        {
+            bar.ChangeHealth((int)currentHealth);
         }
         else
         {
-            ChangeSound(hurt);
-            characterAudioSource.Play();
-            hurtAnim.SetTrigger("Hurt");
+            slider.ChangeHealth((float)currentHealth / maxHealth);
         }
+    }
+
+    IEnumerator InvincibleFrames()
+    {
+        invincible = true;
+        yield return new WaitForSeconds(invincibleTime);
+        invincible = false;
     }
 
     //use this whenever you need to check if an entity has died

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4899875762531729333}
   - component: {fileID: 4715613917645563610}
   - component: {fileID: 4032294716302483742}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circus Boss Warp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  cooldownTime: 2.945569
+  cooldownTime: 3.9118495
   activeTime: 1
 --- !u!114 &4899875762531729333
 MonoBehaviour:
@@ -117,7 +117,7 @@ MonoBehaviour:
   damage: 0
   isPiercing: 0
   persisting: 0
-  KnockbackPower: 0
+  knockbackPower: 0
 --- !u!50 &4715613917645563610
 Rigidbody2D:
   serializedVersion: 4
