@@ -16,6 +16,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] bool charger;
     [SerializeField] AudioSource characterAudioSource;
     [SerializeField] AudioClip aggroClip;
+    [SerializeField] float knockTime;
     [HideInInspector] public bool aggro = false;
     public bool dontFlip = false;
     bool enemyMoving;
@@ -54,9 +55,9 @@ public class EnemyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        enemyRB.velocity = Vector2.zero;
         if (canAggro)
         {
+            enemyRB.velocity = Vector2.zero;
             bool seesPlayer = canSeePlayer();
             float distanceFromPlayer = Vector2.Distance(enemyRB.position, playerRB.position);
 
@@ -172,8 +173,24 @@ public class EnemyMovement : MonoBehaviour
         charging = false;
     }
 
-    public void KnockBack()
+    public void KnockBack(Vector2 direction, float knockbackPower)
     {
+        //First disable enemy movement
+        //Set enemy velocity to 0
+        //Move enemy backwards
+        //Set enemy velocity back to 0
+        //Enable movement
+        canAggro = false;
+        enemyRB.velocity = Vector2.zero;
+        enemyRB.AddForce(direction * knockbackPower, ForceMode2D.Impulse);
+        StartCoroutine(knockBackTime(knockTime));
         Debug.Log("Knocked Back!");
+    }
+
+    private IEnumerator knockBackTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        enemyRB.velocity = Vector2.zero;
+        canAggro = true;
     }
 }
