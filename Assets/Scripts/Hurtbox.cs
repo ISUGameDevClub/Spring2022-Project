@@ -11,24 +11,23 @@ public class Hurtbox : MonoBehaviour
     [SerializeField, Tooltip("Mark this if the projectile goes through walls")] bool isPiercing = false;
     [SerializeField, Tooltip("Mark this if the hurtbox never gets destroyed (Melee Enemies)")] bool persisting = false;
     public float knockbackPower;    
+    public float knockbackTime = 0.0f;
+    private List<GameObject> hurtGameObjects = new List<GameObject>();
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject != parent && ((collision.gameObject.tag != "Player" && playerHitbox) || (collision.gameObject.tag == "Player" && !playerHitbox)) && collision.gameObject.TryGetComponent(out Health health)) //checks that it is not colliding with its creator and what it is colliding with has a Health script
         {
-            if (health.IsDead() == false) //only deals damage if the entity is not already dead
+            if (health.IsDead() == false && !(playerHitbox && hurtGameObjects.Contains(collision.gameObject))) //only deals damage if the entity is not already dead and not on attacks list
             {
+                hurtGameObjects.Add(collision.gameObject);
+
                 health.TakeDamage(damage);
                 if (collision.gameObject.GetComponent<EnemyMovement>())
                 {
-                    collision.gameObject.GetComponent<EnemyMovement>().KnockBack(collision.gameObject.transform.position - transform.position, knockbackPower);
+                    collision.gameObject.GetComponent<EnemyMovement>().KnockBack(collision.gameObject.transform.position - transform.position, knockbackPower, knockbackTime);
                 }
-                //Knockback NOTES
-                //First disable enemy movement
-                //Set enemy velocity to 0
-                //Move enemy backwards
-                //Set enemy velocity back to 0
-                //Enable movement
+
                 if (!isPiercing && !persisting)
                 {
                     Destroy(gameObject);

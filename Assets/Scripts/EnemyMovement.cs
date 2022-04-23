@@ -172,7 +172,7 @@ public class EnemyMovement : MonoBehaviour
         charging = false;
     }
 
-    public void KnockBack(Vector2 direction, float knockbackPower)
+    public void KnockBack(Vector2 direction, float knockbackPower, float knockbackTime)
     {
         //First disable enemy movement
         //Set enemy velocity to 0
@@ -182,7 +182,7 @@ public class EnemyMovement : MonoBehaviour
         canAggro = false;
         enemyRB.velocity = Vector2.zero;
         enemyRB.AddForce(direction * knockbackPower, ForceMode2D.Impulse);
-        StartCoroutine(knockBackTime(.2f));
+        StartCoroutine(knockBackTime(knockbackTime));
         Debug.Log("Knocked Back!");
     }
 

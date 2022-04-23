@@ -452,7 +452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
       propertyPath: horizontalRooms.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
       propertyPath: verticalRooms.Array.data[0]
@@ -477,11 +477,11 @@ PrefabInstance:
     - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
       propertyPath: horizontalRooms.Array.data[2]
       value: 
-      objectReference: {fileID: 5618149879787329363, guid: 8dc647e5e8e58cb4196a348b132843c4, type: 3}
+      objectReference: {fileID: 5151094361805932629, guid: 8910c8fd45618c445bc1d533a9d864fc, type: 3}
     - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
       propertyPath: horizontalRooms.Array.data[3]
       value: 
-      objectReference: {fileID: 5151094361805932629, guid: 8910c8fd45618c445bc1d533a9d864fc, type: 3}
+      objectReference: {fileID: 4943272923649679787, guid: be21bf21e106d4247a03e67a22b6dcae, type: 3}
     - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
       propertyPath: horizontalRooms.Array.data[4]
       value: 
@@ -552,6 +552,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 506029168}
     m_Modifications:
+    - target: {fileID: 1197019515, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2074967027, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
       propertyPath: m_LocalPosition.z
       value: -10
@@ -564,14 +568,6 @@ PrefabInstance:
       propertyPath: lightSound
       value: 
       objectReference: {fileID: 8300000, guid: e15f6596f2f9ce0489f98cad793b1d80, type: 3}
-    - target: {fileID: 2414555622543350996, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
-      propertyPath: lightAttack
-      value: 
-      objectReference: {fileID: 8247662113382918076, guid: 70fcba6f36b4e5c4c843eb9422ee379f, type: 3}
-    - target: {fileID: 2414555622543350996, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
-      propertyPath: strongAttack
-      value: 
-      objectReference: {fileID: 8247662113382918076, guid: bbce2a48074f6654ebac3979b150fa2a, type: 3}
     - target: {fileID: 3684727295531276472, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
       propertyPath: m_Name
       value: Player
