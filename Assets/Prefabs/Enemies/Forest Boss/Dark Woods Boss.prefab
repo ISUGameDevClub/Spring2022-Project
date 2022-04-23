@@ -46,7 +46,7 @@ MonoBehaviour:
   enemy: {fileID: 7275997567625672438}
   weapon: {fileID: 2708260892080451275}
   target: {fileID: 0}
-  gunRotationMaxSpeed: 40
+  gunRotationMaxSpeed: 1000
 --- !u!1 &3624914454364979341
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f0b06d4c89878488e38f2d73b85b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 30
   isPlayer: 0
   invincibleTime: 0
   characterAudioSource: {fileID: 2041621644194071131}
@@ -211,7 +211,7 @@ MonoBehaviour:
   hurt: {fileID: 8300000, guid: f4c86cee7ecf98f4f848132e6bae1948, type: 3}
   playerHurtEffect: {fileID: 0}
   healthbar: {fileID: 8084359227105370881}
-  hurtAnim: {fileID: 0}
+  hurtAnim: {fileID: 8754721021381053914}
   persistentSoundPrefab: {fileID: 822096029281851492, guid: b4f875e79e4baa64a9e568ea10be1137, type: 3}
   myRoom: {fileID: 0}
 --- !u!114 &7275997567625672436
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveAttackPrefab: {fileID: 8247662113382918076, guid: eb360b25b82ef894cb75d8a33d629bcc, type: 3}
   lineAttackPrefab: {fileID: 8247662113382918076, guid: 729cc065c13fa3044b3394530dba7d32, type: 3}
-  lineAttacksPerWaveAttack: 3
+  lineAttacksPerWaveAttack: 6
 --- !u!114 &3965686966763139162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,7 +293,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!82 &2041621644194071131
 AudioSource:
   m_ObjectHideFlags: 0
@@ -315,7 +315,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 8.664842
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

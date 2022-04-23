@@ -22,7 +22,11 @@ public class Hurtbox : MonoBehaviour
             {
                 hurtGameObjects.Add(collision.gameObject);
 
-                health.TakeDamage(damage);
+                if (damage > 0)
+                {
+                    health.TakeDamage(damage);
+                }
+
                 if (collision.gameObject.GetComponent<EnemyMovement>())
                 {
                     collision.gameObject.GetComponent<EnemyMovement>().KnockBack(collision.gameObject.transform.position - transform.position, knockbackPower, knockbackTime);

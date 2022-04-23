@@ -636,6 +636,14 @@ PrefabInstance:
       propertyPath: attackSpawn
       value: 
       objectReference: {fileID: 1244801008}
+    - target: {fileID: 4441880773104213240, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070046497772268243, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7541961982698800930, guid: 5b7c46fce6606d745905bdae927caf58, type: 3}
       propertyPath: m_Volume
       value: 1

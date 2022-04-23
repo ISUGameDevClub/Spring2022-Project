@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  cooldownTime: 5
+  cooldownTime: 3
   activeTime: 5
 --- !u!114 &-5000742602528487617
 MonoBehaviour:
@@ -83,10 +83,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stages:
-  - {fileID: 2682870227861151600, guid: 98ccf7600afd38a4daf7eab121fda1c6, type: 3}
-  - {fileID: 2561937730009417011, guid: 61a9f5e5ec3870941b7b08e3407d3b4b, type: 3}
-  - {fileID: 8417442526387785603, guid: cefd62abfe62cff4bbd2cd75c58453be, type: 3}
-  - {fileID: 3649500884204307763, guid: acee1fd55f7397b4e9307c6c5271b6c2, type: 3}
+  - {fileID: 8696783076795253928, guid: ac9ce5ecde7f18d48b980eb6896052eb, type: 3}
+  - {fileID: 8618198976033074873, guid: 898b7dd62c378a74a99eed6cbd41a265, type: 3}
+  - {fileID: 5807461444593482204, guid: acadd80c409deca4d84e8ceb2316b380, type: 3}
+  - {fileID: 5807461444593482204, guid: d0f9022f57e91444ba3767660b5dfe40, type: 3}
   timeBetweenStages: 0.5
 --- !u!114 &-2300002085063648148
 MonoBehaviour:
@@ -105,3 +105,4 @@ MonoBehaviour:
   isPiercing: 0
   persisting: 0
   knockbackPower: 0
+  knockbackTime: 0

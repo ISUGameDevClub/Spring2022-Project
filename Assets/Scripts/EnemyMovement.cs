@@ -24,7 +24,7 @@ public class EnemyMovement : MonoBehaviour
     Rigidbody2D enemyRB;
     Vector2 lastpos;
     Vector2 direction;
-    [SerializeField] bool canAggro;
+    public bool canAggro;
     [SerializeField] bool runAway;
     [SerializeField] float bufferRange = 0.25f;
     void Start()

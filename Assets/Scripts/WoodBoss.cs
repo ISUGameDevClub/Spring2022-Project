@@ -5,6 +5,7 @@ using UnityEngine;
 public class WoodBoss : MonoBehaviour
 {
     Attack currentAttack;
+    EnemyMovement myMovement;
     public GameObject waveAttackPrefab;
     public GameObject lineAttackPrefab;
 
@@ -13,12 +14,13 @@ public class WoodBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        myMovement = GetComponent<EnemyMovement>();
         currentAttack = GetComponent<Attack>();
     }
 
     void FixedUpdate()
     {
-        if(currentAttack.canAttack)
+        if(currentAttack.canAttack && myMovement.canAggro)
         {
             attacksSpawned++;
             if(attacksSpawned % (lineAttacksPerWaveAttack + 1) == 0)
