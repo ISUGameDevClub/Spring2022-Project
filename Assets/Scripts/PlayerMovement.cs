@@ -25,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
     bool dashcooling;
     bool isslowed = false;
 
+    bool stun = false;
+    
+    
+
     float finalSpeed;
     float finalDash;
     float finalTimeDashing;
@@ -40,6 +44,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("test");
+           // GetStunned();
+            
+        }
+        
         if (Input.GetKey(KeyCode.LeftShift) && !dashing && !dashcooling)
         {
             StartCoroutine(DashTime(finalTimeDashing));
@@ -68,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         Xinput = Input.GetAxis("Horizontal");
         Yinput = Input.GetAxis("Vertical");
 
-        if(canmove)
+        if(canmove && !stun)
         {
             direction = new Vector2(Xinput, Yinput);
         }
@@ -79,20 +90,21 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (dashing)
+        if (dashing && !stun)
         {
             playerRB.MovePosition((Vector2)transform.position + (direction * finalDash * Time.fixedDeltaTime));
         }
 
-        else
+        else if (!stun)
         {
             playerRB.MovePosition((Vector2)transform.position + (direction * finalSpeed * Time.fixedDeltaTime));
         }
-        if (isslowed)
+        if (isslowed && !stun)
         {
             playerRB.MovePosition((Vector2)transform.position + (direction * tiredspeed * Time.fixedDeltaTime));
         }
 
+ 
     }
 
     IEnumerator DashTime (float sec)
@@ -148,4 +160,16 @@ public class PlayerMovement : MonoBehaviour
         finalTimeDashing = timeDashing + PassiveBuffs.dashTimeIncrease;
         finalDashcoolsec = dashcoolsec - PassiveBuffs.dashCooldownDecrease;
     }
+    public void GetStunned(float stuntimer)
+    {
+        StartCoroutine(stuntime(stuntimer));
+
+    }
+    public IEnumerator stuntime(float stuntimer)
+    {
+        stun = true;
+        yield return new WaitForSeconds(stuntimer);
+        stun = false;
+    }
+
 }
