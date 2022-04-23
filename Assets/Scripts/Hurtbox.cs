@@ -19,7 +19,10 @@ public class Hurtbox : MonoBehaviour
             if (health.IsDead() == false) //only deals damage if the entity is not already dead
             {
                 health.TakeDamage(damage);
-                collision.gameObject.GetComponent<EnemyMovement>().KnockBack(transform.position - collision.gameObject.transform.position, knockbackPower);
+                if (collision.gameObject.GetComponent<EnemyMovement>())
+                {
+                    collision.gameObject.GetComponent<EnemyMovement>().KnockBack(collision.gameObject.transform.position - transform.position, knockbackPower);
+                }
                 //Knockback NOTES
                 //First disable enemy movement
                 //Set enemy velocity to 0
