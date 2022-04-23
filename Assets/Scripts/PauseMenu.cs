@@ -33,7 +33,7 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("MAIN MENU!");
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Main_Menu");
+        SceneManager.LoadScene("Title");
     }
     void Pause()
     {
@@ -43,7 +43,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void QuitGame()
     {
-        Application.Quit();
         Debug.Log("Quitting game...");
+        Application.Quit();
     }
 }

@@ -44,13 +44,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Debug.Log("test");
-           // GetStunned();
-            
-        }
-        
         if (Input.GetKey(KeyCode.LeftShift) && !dashing && !dashcooling)
         {
             StartCoroutine(DashTime(finalTimeDashing));
@@ -162,12 +155,11 @@ public class PlayerMovement : MonoBehaviour
     }
     public void GetStunned(float stuntimer)
     {
+        stun = true;
         StartCoroutine(stuntime(stuntimer));
-
     }
     public IEnumerator stuntime(float stuntimer)
     {
-        stun = true;
         yield return new WaitForSeconds(stuntimer);
         stun = false;
     }

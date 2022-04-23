@@ -268,9 +268,11 @@ MonoBehaviour:
   charger: 0
   characterAudioSource: {fileID: 2041621644194071131}
   aggroClip: {fileID: 8300000, guid: cd0653f7c10a1bf4091cfb199405e5c6, type: 3}
-  knockTime: 0
   aggro: 0
   dontFlip: 1
+  canAggro: 0
+  runAway: 0
+  bufferRange: 0.25
 --- !u!50 &8720610010173395156
 Rigidbody2D:
   serializedVersion: 4
@@ -301,7 +303,7 @@ AudioSource:
   m_GameObject: {fileID: 7275997567625672438}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: f220d8503e1c52e4e9f0fb3165baadc6, type: 2}
   m_audioClip: {fileID: 8300000, guid: cd0653f7c10a1bf4091cfb199405e5c6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
