@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4899875762531729333}
   - component: {fileID: 4715613917645563610}
   - component: {fileID: 4032294716302483742}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circus Boss Whip Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  cooldownTime: 1.8539472
+  cooldownTime: 1.8389207
   activeTime: 1
 --- !u!114 &4899875762531729333
 MonoBehaviour:
@@ -117,7 +117,7 @@ MonoBehaviour:
   damage: 1
   isPiercing: 0
   persisting: 1
-  KnockbackPower: 0
+  knockbackPower: 0
 --- !u!50 &4715613917645563610
 Rigidbody2D:
   serializedVersion: 4

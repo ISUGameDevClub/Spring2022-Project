@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8417442525093895806}
   - component: {fileID: 8417442525093895805}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Safe Zone Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8417442526387785600}
   - component: {fileID: 8417442526387785601}
   - component: {fileID: 8417442526387785602}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stage 3 Wave Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,3 +217,4 @@ MonoBehaviour:
   damage: 2
   isPiercing: 0
   persisting: 0
+  duration: 0.3

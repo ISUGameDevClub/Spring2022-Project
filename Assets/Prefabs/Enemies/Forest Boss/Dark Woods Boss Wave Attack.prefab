@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2888418267781855473}
   - component: {fileID: -5000742602528487617}
   - component: {fileID: -2300002085063648148}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Dark Woods Boss Wave Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a361dfcc74ea2941891f8afabbc22ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHitbox: 0
   damage: 0
   isPiercing: 0
   persisting: 0
+  knockbackPower: 0
