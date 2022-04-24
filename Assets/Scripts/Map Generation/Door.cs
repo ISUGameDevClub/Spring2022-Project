@@ -9,6 +9,9 @@ public class Door : MonoBehaviour
     public GameObject horizontalHallway;
     public GameObject outwardsIndicator;
     public Collider2D doorCollider;
+    public GameObject HPathBlocker;
+    public GameObject VPathBlocker;
+    public SpriteRenderer Sprite;
 
     [HideInInspector]
     public Room myRoom;
@@ -314,5 +317,16 @@ public class Door : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void EnablePathBlocker()
+    {
+        if (direction == new Vector2(0, -1) || direction == new Vector2(0, 1))
+            HPathBlocker.SetActive(true);
+        else
+            VPathBlocker.SetActive(true);
+
+        Sprite.color = new Color(1, 1, 1, 0);
+        doorCollider.enabled = false;
     }
 }

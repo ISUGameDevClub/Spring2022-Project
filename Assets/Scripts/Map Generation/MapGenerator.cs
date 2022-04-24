@@ -193,7 +193,38 @@ public class MapGenerator : MonoBehaviour
             closedDoors[extraRoomLocations[i]].SpawnHallway(treasureRoom, treasureRoom, 10, 0);
         }
 
+        // Spawn Powerups
         GetComponent<PowerupSpawnManager>().SpawnPowerups();
+
+        //Block unused paths
+        Door[] allDoors2 = FindObjectsOfType<Door>();
+        int closedDoorNum2 = 0;
+        for (int i = 0; i < allDoors2.Length; i++)
+        {
+            if (!allDoors2[i].hasHallway)
+                closedDoorNum2++;
+        }
+
+        Door[] closedDoors2 = new Door[closedDoorNum2];
+        for (int i = 0; i < allDoors2.Length; i++)
+        {
+            if (!allDoors2[i].hasHallway)
+            {
+                for (int k = 0; k < closedDoors2.Length; k++)
+                {
+                    if (closedDoors2[k] == null)
+                    {
+                        closedDoors2[k] = allDoors2[i];
+                        break;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < closedDoors2.Length; i++)
+        {
+            closedDoors2[i].EnablePathBlocker();
+        }
     }
 
     public int[] UniqueRandomNumbers(int numbersGenerated)
