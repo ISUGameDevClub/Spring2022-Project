@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PowerupPickup : MonoBehaviour
 {
+    public AudioSource powerupSound;
     public float speedIncrease = 0;
     public float dashSpeedIncrease = 0;
     public float dashTimeIncrease = 0;
@@ -13,6 +14,7 @@ public class PowerupPickup : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            powerupSound.Play();
             PassiveBuffs.speedIncrease += speedIncrease;
             PassiveBuffs.dashSpeedIncrease += dashSpeedIncrease;
             PassiveBuffs.dashTimeIncrease += dashTimeIncrease;

@@ -163,6 +163,7 @@ MonoBehaviour:
   isPiercing: 1
   persisting: 1
   knockbackPower: 0
+  knockbackTime: 0
 --- !u!70 &82810123676530976
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -262,7 +263,7 @@ MonoBehaviour:
   isPlayer: 0
   invincibleTime: 0
   characterAudioSource: {fileID: 7834391566170404882}
-  death: {fileID: 8300000, guid: 35b3e6aa003e2cb429a38d8561bc734f, type: 3}
+  death: {fileID: 8300000, guid: d6e39cf7958d54842ba80ccbf78da411, type: 3}
   hurt: {fileID: 8300000, guid: 48e2f2958df107e4cbdcd38433f543f0, type: 3}
   playerHurtEffect: {fileID: 0}
   healthbar: {fileID: 5931350174936596701}

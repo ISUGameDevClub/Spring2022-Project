@@ -49,6 +49,7 @@ MonoBehaviour:
   isPiercing: 1
   persisting: 1
   knockbackPower: 0
+  knockbackTime: 0
 --- !u!70 &9084915364507609714
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -206,7 +207,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2d186dcce483455449903ede9c373a66, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 30bf3671fcd963d468a5e58d5cf3c3fe, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
@@ -356,7 +357,7 @@ MonoBehaviour:
   bufferDist: 0.5
   charger: 0
   characterAudioSource: {fileID: 690058815886199733}
-  aggroClip: {fileID: 8300000, guid: 8e38359eab4919c48b8ada34c7f1cb44, type: 3}
+  aggroClip: {fileID: 8300000, guid: 3c767f74b0c14fb4982a6716824d9a01, type: 3}
   aggro: 0
   dontFlip: 1
   canAggro: 0
@@ -378,7 +379,7 @@ MonoBehaviour:
   attackSpawn: {fileID: 6397244353824071699}
   cooldownTime: 2
   canAttack: 1
-  AtkSnd: {fileID: 690058815886199733}
+  AtkSnd: {fileID: 922153957496656575}
 --- !u!114 &5058571044194326724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,7 +448,7 @@ MonoBehaviour:
   isPlayer: 0
   invincibleTime: 0
   characterAudioSource: {fileID: 690058815886199733}
-  death: {fileID: 0}
+  death: {fileID: 8300000, guid: 333e60dc3982e0e47ad180d900690f73, type: 3}
   hurt: {fileID: 8300000, guid: 48e2f2958df107e4cbdcd38433f543f0, type: 3}
   playerHurtEffect: {fileID: 0}
   healthbar: {fileID: 7463476891041619666}
@@ -478,7 +479,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: f220d8503e1c52e4e9f0fb3165baadc6, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 333e60dc3982e0e47ad180d900690f73, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.75
   m_Pitch: 1
