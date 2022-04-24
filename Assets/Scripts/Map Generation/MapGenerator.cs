@@ -21,6 +21,9 @@ public class MapGenerator : MonoBehaviour
     public int treasureRoomCount;
     public GameObject treasureRoom;
 
+    public GameObject bossRoomIcon;
+    public GameObject treasureRoomIcon;
+
     private GameObject[] innerRooms;
     private GameObject[] firstConnectors;
     private GameObject[] outerRooms;
@@ -185,11 +188,13 @@ public class MapGenerator : MonoBehaviour
         int[] extraRoomLocations = UniqueRandomNumbers(1 + treasureRoomCount);
 
         // spawn boss room
+        Instantiate(bossRoomIcon, closedDoors[extraRoomLocations[0]].transform.position, Quaternion.identity);
         closedDoors[extraRoomLocations[0]].SpawnHallway(bossRoom, bossRoom, 15, 0);
 
         // spawn treasure rooms
         for (int i = 1; i <= treasureRoomCount; i++)
         {
+            Instantiate(treasureRoomIcon, closedDoors[extraRoomLocations[i]].transform.position, Quaternion.identity);
             closedDoors[extraRoomLocations[i]].SpawnHallway(treasureRoom, treasureRoom, 10, 0);
         }
 

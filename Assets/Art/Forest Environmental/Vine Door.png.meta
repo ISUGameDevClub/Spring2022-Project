@@ -17,6 +17,21 @@ TextureImporter:
   - first:
       213: 6283953513009320129
     second: Vine Door_4
+  - first:
+      213: 5141986511921924693
+    second: Vine Door_5
+  - first:
+      213: 5305608528473646178
+    second: Vine Door_6
+  - first:
+      213: -3211899946617360075
+    second: Vine Door_7
+  - first:
+      213: -7623892999562059257
+    second: Vine Door_8
+  - first:
+      213: -9073278975750071976
+    second: Vine Door_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -110,9 +125,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 128
         width: 32
-        height: 64
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,9 +146,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 64
+        y: 128
         width: 32
-        height: 64
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,10 +166,10 @@ TextureImporter:
       name: Vine Door_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 64
+        y: 128
         width: 32
-        height: 64
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,10 +187,10 @@ TextureImporter:
       name: Vine Door_3
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
+        x: 96
+        y: 128
         width: 32
-        height: 64
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,10 +208,10 @@ TextureImporter:
       name: Vine Door_4
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 128
+        y: 128
         width: 32
-        height: 64
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,6 +221,111 @@ TextureImporter:
       bones: []
       spriteID: 1c01dff1d66153750800000000000000
       internalID: 6283953513009320129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vine Door_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55ac4fa3d710c5740800000000000000
+      internalID: 5141986511921924693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vine Door_6
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26464f8a8de41a940800000000000000
+      internalID: 5305608528473646178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vine Door_7
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 531b6c3140a0d63d0800000000000000
+      internalID: -3211899946617360075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vine Door_8
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7022483c5bd723690800000000000000
+      internalID: -7623892999562059257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vine Door_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 859956608dc351280800000000000000
+      internalID: -9073278975750071976
       vertices: []
       indices: 
       edges: []

@@ -144,7 +144,7 @@ public class Health : MonoBehaviour
     private IEnumerator ResetScene()
     {
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene("Title");
+        FindObjectOfType<SceneTransitions>().ChangeScene("Death");
     }
     public void ChangeSound(AudioClip clip)
     {

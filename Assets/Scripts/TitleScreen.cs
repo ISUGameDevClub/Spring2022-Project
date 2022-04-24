@@ -8,11 +8,13 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] GameObject optionsScreen;
     [SerializeField] Scene playScene;
     AudioSource buttonSound;
+    SceneTransitions sceneTrans;
     public Music music;
     
     // Start is called before the first frame update
     void Start()
     {
+        sceneTrans = FindObjectOfType<SceneTransitions>();
         buttonSound = gameObject.GetComponent<AudioSource>();
         music.playingGameMusic = false;
     }
@@ -39,7 +41,7 @@ public class TitleScreen : MonoBehaviour
     {
         buttonSound.Play();
         music.playingGameMusic = true;
-        SceneManager.LoadScene("Final Forest");
+        sceneTrans.ChangeScene("Final Forest");
     }
 
     public void quitGame()
