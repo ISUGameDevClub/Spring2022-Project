@@ -65,7 +65,7 @@ public class MapGenerator : MonoBehaviour
         {
             GameObject[] conectors = new GameObject[1];
             conectors[0] = connector;
-            tempConnectors[i] = innerRooms[i].GetComponent<Room>().SpawnHallways(conectors, conectors, -43.25f, 1)[0];
+            tempConnectors[i] = innerRooms[i].GetComponent<Room>().SpawnHallways(conectors, conectors, -47.25f, 1)[0];
             if(tempConnectors[i] != null)
                 connectorCount++;
         }
