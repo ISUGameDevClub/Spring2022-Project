@@ -130,6 +130,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 130999684, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ea5f6125c4c48bc4592f27360800ad52, type: 3}
+    - target: {fileID: 940052963, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ea5f6125c4c48bc4592f27360800ad52, type: 3}
+    - target: {fileID: 976868150, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ea5f6125c4c48bc4592f27360800ad52, type: 3}
+    - target: {fileID: 1959370464, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ea5f6125c4c48bc4592f27360800ad52, type: 3}
     - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
       propertyPath: verticalRooms.Array.size
       value: 9
@@ -309,7 +325,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.8
+  m_Intensity: 0.6
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: fbdaa31339f4fbf0000000003d473643a539a29b7fdbf236ab525b38
   m_LightCookieSprite: {fileID: 0}
