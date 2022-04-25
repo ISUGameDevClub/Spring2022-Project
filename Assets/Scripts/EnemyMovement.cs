@@ -88,22 +88,21 @@ public class EnemyMovement : MonoBehaviour
                     }
                 }
             }
-
             else if ((Vector2.Distance(enemyRB.position, playerRB.position) < minDist) && seesPlayer && runAway)
-        {
-          direction = enemyRB.position - playerRB.position;
-          lastpos = playerRB.position;
-          enemyRB.MovePosition(enemyRB.position + (direction).normalized * moveSpeed * Time.fixedDeltaTime);
-          if (direction.x > 0 && !dontFlip)
-          {
-              enemySpriteRender.flipX = true;
-          }
-          else if (direction.x < 0)
-          {
-              enemySpriteRender.flipX = false;
-          }
-          enemyMoving = true;
-        }
+            {
+                  direction = enemyRB.position - playerRB.position;
+                  lastpos = playerRB.position;
+                  enemyRB.MovePosition(enemyRB.position + (direction).normalized * moveSpeed * Time.fixedDeltaTime);
+                  if (direction.x > 0 && !dontFlip)
+                  {
+                      enemySpriteRender.flipX = true;
+                  }
+                  else if (direction.x < 0)
+                  {
+                      enemySpriteRender.flipX = false;
+                  }
+                  enemyMoving = true;
+            }
 
             else if (!charging)
             {

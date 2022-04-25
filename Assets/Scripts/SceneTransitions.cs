@@ -16,6 +16,11 @@ public class SceneTransitions : MonoBehaviour
 
     public void ChangeScene(string scene)
     {
+        if(scene == "Final Forest")
+        {
+
+        }
+
         newScene = scene;
         sceneTransitionAnim.SetTrigger("End Scene");
     }

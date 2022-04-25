@@ -8,6 +8,7 @@ public class Attack : MonoBehaviour
     public GameObject attackSpawn; //source object from which the attack should spawn
     public float cooldownTime = 0.2f; //modifying this value in the inspector won't usually change anything, change the cooldown on the projectile prefab
     public bool canAttack = true;
+    public bool isPlayer;
     [SerializeField] AudioSource AtkSnd;
     
     // Update is called once per frame
@@ -18,7 +19,10 @@ public class Attack : MonoBehaviour
 
     IEnumerator Cooldown(float duration)
     {
-        yield return new WaitForSeconds(duration);
+        float der = duration;
+        if (isPlayer)
+            der = der * PassiveBuffs.attackSpeedIncrease;
+        yield return new WaitForSeconds(der);
         canAttack = true;
     }
 
@@ -26,6 +30,10 @@ public class Attack : MonoBehaviour
     {
         GameObject newHurtbox = Instantiate(hurtboxPrefab, attackSpawn.transform.position, attackSpawn.transform.rotation);
         newHurtbox.GetComponent<Hurtbox>().SetParent(gameObject);
+        if (isPlayer)
+        {
+            newHurtbox.transform.localScale = new Vector3(PassiveBuffs.attackSizeIncrease, PassiveBuffs.attackSizeIncrease, 1);
+        }
         if (AtkSnd != null)
         {
             Debug.Log(AtkSnd);
