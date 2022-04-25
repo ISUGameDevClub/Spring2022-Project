@@ -682,6 +682,7 @@ MonoBehaviour:
   attackSpawn: {fileID: 1802386047288708509}
   cooldownTime: 0.2
   canAttack: 1
+  isPlayer: 0
   AtkSnd: {fileID: 8190133442912574405}
 --- !u!114 &4071646608046211123
 MonoBehaviour:
@@ -695,10 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ff73d91fee474459552e476fa4a1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightAttack: {fileID: 8247662113382918076, guid: 5586da57f82ba114296237818b7a7a2e, type: 3}
-  strongAttack: {fileID: 8247662113382918076, guid: 8149cf6bb35705b4b8fc6e34d80a9755, type: 3}
-  lightSound: {fileID: 8300000, guid: e15f6596f2f9ce0489f98cad793b1d80, type: 3}
-  heavySound: {fileID: 8300000, guid: ae61616f68384714eb6a6270bda74a54, type: 3}
+  weaponSpriteGameObject: {fileID: 3142987599453632924}
   canAttack: 0
   playerWeaponAnim: {fileID: 3239875233750654913}
 --- !u!114 &1802386048201658846

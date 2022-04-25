@@ -4,27 +4,47 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-  [SerializeField] private Weapon me = new Weapon("Basic", 0f, 0f, "This is a filler");
-    // Start is called before the first frame update
-    void Start()
-    {
+    [SerializeField] private GameObject lightAttack;
+    [SerializeField] private AudioClip lightAttackSound;
+    [SerializeField] private GameObject heavyAttack;
+    [SerializeField] private AudioClip heavyAttackSound;
+    [SerializeField] private Sprite weaponSprite;
 
-    }
+    bool touchingWepaon;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
-    }
-    private void OnTriggerStay(Collider other)
-    {
-      if(other.gameObject.CompareTag("Player"))
-      {
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && touchingWepaon)
         {
-          FindObjectOfType<PlayerInventory>().WeaponSwap(me);
-          Destroy(this.gameObject);
+            Debug.Log("FOUND");
+            PickupWeapon();
         }
-      }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            touchingWepaon = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            touchingWepaon = false;
+        }
+    }
+
+    private void PickupWeapon()
+    {
+        PlayerAttack.lightAttack = lightAttack;
+        PlayerAttack.lightSound = lightAttackSound;
+        PlayerAttack.strongAttack = heavyAttack;
+        PlayerAttack.heavySound = heavyAttackSound;
+        PlayerAttack.weaponSprite = weaponSprite;
+        FindObjectOfType<PlayerAttack>().weaponSpriteGameObject.sprite = PlayerAttack.weaponSprite;
+        Destroy(gameObject);
     }
 }

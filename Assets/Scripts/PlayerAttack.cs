@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public GameObject lightAttack;
-    public GameObject strongAttack;
-    public AudioClip lightSound;
-    public AudioClip heavySound;
+    public static GameObject lightAttack;
+    public static GameObject strongAttack;
+    public static AudioClip lightSound;
+    public static AudioClip heavySound;
+    public static Sprite weaponSprite;
+    public SpriteRenderer weaponSpriteGameObject;
     public bool canAttack;
     Attack at;
 
@@ -17,6 +19,7 @@ public class PlayerAttack : MonoBehaviour
     {
         at = gameObject.GetComponent<Attack>();
         canAttack = true;
+        weaponSpriteGameObject.sprite = weaponSprite;   
     }
 
     // Update is called once per frame
@@ -24,14 +27,14 @@ public class PlayerAttack : MonoBehaviour
     {
         if (canAttack)
         {
-            if (Input.GetButton("Fire1") && at.canAttack)
+            if (Input.GetButton("Fire1") && at.canAttack && lightAttack != null)
             {
                 at.ChangeClip(lightSound);
                 at.hurtboxPrefab = lightAttack;
                 at.SpawnAttack();
                 playerWeaponAnim.SetTrigger("Light Attack");
             }
-            else if (Input.GetButton("Fire2") && at.canAttack)
+            else if (Input.GetButton("Fire2") && at.canAttack && strongAttack != null)
             {
                 at.ChangeClip(heavySound);
                 at.hurtboxPrefab = strongAttack;
