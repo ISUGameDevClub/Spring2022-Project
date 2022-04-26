@@ -170,6 +170,11 @@ public class Room : MonoBehaviour
                 {
                     FindObjectOfType<Music>().playingAddOn = true;
                 }
+
+                if (FindObjectOfType<MapGenerator>())
+                {
+                    FindObjectOfType<MapGenerator>().enterRoomSound.Play();
+                }
             }
             else
                 RoomCleared();
@@ -195,6 +200,11 @@ public class Room : MonoBehaviour
         if (FindObjectOfType<Music>())
         {
             FindObjectOfType<Music>().playingAddOn = false;
+        }
+
+        if (FindObjectOfType<MapGenerator>())
+        {
+            FindObjectOfType<MapGenerator>().finishRoomSound.Play();
         }
     }
 }

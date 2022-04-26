@@ -72,6 +72,8 @@ public class Health : MonoBehaviour
                     playerHurtEffect.SetTrigger("Hurt");
                 else
                     Debug.Log("Player is missing their hurt effect!");
+
+                endHealth = currentHealth;
             }
             else
             {
@@ -105,6 +107,13 @@ public class Health : MonoBehaviour
         if (isPlayer)
         {
             bar.ChangeHealth((int)currentHealth);
+
+            if(playerHurtEffect != null)
+                playerHurtEffect.SetTrigger("Heal");
+            else
+                Debug.Log("Player is missing their hurt effect!");
+
+            endHealth = currentHealth;
         }
         else
         {
@@ -164,12 +173,14 @@ public class Health : MonoBehaviour
     {
         hurtAnim.SetTrigger("Hurt");
         playerHurtEffect.SetTrigger("Die");
+        playerHurtEffect.SetBool("Dead", true);
+
         StartCoroutine(ResetScene());
     }
 
     private IEnumerator ResetScene()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         FindObjectOfType<SceneTransitions>().ChangeScene("Death", DeathSong, null);
     }
     public void ChangeSound(AudioClip clip)

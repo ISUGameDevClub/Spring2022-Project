@@ -24,6 +24,9 @@ public class MapGenerator : MonoBehaviour
     public GameObject bossRoomIcon;
     public GameObject treasureRoomIcon;
 
+    public AudioSource enterRoomSound;
+    public AudioSource finishRoomSound;
+
     private GameObject[] innerRooms;
     private GameObject[] firstConnectors;
     private GameObject[] outerRooms;
