@@ -36,7 +36,7 @@ public class Attack : MonoBehaviour
         }
         if (AtkSnd != null)
         {
-            Debug.Log(AtkSnd);
+            //Debug.Log(AtkSnd);
             AtkSnd.Play();
         }
         canAttack = false;

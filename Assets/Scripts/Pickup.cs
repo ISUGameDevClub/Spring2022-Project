@@ -10,31 +10,10 @@ public class Pickup : MonoBehaviour
     [SerializeField] private AudioClip heavyAttackSound;
     [SerializeField] private Sprite weaponSprite;
 
-    bool touchingWepaon;
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && touchingWepaon)
-        {
-            Debug.Log("FOUND");
-            PickupWeapon();
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            touchingWepaon = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            touchingWepaon = false;
-        }
+        PickupWeapon();
     }
 
     private void PickupWeapon()
@@ -45,6 +24,18 @@ public class Pickup : MonoBehaviour
         PlayerAttack.heavySound = heavyAttackSound;
         PlayerAttack.weaponSprite = weaponSprite;
         FindObjectOfType<PlayerAttack>().weaponSpriteGameObject.sprite = PlayerAttack.weaponSprite;
-        Destroy(gameObject);
+        foreach(GameObject w in FindObjectOfType<IntroManager>().weapons)
+        {
+            if (w != gameObject)
+                w.SetActive(true);
+            else
+                w.SetActive(false);
+        }
+        if (FindObjectOfType<IntroManager>().phase == 1)
+        {
+            FindObjectOfType<IntroManager>().phase = 2;
+            FindObjectOfType<IntroManager>().ItemText.GetComponent<Animator>().SetTrigger("Hide");
+            FindObjectOfType<IntroManager>().battle1Text.GetComponent<Animator>().SetTrigger("Show");
+        }
     }
 }
