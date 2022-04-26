@@ -10,4 +10,9 @@ public class VolumeSlider : MonoBehaviour
     {
         mixer.SetFloat("volume", value);
     }
+
+    public void ChangeMusicVolume(float value)
+    {
+        Music.maxVolume = value;
+    }
 }

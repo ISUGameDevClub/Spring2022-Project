@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Music : MonoBehaviour
 {
-    public float maxVolume;
+    public static float maxVolume = .4f;
     public float volumeChangeSpeed;
     public AudioSource currentSong;
     public AudioSource addOnSong;
