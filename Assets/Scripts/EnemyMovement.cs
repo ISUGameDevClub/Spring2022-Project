@@ -60,16 +60,36 @@ public class EnemyMovement : MonoBehaviour
             bool seesPlayer = canSeePlayer();
             float distanceFromPlayer = Vector2.Distance(enemyRB.position, playerRB.position);
 
-            if ((Vector2.Distance(enemyRB.position, playerRB.gameObject.transform.position) <= bufferDist + bufferRange && Vector2.Distance(enemyRB.position, playerRB.gameObject.transform.position) >= bufferDist - bufferRange) && !charger)
+            if ((Vector2.Distance(enemyRB.position, playerRB.position) <= bufferDist + bufferRange && Vector2.Distance(enemyRB.position, playerRB.position) >= bufferDist - bufferRange) && !charger)
             {
-              Debug.Log("not moving");
+                Debug.Log("not moving");
                 enemyMoving = false;
             }
-
             else if (distanceFromPlayer > minDist && seesPlayer && !charging)
             {
                 direction = playerRB.position - enemyRB.position;
                 lastpos = playerRB.position;
+                if (direction.x > 0 && !dontFlip)
+                {
+                    enemySpriteRender.flipX = true;
+                }
+                else if (direction.x < 0)
+                {
+                    enemySpriteRender.flipX = false;
+                }
+                enemyMoving = true;
+                if (charger)
+                {
+                    charging = true;
+                    if (enemyMovingAnim != null)
+                    {
+                        enemyMovingAnim.SetBool("Charging", true);
+                    }
+                }
+            }
+            else if (distanceFromPlayer > minDist && !seesPlayer && !charging)
+            {
+                direction = lastpos - enemyRB.position;
                 if (direction.x > 0 && !dontFlip)
                 {
                     enemySpriteRender.flipX = true;
@@ -103,7 +123,6 @@ public class EnemyMovement : MonoBehaviour
                   }
                   enemyMoving = true;
             }
-
             else if (!charging)
             {
                 enemyMoving = false;
