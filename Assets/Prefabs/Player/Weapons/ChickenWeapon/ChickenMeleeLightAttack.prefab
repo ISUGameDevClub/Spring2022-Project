@@ -152,7 +152,7 @@ MonoBehaviour:
   speed: 0
   cooldownTime: 0.35
   activeTime: 0.1
-  spawnDistance: 0.5
+  spawnDistance: 0.65
 --- !u!50 &8247662113382918075
 Rigidbody2D:
   serializedVersion: 4
@@ -189,7 +189,7 @@ MonoBehaviour:
   playerHitbox: 1
   damage: 1
   isPiercing: 0
-  persisting: 0
+  persisting: 1
   knockbackPower: 0
   knockbackTime: 0
 --- !u!70 &1958796721005140653

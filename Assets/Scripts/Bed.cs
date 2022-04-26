@@ -6,17 +6,22 @@ public class Bed : MonoBehaviour
 {
     public string newLevel;
     bool touchingPlayer;
+    public bool intro;
+    public bool insta;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(insta)
+        {
+            GetComponent<Animator>().SetTrigger("Insta");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(touchingPlayer && Input.GetKeyDown(KeyCode.E) && (FindObjectOfType<IntroManager>().phase == 5 || !FindObjectOfType<IntroManager>()))
+        if(touchingPlayer && Input.GetKeyDown(KeyCode.E) && (!intro || (FindObjectOfType<IntroManager>().phase == 5 || !FindObjectOfType<IntroManager>())))
         {
             FindObjectOfType<SceneTransitions>().ChangeScene(newLevel);
         }
