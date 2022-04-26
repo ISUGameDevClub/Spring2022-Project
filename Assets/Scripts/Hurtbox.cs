@@ -36,7 +36,7 @@ public class Hurtbox : MonoBehaviour
                         kp = kp + (PassiveBuffs.attackKnockbackIncrease - 1);
                         kt = kt + (PassiveBuffs.attackKnockbackIncrease - 1);
                     }
-                    collision.gameObject.GetComponent<EnemyMovement>().KnockBack(collision.gameObject.transform.position - transform.position, kp, kt);
+                    collision.gameObject.GetComponent<EnemyMovement>().KnockBack(collision.gameObject.transform.position - parent.transform.position, kp, kt);
                 }
 
                 if (!isPiercing && !persisting)

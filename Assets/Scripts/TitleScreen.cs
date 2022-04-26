@@ -41,7 +41,7 @@ public class TitleScreen : MonoBehaviour
     {
         buttonSound.Play();
         music.playingGameMusic = true;
-        sceneTrans.ChangeScene("Final Forest");
+        sceneTrans.ChangeScene("Bedroom");
     }
 
     public void quitGame()

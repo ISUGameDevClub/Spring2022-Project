@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
     bool invincible = false;
 
     private float currentHealth = 10f; //current health of entity
+    private static float endHealth;
     private bool isDead = false;
     [SerializeField] AudioSource characterAudioSource;
     [SerializeField] AudioClip death;
@@ -23,6 +24,7 @@ public class Health : MonoBehaviour
     [SerializeField] GameObject healthbar;
     [SerializeField] Animator hurtAnim;
     [SerializeField] GameObject persistentSoundPrefab;
+    [SerializeField] GameObject droppedItem;
     private HealthBar bar;
     private HealthSlider slider;
 
@@ -34,7 +36,12 @@ public class Health : MonoBehaviour
     {
         currentHealth = maxHealth;
         if (isPlayer)
+        {
+            if (endHealth != 0)
+                currentHealth = endHealth;
             bar = healthbar.GetComponent<HealthBar>();
+            bar.ChangeHealth((int)currentHealth);
+        }
         else
             slider = healthbar.GetComponent<HealthSlider>();
     }
@@ -118,6 +125,18 @@ public class Health : MonoBehaviour
     {
         if(myRoom != null)
             myRoom.EnemyDied();
+
+        if (droppedItem != null)
+        {
+            GameObject item = Instantiate(droppedItem, transform.position, Quaternion.identity);
+            if(item.GetComponent<Bed>())
+            {
+                if (SceneManager.GetActiveScene().name == "Final Forest")
+                    item.GetComponent<Bed>().newLevel = "Bedroom 2";
+                else if (SceneManager.GetActiveScene().name == "Final Circus")
+                    item.GetComponent<Bed>().newLevel = "Bedroom 3";
+            }
+        }
 
         GameObject tempDeathSound = Instantiate(persistentSoundPrefab,transform.position,Quaternion.identity,transform);
         tempDeathSound.GetComponent<AudioSource>().clip = death;

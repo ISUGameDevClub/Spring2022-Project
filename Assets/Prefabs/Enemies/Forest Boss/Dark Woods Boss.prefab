@@ -213,6 +213,7 @@ MonoBehaviour:
   healthbar: {fileID: 8084359227105370881}
   hurtAnim: {fileID: 8754721021381053914}
   persistentSoundPrefab: {fileID: 822096029281851492, guid: b4f875e79e4baa64a9e568ea10be1137, type: 3}
+  droppedItem: {fileID: 4280238944112009510, guid: b05ed89bf6e6a9847932d2158aa36dac, type: 3}
   myRoom: {fileID: 0}
 --- !u!114 &7275997567625672436
 MonoBehaviour:
@@ -230,6 +231,7 @@ MonoBehaviour:
   attackSpawn: {fileID: 2708260892080451275}
   cooldownTime: 0.2
   canAttack: 1
+  isPlayer: 0
   AtkSnd: {fileID: 0}
 --- !u!114 &5437391047775528085
 MonoBehaviour:

@@ -139,8 +139,11 @@ public class EnemyMovement : MonoBehaviour
         {
             if (!aggro)
             {
-                characterAudioSource.clip = aggroClip;
-                characterAudioSource.Play();
+                if (aggroClip != null)
+                {
+                    characterAudioSource.clip = aggroClip;
+                    characterAudioSource.Play();
+                }
                 aggro = true;
             }
             return true;
@@ -182,7 +185,7 @@ public class EnemyMovement : MonoBehaviour
         enemyRB.velocity = Vector2.zero;
         enemyRB.AddForce(direction * knockbackPower, ForceMode2D.Impulse);
         StartCoroutine(knockBackTime(knockbackTime));
-        Debug.Log("Knocked Back!");
+        //Debug.Log("Knocked Back!");
     }
 
     private IEnumerator knockBackTime(float time)
