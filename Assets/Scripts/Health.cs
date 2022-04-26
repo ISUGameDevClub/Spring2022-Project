@@ -28,6 +28,10 @@ public class Health : MonoBehaviour
     private HealthBar bar;
     private HealthSlider slider;
 
+    [Header("Set for player")]
+    [SerializeField] AudioClip DeathSong;
+    [SerializeField] AudioClip DeathSongAddOn;
+
     // How enemies tell the room they are in that it is cleared
     [HideInInspector]
     public Room myRoom;
@@ -123,6 +127,9 @@ public class Health : MonoBehaviour
 
     private void EnemyDeath()
     {
+        if (DeathSong != null && FindObjectOfType<Music>())
+            FindObjectOfType<Music>().ChangeSong(DeathSong, DeathSongAddOn);
+
         if(myRoom != null)
             myRoom.EnemyDied();
 
@@ -163,7 +170,7 @@ public class Health : MonoBehaviour
     private IEnumerator ResetScene()
     {
         yield return new WaitForSeconds(2);
-        FindObjectOfType<SceneTransitions>().ChangeScene("Death");
+        FindObjectOfType<SceneTransitions>().ChangeScene("Death", DeathSong, null);
     }
     public void ChangeSound(AudioClip clip)
     {

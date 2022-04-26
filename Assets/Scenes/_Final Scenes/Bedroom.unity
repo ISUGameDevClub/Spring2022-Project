@@ -1924,6 +1924,14 @@ PrefabInstance:
       propertyPath: intro
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4280238944112009507, guid: b05ed89bf6e6a9847932d2158aa36dac, type: 3}
+      propertyPath: nextSong
+      value: 
+      objectReference: {fileID: 8300000, guid: f3896355154c7db4ea15860a8fd98751, type: 3}
+    - target: {fileID: 4280238944112009507, guid: b05ed89bf6e6a9847932d2158aa36dac, type: 3}
+      propertyPath: nextAddOn
+      value: 
+      objectReference: {fileID: 8300000, guid: 255355e360596e24b88904cca3335dd0, type: 3}
     - target: {fileID: 4280238944112009510, guid: b05ed89bf6e6a9847932d2158aa36dac, type: 3}
       propertyPath: m_Name
       value: Bed
@@ -4170,13 +4178,15 @@ MonoBehaviour:
   isPlayer: 0
   invincibleTime: 0
   characterAudioSource: {fileID: 979583446416931373}
-  death: {fileID: 8300000, guid: 521df9ab1a6081d408d2d9fc42a76f57, type: 3}
+  death: {fileID: 0}
   hurt: {fileID: 8300000, guid: 48e2f2958df107e4cbdcd38433f543f0, type: 3}
   playerHurtEffect: {fileID: 0}
   healthbar: {fileID: 3706770237881025250}
   hurtAnim: {fileID: 3049991846448660986}
   persistentSoundPrefab: {fileID: 822096029281851492, guid: b4f875e79e4baa64a9e568ea10be1137, type: 3}
   droppedItem: {fileID: 0}
+  DeathSong: {fileID: 8300000, guid: 521df9ab1a6081d408d2d9fc42a76f57, type: 3}
+  DeathSongAddOn: {fileID: 0}
   myRoom: {fileID: 0}
 --- !u!1001 &9135579109208380772
 PrefabInstance:

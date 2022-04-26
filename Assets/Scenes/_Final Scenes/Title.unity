@@ -415,7 +415,9 @@ MonoBehaviour:
   optionsScreen: {fileID: 0}
   playScene:
     m_Handle: 0
-  music: {fileID: 662429541}
+  buttonSound: {fileID: 274229205}
+  BedroomTheme: {fileID: 8300000, guid: 0b955fcc606756e4b9f0bf00f4ccf14c, type: 3}
+  TitleTheme: {fileID: 8300000, guid: 2795b84be0646ea45b52f09248b69fdc, type: 3}
 --- !u!82 &274229205
 AudioSource:
   m_ObjectHideFlags: 0
@@ -426,7 +428,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: f220d8503e1c52e4e9f0fb3165baadc6, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 315510213f5d80a44a6b7eebe4a8d70a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dcaf410666e62e54192d4a1d30646e6f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1190,12 +1192,12 @@ AudioSource:
   m_GameObject: {fileID: 662429538}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: f220d8503e1c52e4e9f0fb3165baadc6, type: 2}
-  m_audioClip: {fileID: 8300000, guid: f3896355154c7db4ea15860a8fd98751, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1286,8 +1288,8 @@ AudioSource:
   m_GameObject: {fileID: 662429538}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: f220d8503e1c52e4e9f0fb3165baadc6, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 0b955fcc606756e4b9f0bf00f4ccf14c, type: 3}
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2795b84be0646ea45b52f09248b69fdc, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1385,9 +1387,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84702d54844636b40b30abdea38fa041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TitleMusic: {fileID: 662429540}
-  gameMusic: {fileID: 662429539}
-  playingGameMusic: 0
+  maxVolume: 0.4
+  volumeChangeSpeed: 1.5
+  currentSong: {fileID: 662429540}
+  addOnSong: {fileID: 662429539}
+  nextSong: {fileID: 0}
+  nextAddOn: {fileID: 0}
 --- !u!4 &662429542
 Transform:
   m_ObjectHideFlags: 0
@@ -1698,7 +1703,7 @@ GameObject:
   - component: {fileID: 1299905022}
   - component: {fileID: 1299905021}
   m_Layer: 5
-  m_Name: Volume Slider
+  m_Name: Sound Effects Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1860,7 +1865,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: VOLUME
+  m_text: SOUND EFFECTS VOLUME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c9f8302f6ecb134894cc25a50362047, type: 2}
   m_sharedMaterial: {fileID: 6070575137502715592, guid: 1c9f8302f6ecb134894cc25a50362047, type: 2}
@@ -1903,7 +1908,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

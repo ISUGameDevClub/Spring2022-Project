@@ -14,13 +14,17 @@ public class SceneTransitions : MonoBehaviour
         newScene = "";
     }
 
-    public void ChangeScene(string scene)
+    public void ChangeScene(string scene, AudioClip newSong, AudioClip newAddOn)
     {
-        if(scene == "Final Forest")
+        if(scene == "Title")
         {
-
+            PassiveBuffs.ResetStats();
         }
 
+        if(FindObjectOfType<Music>())
+        {
+            FindObjectOfType<Music>().ChangeSong(newSong, newAddOn);
+        }
         newScene = scene;
         sceneTransitionAnim.SetTrigger("End Scene");
     }

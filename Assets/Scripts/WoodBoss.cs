@@ -9,6 +9,8 @@ public class WoodBoss : MonoBehaviour
     public GameObject waveAttackPrefab;
     public GameObject lineAttackPrefab;
 
+    public AudioClip bossTheme;
+
     public int lineAttacksPerWaveAttack = 3;
     private int attacksSpawned = 0;
     // Start is called before the first frame update
@@ -22,6 +24,15 @@ public class WoodBoss : MonoBehaviour
     {
         if(currentAttack.canAttack && myMovement.canAggro)
         {
+            if(bossTheme != null)
+            {
+                if(FindObjectOfType<Music>())
+                {
+                    FindObjectOfType<Music>().ChangeSong(bossTheme, null);
+                }
+                bossTheme = null;
+            }
+
             attacksSpawned++;
             if(attacksSpawned % (lineAttacksPerWaveAttack + 1) == 0)
             {
