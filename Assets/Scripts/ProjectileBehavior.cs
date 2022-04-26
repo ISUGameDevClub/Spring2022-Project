@@ -14,7 +14,8 @@ public class ProjectileBehavior : MonoBehaviour
     void Start()
     {
         projectileRB = GetComponent<Rigidbody2D>();
-        transform.localPosition = (Vector2)transform.position + ((Vector2)transform.right * spawnDistance);
+        if(spawnDistance != 0)
+            transform.localPosition = (Vector2)transform.position + ((Vector2)transform.right * spawnDistance);
     }
 
     private void Awake()
