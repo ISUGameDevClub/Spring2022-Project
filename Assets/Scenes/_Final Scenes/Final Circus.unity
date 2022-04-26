@@ -147,6 +147,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: ea5f6125c4c48bc4592f27360800ad52, type: 3}
     - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
+      propertyPath: bossRoom
+      value: 
+      objectReference: {fileID: 4258076530611605979, guid: 8c2c4d7b9400ffc439b1a75317d509d0, type: 3}
+    - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
+      propertyPath: connector
+      value: 
+      objectReference: {fileID: 4228896348244279557, guid: eaf83a1f8211d474790d38612391d457, type: 3}
+    - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
+      propertyPath: startingRoom
+      value: 
+      objectReference: {fileID: 4942202088085730870, guid: 49516210ddb10da468163923194aaee8, type: 3}
+    - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
+      propertyPath: treasureRoom
+      value: 
+      objectReference: {fileID: 4258076530611605979, guid: 8632350046bb3b042b0e2be63d568608, type: 3}
+    - target: {fileID: 931685505032976678, guid: 10430fb5ec35c224ebd2216af30e65c1, type: 3}
       propertyPath: verticalRooms.Array.size
       value: 9
       objectReference: {fileID: 0}
