@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     bool dashcooling;
     bool isslowed = false;
 
-    bool stun = false;
+    public bool stun = false;
     
     
 
@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && !dashing && !dashcooling)
+        if (Input.GetKey(KeyCode.LeftShift) && !dashing && !dashcooling && !stun)
         {
             StartCoroutine(DashTime(finalTimeDashing));
         }

@@ -25,7 +25,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canAttack)
+        if (canAttack && !GetComponent<PlayerMovement>().stun)
         {
             if (Input.GetButton("Fire1") && at.canAttack && lightAttack != null)
             {

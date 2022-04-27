@@ -25,6 +25,7 @@ public class Health : MonoBehaviour
     [SerializeField] Animator hurtAnim;
     [SerializeField] GameObject persistentSoundPrefab;
     [SerializeField] GameObject droppedItem;
+    private Vector2 spawnPos;
     private HealthBar bar;
     private HealthSlider slider;
 
@@ -38,6 +39,7 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
+        spawnPos = transform.position;
         currentHealth = maxHealth;
         if (isPlayer)
         {
@@ -144,7 +146,7 @@ public class Health : MonoBehaviour
 
         if (droppedItem != null)
         {
-            GameObject item = Instantiate(droppedItem, transform.position, Quaternion.identity);
+            GameObject item = Instantiate(droppedItem, spawnPos, Quaternion.identity);
             if(item.GetComponent<Bed>())
             {
                 if (SceneManager.GetActiveScene().name == "Final Forest")

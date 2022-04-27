@@ -65,7 +65,7 @@ public class EnemyMovement : MonoBehaviour
                 Debug.Log("not moving");
                 enemyMoving = false;
             }
-            else if (distanceFromPlayer > minDist && seesPlayer && !charging)
+            else if (distanceFromPlayer > minDist && seesPlayer && !charging && !runAway)
             {
                 direction = playerRB.position - enemyRB.position;
                 lastpos = playerRB.position;
@@ -87,7 +87,7 @@ public class EnemyMovement : MonoBehaviour
                     }
                 }
             }
-            else if (distanceFromPlayer > minDist && !seesPlayer && !charging)
+            else if (distanceFromPlayer > minDist && !seesPlayer && !charging && !runAway)
             {
                 direction = lastpos - enemyRB.position;
                 if (direction.x > 0 && !dontFlip)

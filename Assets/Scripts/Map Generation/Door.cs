@@ -10,7 +10,9 @@ public class Door : MonoBehaviour
     public GameObject outwardsIndicator;
     public Collider2D doorCollider;
     public GameObject HPathBlocker;
+    public GameObject HPathBlocker2;
     public GameObject VPathBlocker;
+    public GameObject VPathBlocker2;
     public SpriteRenderer Sprite;
 
     [HideInInspector]
@@ -321,9 +323,14 @@ public class Door : MonoBehaviour
 
     public void EnablePathBlocker()
     {
-        if (direction == new Vector2(0, -1) || direction == new Vector2(0, 1))
+        SetDirection();
+        if (direction == new Vector2(0, -1))
+            HPathBlocker2.SetActive(true);
+        else if (direction == new Vector2(0, 1))
             HPathBlocker.SetActive(true);
-        else
+        else if (direction == new Vector2(-1, 0))
+            VPathBlocker2.SetActive(true);
+        else if (direction == new Vector2(1, 0))
             VPathBlocker.SetActive(true);
 
         Sprite.color = new Color(1, 1, 1, 0);
