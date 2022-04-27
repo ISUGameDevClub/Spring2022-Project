@@ -42,6 +42,12 @@ public class TitleScreen : MonoBehaviour
         sceneTrans.ChangeScene("Bedroom", BedroomTheme, null);
     }
 
+    public void Credits()
+    {
+        buttonSound.Play();
+        sceneTrans.ChangeScene("Credits", TitleTheme, null);
+    }
+
     public void ReturnToTitle()
     {
         buttonSound.Play();

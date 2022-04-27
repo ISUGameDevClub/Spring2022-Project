@@ -185,6 +185,19 @@ public class Door : MonoBehaviour
     public void SetDirection()
     {
         direction = transform.right;
+        if (direction.x > .5f)
+            direction = new Vector2(1, direction.y);
+        else if (direction.x < -.5f)
+            direction = new Vector2(-1, direction.y);
+        else
+            direction = new Vector2(0, direction.y);
+
+        if (direction.y > .5f)
+            direction = new Vector2(direction.x, 1);
+        else if (direction.y < -.5f)
+            direction = new Vector2(direction.x, -1);
+        else
+            direction = new Vector2(direction.x, 0);
     }
 
     private Vector2 GetCorner()
