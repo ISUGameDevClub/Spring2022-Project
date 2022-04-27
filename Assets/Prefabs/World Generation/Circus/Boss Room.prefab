@@ -4864,6 +4864,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4946793880144604282}
     m_Modifications:
+    - target: {fileID: 2541057544809624330, guid: 09b4a4560abb3944a9f5777e25c8c348, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2541057544809624330, guid: 09b4a4560abb3944a9f5777e25c8c348, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7712053958512027521, guid: 09b4a4560abb3944a9f5777e25c8c348, type: 3}
+      propertyPath: roomHeightFromCenter
+      value: 4.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7712053958512027521, guid: 09b4a4560abb3944a9f5777e25c8c348, type: 3}
+      propertyPath: roomDistanceFromCenter
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7712053958512027522, guid: 09b4a4560abb3944a9f5777e25c8c348, type: 3}
       propertyPath: m_RootOrder
       value: 10
