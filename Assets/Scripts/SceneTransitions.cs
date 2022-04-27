@@ -29,6 +29,12 @@ public class SceneTransitions : MonoBehaviour
         sceneTransitionAnim.SetTrigger("End Scene");
     }
 
+    public void ChangeScene2(string scene)
+    {
+        newScene = scene;
+        sceneTransitionAnim.SetTrigger("End Scene 2");
+    }
+
     public void SceneChangeEnd()
     {
         SceneManager.LoadScene(newScene);

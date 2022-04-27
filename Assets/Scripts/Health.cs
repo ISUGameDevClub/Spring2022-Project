@@ -147,12 +147,14 @@ public class Health : MonoBehaviour
         if (droppedItem != null)
         {
             GameObject item = Instantiate(droppedItem, spawnPos, Quaternion.identity);
-            if(item.GetComponent<Bed>())
+            if(item.GetComponentInChildren<Bed>())
             {
                 if (SceneManager.GetActiveScene().name == "Final Forest")
                     item.GetComponent<Bed>().newLevel = "Bedroom 2";
                 else if (SceneManager.GetActiveScene().name == "Final Circus")
                     item.GetComponent<Bed>().newLevel = "Bedroom 3";
+                else if (SceneManager.GetActiveScene().name == "Final Scene")
+                    item.GetComponentInChildren<Bed>().newLevel = "Victory";
             }
         }
 

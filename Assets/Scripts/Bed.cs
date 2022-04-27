@@ -8,6 +8,7 @@ public class Bed : MonoBehaviour
     bool touchingPlayer;
     public bool intro;
     public bool insta;
+    public bool finalBed;
 
     public AudioClip nextSong;
     public AudioClip nextAddOn;
@@ -26,7 +27,10 @@ public class Bed : MonoBehaviour
     {
         if(touchingPlayer && Input.GetKeyDown(KeyCode.E) && (!intro || (FindObjectOfType<IntroManager>().phase == 5 || !FindObjectOfType<IntroManager>())))
         {
-            FindObjectOfType<SceneTransitions>().ChangeScene(newLevel, nextSong, nextAddOn);
+            if (!finalBed)
+                FindObjectOfType<SceneTransitions>().ChangeScene(newLevel, nextSong, nextAddOn);
+            else
+                StartCoroutine(FinalSceneStart());
         }
     }
 
@@ -44,5 +48,13 @@ public class Bed : MonoBehaviour
         {
             touchingPlayer = false;
         }
+    }
+
+    IEnumerator FinalSceneStart()
+    {
+        FindObjectOfType<Music>().ChangeSong(nextSong, nextAddOn);
+        FindObjectOfType<PlayerMovement>().GetStunned(30);
+        yield return new WaitForSeconds(11.5f);
+        FindObjectOfType<SceneTransitions>().ChangeScene2(newLevel);
     }
 }

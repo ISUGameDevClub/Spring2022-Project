@@ -60,13 +60,16 @@ public class PlayerMovement : MonoBehaviour
             playerAnim.SetBool("Moving",false);
         }
 
-        if (weaponRotate.weaponOnLeft && !dashing)
+        if (!stun)
         {
-            playerSprite.flipX = true;
-        }
-        else if(!weaponRotate.weaponOnLeft && !dashing)
-        {
-            playerSprite.flipX = false;
+            if (weaponRotate.weaponOnLeft && !dashing)
+            {
+                playerSprite.flipX = true;
+            }
+            else if (!weaponRotate.weaponOnLeft && !dashing)
+            {
+                playerSprite.flipX = false;
+            }
         }
     }
 
