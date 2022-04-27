@@ -39,7 +39,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        if (enemyMovingAnim != null)
+        if (enemyMovingAnim != null && typeOfEnemy != EnemyType.CircusBoss)
         {
             if (!enemyMoving)
             {
@@ -54,7 +54,7 @@ public class EnemyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (canAggro)
+        if (canAggro && typeOfEnemy != EnemyType.CircusBoss)
         {
             enemyRB.velocity = Vector2.zero;
             bool seesPlayer = canSeePlayer();
@@ -138,7 +138,7 @@ public class EnemyMovement : MonoBehaviour
     public void AllowAggroStart()
     {
         StartCoroutine(AllowAggro());
-        if(GetComponent<CircusBoss>() != null)
+        if (GetComponent<CircusBoss>() != null)
         {
             StartCoroutine(GetComponent<CircusBoss>().EnterRoom(0.5f)); //PUT STARTING ANIMATION LENGTH FOR CIRCUS BOSS IN HERE
         }
