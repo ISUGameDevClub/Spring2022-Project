@@ -27,6 +27,11 @@ public class Hurtbox : MonoBehaviour
                     health.TakeDamage(damage);
                 }
 
+                if (knockbackTime > 0 && collision.gameObject.GetComponent<PlayerMovement>())
+                {
+                    collision.gameObject.GetComponent<PlayerMovement>().GetStunned(knockbackTime);
+                }
+
                 if (collision.gameObject.GetComponent<EnemyMovement>())
                 {
                     float kp = knockbackPower;
