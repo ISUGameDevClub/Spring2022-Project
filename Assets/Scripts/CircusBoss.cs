@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class CircusBoss : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class CircusBoss : MonoBehaviour
     public GameObject warpPrefab;
     public GameObject lion;
     public GameObject smoke;
+
 
     public int whipAttacksPerWarp = 3; //how many times the boss will whip before warping
     private int attacksSpawned = 0; //counts both whip and warp calls
@@ -22,6 +24,9 @@ public class CircusBoss : MonoBehaviour
     public float roomHeightFromCenter = 3f; //how far should the boss move up or down from the center of the room?
     public float whipDistFromBoss = 2f; //how far away from the boss does the whip attack spawn?
 
+    public Animator anim;
+    public SpriteRenderer sR;
+
     Transform tf;
     Rigidbody2D rb;
 
@@ -29,6 +34,7 @@ public class CircusBoss : MonoBehaviour
     public float maxTimeBetweenAttack = 1.5f;
     public float whipPauseTime = 0.1f;
     public float warpTime = 1f;
+
     private float movementTime = 0f; //time that only increases while the boss is not attacking, used for movement
 
     // Start is called before the first frame update
@@ -37,33 +43,42 @@ public class CircusBoss : MonoBehaviour
         currentAttack = GetComponent<Attack>();
         tf = GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(EnterRoom(0f));
     }
 
     void FixedUpdate()
     {
-        if (currentAttack.canAttack && !attacking)
-        {
-            attacksSpawned++;
-            if (attacksSpawned % (whipAttacksPerWarp + 1) == 0)
+        if (onRight)
+            sR.flipX = true;
+        else
+            sR.flipX = false;
+
+        if (GetComponent<EnemyMovement>().canAggro){
+            if (currentAttack.canAttack && !attacking)
             {
-                StartCoroutine(StartWarp());
+                attacksSpawned++;
+                if (attacksSpawned % (whipAttacksPerWarp + 1) == 0)
+                {
+                    StartCoroutine(StartWarp());
+                }
+                else
+                {
+                    StartCoroutine(StartWhip());
+                }
+
+            }
+            else if (!stopped)
+            {
+                anim.SetBool("Walking", true);
+                movementTime += Time.fixedDeltaTime;
+                Vector3 pos = tf.localPosition;
+                float movementY = Mathf.Sin(movementTime * movementSpeed);
+                tf.localPosition = new Vector3(pos.x, 8.5f+ movementY * roomHeightFromCenter, pos.z);
             }
             else
             {
-                StartCoroutine(StartWhip());
+                return;
             }
-            
         }
-        else if (!stopped)
-        {
-            movementTime += Time.fixedDeltaTime;
-            Vector3 pos = tf.position;
-            float movementY = Mathf.Sin(movementTime * movementSpeed);
-            tf.position = new Vector3(pos.x, movementY * roomHeightFromCenter, pos.z);
-        }
-        else
-            return;
     }
 
     void WhipAttack()
@@ -73,14 +88,14 @@ public class CircusBoss : MonoBehaviour
         if (onRight)
         {
             currentAttack.attackSpawn = new GameObject();
-            currentAttack.attackSpawn.transform.position = transform.position;
-            currentAttack.attackSpawn.transform.position -= new Vector3(whipDistFromBoss, 0, 0);
+            currentAttack.attackSpawn.transform.localPosition = transform.localPosition;
+            currentAttack.attackSpawn.transform.localPosition -= new Vector3(whipDistFromBoss, 0, 0);
         }
         else
         {
             currentAttack.attackSpawn = new GameObject();
-            currentAttack.attackSpawn.transform.position = transform.position;
-            currentAttack.attackSpawn.transform.position += new Vector3(whipDistFromBoss, 0, 0);
+            currentAttack.attackSpawn.transform.localPosition = transform.localPosition;
+            currentAttack.attackSpawn.transform.localPosition += new Vector3(whipDistFromBoss, 0, 0);
         }
         currentAttack.SpawnAttack();
         Destroy(currentAttack.attackSpawn);
@@ -95,14 +110,14 @@ public class CircusBoss : MonoBehaviour
         currentAttack.SpawnAttack();
         if (onRight)
         {
-            Vector2 newDistance = new Vector3(tf.position.x - roomDistanceFromCenter * 2, tf.position.y);
-            tf.position = newDistance;
+            Vector2 newDistance = new Vector3(tf.localPosition.x - roomDistanceFromCenter * 2, tf.localPosition.y);
+            tf.localPosition = newDistance;
             onRight = false;
         }
         else
         {
-            Vector2 newDistance = new Vector3(tf.position.x + roomDistanceFromCenter * 2, tf.position.y);
-            tf.position = newDistance;
+            Vector2 newDistance = new Vector3(tf.localPosition.x + roomDistanceFromCenter * 2, tf.localPosition.y);
+            tf.localPosition = newDistance;
             onRight = true;
         }
     }
@@ -117,14 +132,12 @@ public class CircusBoss : MonoBehaviour
     {
         if(FindObjectOfType<PlayerMovement>().gameObject.transform.position.x < transform.position.x)
         {
-            Vector2 newDistance = new Vector3(tf.position.x + roomDistanceFromCenter, tf.position.y);
-            tf.position = newDistance;
+            tf.position = new Vector3(tf.position.x + roomDistanceFromCenter, tf.position.y);
             onRight = true;
         }
         else
         {
-            Vector2 newDistance = new Vector3(tf.position.x - roomDistanceFromCenter, tf.position.y);
-            tf.position = newDistance;
+            tf.position = new Vector3(tf.position.x - roomDistanceFromCenter, tf.position.y);
             onRight = false;
         }
     }
@@ -137,23 +150,30 @@ public class CircusBoss : MonoBehaviour
 
     IEnumerator StartWhip()
     {
+        anim.SetBool("Walking", false);
+        anim.SetBool("Attacking", true);
         attacking = true;
         stopped = true;
         yield return new WaitForSeconds(whipPauseTime);
         WhipAttack();
         StartCoroutine(Pause(whipPauseTime));
         attacking = false;
+        anim.SetBool("Attacking", false);
     }
     IEnumerator StartWarp()
     {
+        anim.SetBool("Walking", false);
+        anim.SetBool("Warping", true);
         attacking = true;
         stopped = true;
         yield return new WaitForSeconds(warpTime);
         Vector3 pos = tf.position;
-        Instantiate(lion, pos, new Quaternion());
+        GameObject liono = Instantiate(lion, pos, new Quaternion());
+        liono.GetComponent<EnemyMovement>().AllowAggroStart();
         Instantiate(smoke, pos, new Quaternion());
         Warp();
         StartCoroutine(Pause(warpTime));
         attacking = false;
+        anim.SetBool("Warping", false);
     }
 }
