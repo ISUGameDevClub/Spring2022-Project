@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f0b06d4c89878488e38f2d73b85b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 15
   isPlayer: 0
   invincibleTime: 0
   characterAudioSource: {fileID: 203581476}
@@ -602,7 +602,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &224526503
 GameObject:
@@ -893,7 +893,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1802386048953908811, guid: 7c05e0ddeef156e42933f0273f2feb15, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1802386048953908811, guid: 7c05e0ddeef156e42933f0273f2feb15, type: 3}
       propertyPath: m_LocalPosition.x
@@ -982,7 +982,7 @@ Transform:
   - {fileID: 842685977}
   - {fileID: 203581477}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &432874604
 Animator:
@@ -1723,7 +1723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f0b06d4c89878488e38f2d73b85b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 15
   isPlayer: 0
   invincibleTime: 0
   characterAudioSource: {fileID: 842685976}
@@ -2674,63 +2674,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1796160608
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2446261838408226497, guid: 552fde1259cb33048bed3d6dcc3a1c60, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2446261838408226497, guid: 552fde1259cb33048bed3d6dcc3a1c60, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.1833355
-      objectReference: {fileID: 0}
-    - target: {fileID: 2446261838408226497, guid: 552fde1259cb33048bed3d6dcc3a1c60, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.1966577
-      objectReference: {fileID: 0}
-    - target: {fileID: 2446261838408226497, guid: 552fde1259cb33048bed3d6dcc3a1c60, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2446261838408226497, guid: 552fde1259cb33048bed3d6dcc3a1c60, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2446261838408226497, guid: 552fde1259cb33048bed3d6dcc3a1c60, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2446261838408226497, guid: 552fde1259cb33048bed3d6dcc3a1c60, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2446261838408226497, guid: 552fde1259cb33048bed3d6dcc3a1c60, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2446261838408226497, guid: 552fde1259cb33048bed3d6dcc3a1c60, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2446261838408226497, guid: 552fde1259cb33048bed3d6dcc3a1c60, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2446261838408226497, guid: 552fde1259cb33048bed3d6dcc3a1c60, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 2446261838408226511, guid: 552fde1259cb33048bed3d6dcc3a1c60, type: 3}
-      propertyPath: m_Name
-      value: Sword
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 552fde1259cb33048bed3d6dcc3a1c60, type: 3}
 --- !u!1 &1834090238
 GameObject:
   m_ObjectHideFlags: 0

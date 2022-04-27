@@ -150,7 +150,7 @@ public class Room : MonoBehaviour
     {
         enemyCount--;
         if (enemyCount <= 0)
-            RoomCleared();
+            RoomCleared(true);
     }
 
     public void PlayerEnter()
@@ -165,6 +165,7 @@ public class Room : MonoBehaviour
                     door.CloseDoor();
                 }
                 EnableEnemies();
+
                 // Programming team can add code below here
                 if(FindObjectOfType<Music>())
                 {
@@ -177,7 +178,7 @@ public class Room : MonoBehaviour
                 }
             }
             else
-                RoomCleared();
+                RoomCleared(false);
         }
     }
 
@@ -187,7 +188,7 @@ public class Room : MonoBehaviour
 
     }
 
-    public void RoomCleared()
+    public void RoomCleared(bool hadEnemies)
     {
         roomActive = false;
         roomCleared = true;
@@ -202,7 +203,7 @@ public class Room : MonoBehaviour
             FindObjectOfType<Music>().playingAddOn = false;
         }
 
-        if (FindObjectOfType<MapGenerator>())
+        if (FindObjectOfType<MapGenerator>() && hadEnemies)
         {
             FindObjectOfType<MapGenerator>().finishRoomSound.Play();
         }

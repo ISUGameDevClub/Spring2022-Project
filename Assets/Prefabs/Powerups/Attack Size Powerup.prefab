@@ -55,6 +55,7 @@ MonoBehaviour:
   dashCooldownDecrease: 0
   attackSpeedIncrease: 0
   attackSizeIncrease: 0.35
+  attackKnockbackIncrease: 0
 --- !u!61 &98774742672092418
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -478,7 +479,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Attack Speed
+  m_text: 'Attack Size
 
     Increase'
   m_isRightToLeft: 0
