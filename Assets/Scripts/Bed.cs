@@ -9,6 +9,9 @@ public class Bed : MonoBehaviour
     public bool intro;
     public bool insta;
 
+    public AudioClip nextSong;
+    public AudioClip nextAddOn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +26,7 @@ public class Bed : MonoBehaviour
     {
         if(touchingPlayer && Input.GetKeyDown(KeyCode.E) && (!intro || (FindObjectOfType<IntroManager>().phase == 5 || !FindObjectOfType<IntroManager>())))
         {
-            FindObjectOfType<SceneTransitions>().ChangeScene(newLevel);
+            FindObjectOfType<SceneTransitions>().ChangeScene(newLevel, nextSong, nextAddOn);
         }
     }
 

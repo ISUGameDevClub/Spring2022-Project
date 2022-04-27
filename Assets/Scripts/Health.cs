@@ -28,6 +28,10 @@ public class Health : MonoBehaviour
     private HealthBar bar;
     private HealthSlider slider;
 
+    [Header("Set for player")]
+    [SerializeField] AudioClip DeathSong;
+    [SerializeField] AudioClip DeathSongAddOn;
+
     // How enemies tell the room they are in that it is cleared
     [HideInInspector]
     public Room myRoom;
@@ -68,6 +72,8 @@ public class Health : MonoBehaviour
                     playerHurtEffect.SetTrigger("Hurt");
                 else
                     Debug.Log("Player is missing their hurt effect!");
+
+                endHealth = currentHealth;
             }
             else
             {
@@ -101,6 +107,13 @@ public class Health : MonoBehaviour
         if (isPlayer)
         {
             bar.ChangeHealth((int)currentHealth);
+
+            if(playerHurtEffect != null)
+                playerHurtEffect.SetTrigger("Heal");
+            else
+                Debug.Log("Player is missing their hurt effect!");
+
+            endHealth = currentHealth;
         }
         else
         {
@@ -123,6 +136,9 @@ public class Health : MonoBehaviour
 
     private void EnemyDeath()
     {
+        if (DeathSong != null && FindObjectOfType<Music>())
+            FindObjectOfType<Music>().ChangeSong(DeathSong, DeathSongAddOn);
+
         if(myRoom != null)
             myRoom.EnemyDied();
 
@@ -157,13 +173,15 @@ public class Health : MonoBehaviour
     {
         hurtAnim.SetTrigger("Hurt");
         playerHurtEffect.SetTrigger("Die");
+        playerHurtEffect.SetBool("Dead", true);
+
         StartCoroutine(ResetScene());
     }
 
     private IEnumerator ResetScene()
     {
-        yield return new WaitForSeconds(2);
-        FindObjectOfType<SceneTransitions>().ChangeScene("Death");
+        yield return new WaitForSeconds(1.5f);
+        FindObjectOfType<SceneTransitions>().ChangeScene("Death", DeathSong, null);
     }
     public void ChangeSound(AudioClip clip)
     {

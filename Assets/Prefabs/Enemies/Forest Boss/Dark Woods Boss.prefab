@@ -214,6 +214,8 @@ MonoBehaviour:
   hurtAnim: {fileID: 8754721021381053914}
   persistentSoundPrefab: {fileID: 822096029281851492, guid: b4f875e79e4baa64a9e568ea10be1137, type: 3}
   droppedItem: {fileID: 4280238944112009510, guid: b05ed89bf6e6a9847932d2158aa36dac, type: 3}
+  DeathSong: {fileID: 8300000, guid: f3896355154c7db4ea15860a8fd98751, type: 3}
+  DeathSongAddOn: {fileID: 8300000, guid: 255355e360596e24b88904cca3335dd0, type: 3}
   myRoom: {fileID: 0}
 --- !u!114 &7275997567625672436
 MonoBehaviour:
@@ -247,6 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveAttackPrefab: {fileID: 8247662113382918076, guid: eb360b25b82ef894cb75d8a33d629bcc, type: 3}
   lineAttackPrefab: {fileID: 8247662113382918076, guid: 729cc065c13fa3044b3394530dba7d32, type: 3}
+  bossTheme: {fileID: 8300000, guid: f2cd780a2ecfbe74eb26edbf13030b6e, type: 3}
   lineAttacksPerWaveAttack: 6
 --- !u!114 &3965686966763139162
 MonoBehaviour:

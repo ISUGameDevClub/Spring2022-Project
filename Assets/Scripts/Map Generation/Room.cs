@@ -166,7 +166,15 @@ public class Room : MonoBehaviour
                 }
                 EnableEnemies();
                 // Programming team can add code below here
+                if(FindObjectOfType<Music>())
+                {
+                    FindObjectOfType<Music>().playingAddOn = true;
+                }
 
+                if (FindObjectOfType<MapGenerator>())
+                {
+                    FindObjectOfType<MapGenerator>().enterRoomSound.Play();
+                }
             }
             else
                 RoomCleared();
@@ -189,6 +197,14 @@ public class Room : MonoBehaviour
                 door.OpenDoor();
         }
         // Programming team can add code below here
+        if (FindObjectOfType<Music>())
+        {
+            FindObjectOfType<Music>().playingAddOn = false;
+        }
 
+        if (FindObjectOfType<MapGenerator>())
+        {
+            FindObjectOfType<MapGenerator>().finishRoomSound.Play();
+        }
     }
 }

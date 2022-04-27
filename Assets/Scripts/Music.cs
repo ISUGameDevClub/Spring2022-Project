@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Music : MonoBehaviour
 {
+    public static float maxVolume = .4f;
+    public float volumeChangeSpeed;
+    public AudioSource currentSong;
+    public AudioSource addOnSong;
+
+
     private static Music instance;
+    public AudioClip nextSong;
+    public AudioClip nextAddOn;
 
-    public AudioSource TitleMusic;
-    public AudioSource gameMusic;
-
-    public bool playingGameMusic;
+    public bool playingAddOn;
 
     void Awake()
     {
@@ -24,33 +29,61 @@ public class Music : MonoBehaviour
 
     private void Update()
     {
-        if (!playingGameMusic)
-        {
-            if (TitleMusic.isPlaying == false)
-                TitleMusic.Play();
-            if (TitleMusic.volume < .2f)
-                TitleMusic.volume += Time.deltaTime * .5f;
-            else if(TitleMusic.volume > .2f)
-                TitleMusic.volume = .2f;
+        if (currentSong.clip == nextSong)
+            nextSong = null;
+        if(addOnSong.clip == nextAddOn)
+            nextAddOn = null;
 
-            if (gameMusic.volume > 0)
-                gameMusic.volume -= Time.deltaTime * .5f;
-            else if (gameMusic.volume <= 0)
-                gameMusic.Stop();
+
+        if (nextSong == null)
+        {
+            if (currentSong.volume < maxVolume)
+            {
+                currentSong.volume += volumeChangeSpeed * Time.deltaTime;
+            }
+            else
+            {
+                currentSong.volume = maxVolume;
+            }
         }
         else
         {
-            if (gameMusic.isPlaying == false)
-                gameMusic.Play();
-            if (gameMusic.volume < .2f)
-                gameMusic.volume += Time.deltaTime * .5f;
-            else if (gameMusic.volume > .2f)
-                gameMusic.volume = .2f;
+            if(currentSong.volume > .01f)
+            {
+                currentSong.volume -= volumeChangeSpeed * Time.deltaTime;
+            }
+            else
+            {
+                currentSong.clip = nextSong;
+                currentSong.Play();
+                nextSong = null;
 
-            if (TitleMusic.volume > 0)
-                TitleMusic.volume -= Time.deltaTime * .5f;
-            else if (TitleMusic.volume <= 0)
-                TitleMusic.Stop();
+                addOnSong.clip = nextAddOn;
+                addOnSong.Play();
+                nextAddOn = null;
+            }
         }
+
+        if (nextAddOn == null && playingAddOn)
+        {
+            if (addOnSong.volume < maxVolume)
+            {
+                addOnSong.volume += volumeChangeSpeed * Time.deltaTime;
+            }
+            else
+            {
+                addOnSong.volume = maxVolume;
+            }
+        }
+        else
+        {
+            addOnSong.volume -= volumeChangeSpeed * Time.deltaTime;
+        }
+    }
+
+    public void ChangeSong(AudioClip newSong, AudioClip newAddOn)
+    {
+        nextSong = newSong;
+        nextAddOn = newAddOn;
     }
 }

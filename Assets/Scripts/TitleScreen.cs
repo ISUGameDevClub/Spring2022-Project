@@ -7,16 +7,15 @@ public class TitleScreen : MonoBehaviour
 {
     [SerializeField] GameObject optionsScreen;
     [SerializeField] Scene playScene;
-    AudioSource buttonSound;
+    public AudioSource buttonSound;
     SceneTransitions sceneTrans;
-    public Music music;
+    public AudioClip BedroomTheme;
+    public AudioClip TitleTheme;
     
     // Start is called before the first frame update
     void Start()
     {
         sceneTrans = FindObjectOfType<SceneTransitions>();
-        buttonSound = gameObject.GetComponent<AudioSource>();
-        music.playingGameMusic = false;
     }
 
     // Update is called once per frame
@@ -40,8 +39,13 @@ public class TitleScreen : MonoBehaviour
     public void playGame()
     {
         buttonSound.Play();
-        music.playingGameMusic = true;
-        sceneTrans.ChangeScene("Bedroom");
+        sceneTrans.ChangeScene("Bedroom", BedroomTheme, null);
+    }
+
+    public void ReturnToTitle()
+    {
+        buttonSound.Play();
+        sceneTrans.ChangeScene("Title", TitleTheme, null);
     }
 
     public void quitGame()

@@ -6,8 +6,14 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
-
+    public AudioSource buttonSound;
+    public AudioClip TitleTheme;
     public GameObject PauseMenuBehavior;
+
+    private void Start()
+    {
+        GameIsPaused = false;
+    }
 
     void Update()
     {
@@ -25,6 +31,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void Resume()
     {
+        buttonSound.Play();
         PauseMenuBehavior.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -32,8 +39,9 @@ public class PauseMenu : MonoBehaviour
     public void MainMenu()
     {
         //Debug.Log("MAIN MENU!");
+        buttonSound.Play();
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Title");
+        FindObjectOfType<SceneTransitions>().ChangeScene("Title", TitleTheme, null);
     }
     void Pause()
     {

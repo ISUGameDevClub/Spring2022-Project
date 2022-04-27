@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8114327314599871999}
   - component: {fileID: 6535136091377070477}
   - component: {fileID: 6141920388192809321}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Clown
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ MonoBehaviour:
   typeOfEnemy: 3
   enemyMovingAnim: {fileID: 0}
   enemySpriteRender: {fileID: 857165040083151695}
-  moveSpeed: 1
+  moveSpeed: 1.5
   maxDist: 10
   minDist: 5
   bufferDist: 5
@@ -67,7 +67,7 @@ MonoBehaviour:
   characterAudioSource: {fileID: 6535136091377070477}
   aggroClip: {fileID: 8300000, guid: 8e38359eab4919c48b8ada34c7f1cb44, type: 3}
   aggro: 0
-  dontFlip: 1
+  dontFlip: 0
   canAggro: 0
   runAway: 1
   bufferRange: 0.25
@@ -87,6 +87,7 @@ MonoBehaviour:
   attackSpawn: {fileID: 857215172104018475}
   cooldownTime: 2
   canAttack: 1
+  isPlayer: 0
   AtkSnd: {fileID: 6535136091377070477}
 --- !u!114 &1518070282393019132
 MonoBehaviour:
@@ -162,6 +163,9 @@ MonoBehaviour:
   healthbar: {fileID: 7495382884679493499}
   hurtAnim: {fileID: 6141920388192809321}
   persistentSoundPrefab: {fileID: 822096029281851492, guid: b4f875e79e4baa64a9e568ea10be1137, type: 3}
+  droppedItem: {fileID: 0}
+  DeathSong: {fileID: 0}
+  DeathSongAddOn: {fileID: 0}
   myRoom: {fileID: 0}
 --- !u!114 &8114327314599871999
 MonoBehaviour:
@@ -303,7 +307,7 @@ GameObject:
   - component: {fileID: 5136429624699256959}
   - component: {fileID: 7546511560806183000}
   - component: {fileID: 6912679441530644615}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,7 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4935247283689166378}
   - component: {fileID: 5091944523325381875}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Throwing Pie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2020475611861915841}
   - component: {fileID: 2796366577328996041}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Weapon Swivel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -612,7 +616,7 @@ GameObject:
   - component: {fileID: 8158455021560367811}
   - component: {fileID: 5051516137762877505}
   - component: {fileID: 3258065240946741322}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hurtbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,6 +654,7 @@ MonoBehaviour:
   isPiercing: 1
   persisting: 1
   knockbackPower: 0
+  knockbackTime: 0
 --- !u!70 &3258065240946741322
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -676,7 +681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7706871093147077018}
   - component: {fileID: 857165040083151695}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bonkers the Clown (Idle)_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

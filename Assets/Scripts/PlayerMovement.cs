@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Sprite idleSprite;
     [SerializeField] SpriteRenderer playerSprite;
     [SerializeField] PlayerWeaponRotate weaponRotate;
+    public GameObject stunIcon;
+    public AudioSource stunSound;
     PlayerAttack playerAtk;
     Rigidbody2D playerRB;
     Vector2 direction;
@@ -37,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        stunIcon.SetActive(false);
         playerRB = GetComponent<Rigidbody2D>();
         playerAtk = GetComponent<PlayerAttack>();
         UpdatePassives();
@@ -49,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(DashTime(finalTimeDashing));
         }
 
-        if(direction != Vector2.zero) {
+        if(direction != Vector2.zero && !stun) {
             playerAnim.SetBool("Moving", true);
         }
         else
@@ -155,13 +158,16 @@ public class PlayerMovement : MonoBehaviour
     }
     public void GetStunned(float stuntimer)
     {
+        stunSound.Play();
         stun = true;
+        stunIcon.SetActive(true);
         StartCoroutine(stuntime(stuntimer));
     }
     public IEnumerator stuntime(float stuntimer)
     {
         yield return new WaitForSeconds(stuntimer);
         stun = false;
+        stunIcon.SetActive(false);
     }
 
 }
