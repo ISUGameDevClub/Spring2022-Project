@@ -280,7 +280,8 @@ public class Door : MonoBehaviour
         if (anim == null)
             anim = GetComponent<Animator>();
         anim.SetBool("Open", false);
-        doorCollider.enabled = true;
+        if(Sprite.color != new Color(1, 1, 1, 0))
+            doorCollider.enabled = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

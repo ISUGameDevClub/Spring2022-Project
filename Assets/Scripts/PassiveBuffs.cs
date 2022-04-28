@@ -22,5 +22,8 @@ public class PassiveBuffs : MonoBehaviour
         attackSpeedIncrease = 1;
         attackSizeIncrease = 1;
         attackKnockbackIncrease = 1;
+        PlayerAttack.weaponSprite = null;
+        PlayerAttack.lightAttack = null;
+        PlayerAttack.strongAttack = null;
     }
 }

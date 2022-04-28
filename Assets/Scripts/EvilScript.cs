@@ -42,10 +42,12 @@ public class EvilScript : MonoBehaviour
         while (true && bulletSpawns[0] != null)
         {
             anim.SetTrigger("Left Attack");
+            GetComponent<AudioSource>().Play();
             yield return new WaitForSeconds(2.5f);
             StartCoroutine(SpawnBullets());
             yield return new WaitForSeconds(3.5f);
             anim.SetTrigger("Right Attack");
+            GetComponent<AudioSource>().Play();
             yield return new WaitForSeconds(2.5f);
             StartCoroutine(SpawnBullets());
             yield return new WaitForSeconds(3.5f);
